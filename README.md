@@ -8,10 +8,16 @@
 
 ## Installation
 
-- git clone https://github.com/BLasan/AL-Web-App.git
+- Fork this repository
+
+- git clone https://github.com/<UserName>/AL-Web-App.git
 
 - npm install -g @angular/cli@latest
 
 - npm install
 
 - npm start
+
+## Note
+
+- Do not push your package.json and package-lock.json 
