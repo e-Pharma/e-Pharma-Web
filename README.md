@@ -18,6 +18,18 @@
 
 - npm audit fix (If necessary)
 
+## Create New Branch And Move
+
+- git checkout -b branch_name
+
+## Delete Remote Branch on GitHub
+
+- git push origin --delete branch-name
+
+## Delete Local Branch
+
+- git branch -D branch_name
+
 ## Start the Server
 
 - npm start
@@ -38,7 +50,6 @@
 
 - cd e-Pharma-Web
 - tree
-
 
 ## Note
 
