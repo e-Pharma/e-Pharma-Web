@@ -16,7 +16,29 @@
 
 - npm install
 
+- npm audit fix (If necessary)
+
+## Start the Server
+
 - npm start
+
+## Build Application
+
+- npm run build
+
+## Resolve Lint Errors
+
+- ng lint --fix=true
+
+## Usefull Commands
+
+- Run ng generate component component-name to generate a new component. You can also use ng    generate directive|pipe|service|class|guard|interface|enum|module.
+
+## Folder Structure
+
+- cd e-Pharma-Web
+- tree
+
 
 ## Note
 
