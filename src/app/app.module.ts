@@ -15,6 +15,7 @@ import {
 import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component';
 import { MainComponent } from './Layouts/Main/main.component';
 import { OrderComponent } from './Modules/Admin/order/order.component';
+import { UsersComponent } from './Modules/Admin/users/users.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { OrderComponent } from './Modules/Admin/order/order.component';
     AdminLayoutComponent,
     MainComponent,
     OrderComponent,
+    UsersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
