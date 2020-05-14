@@ -6,20 +6,22 @@ import { RouterModule } from '@angular/router';
 
 
 import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './Main-Shared-Components/components.module'
+import { ComponentsModule } from './Admin-Shared-Components/components.module'
 import { environment } from '../../src/environments/environment.prod';
 import { AppComponent } from './app.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component';
 import { MainComponent } from './Layouts/Main/main.component';
+import { LoginSignupModule } from './login-signup/login-signup.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    LoginSignupModule,
+    SharedModule,
     HttpModule,
     ComponentsModule,
     RouterModule,

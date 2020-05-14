@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent } from '../../Modules/Admin/dashboard/dashboard.component'
-import { UserProfileComponent } from '../../Modules/Admin/user-profile/user-profile.component';
-import { TableListComponent } from '../../Modules/Admin/table-list/table-list.component';
-import { TypographyComponent } from '../../Modules/Admin/typography/typography.component';
-import { IconsComponent } from '../../Modules/Admin/icons/icons.component';
-import { MapsComponent } from '../../Modules/Admin/maps/maps.component';
-import { NotificationsComponent } from '../../Modules/Admin/notifications/notifications.component';
-import { UpgradeComponent } from '../../Modules/Admin/upgrade/upgrade.component';
+import { DashboardComponent } from '../../Dashboards/Admin/dashboard/dashboard.component'
+import { UserProfileComponent } from '../../Dashboards/Admin/user-profile/user-profile.component';
+import { TableListComponent } from '../../Dashboards/Admin/table-list/table-list.component';
+import { TypographyComponent } from '../../Dashboards/Admin/typography/typography.component';
+import { IconsComponent } from '../../Dashboards/Admin/icons/icons.component';
+import { MapsComponent } from '../../Dashboards/Admin/maps/maps.component';
+import { NotificationsComponent } from '../../Dashboards/Admin/notifications/notifications.component';
+import { UpgradeComponent } from '../../Dashboards/Admin/upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
