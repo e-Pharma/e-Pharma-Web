@@ -17,7 +17,7 @@ export class UserServiceService {
    * @param userData User Information.
    */
   registerUser(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register_user`, userData);
+    return this.http.post(`${this.apiUrl}/auth/register`, userData);
   }
 
   /**
@@ -25,7 +25,11 @@ export class UserServiceService {
    * @param userCredentials User Login Data.
    */
   loginUser(userCredentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, userCredentials);
+    return this.http.post(`${this.apiUrl}/auth/login`, userCredentials);
+  }
+
+  verificationMail(mailData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/email/send_verification`, mailData);
   }
   
 }

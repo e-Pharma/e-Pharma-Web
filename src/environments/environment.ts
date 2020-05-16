@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://e-pharma-server.herokuapp.com/'
+  baseApiUrl: 'http://localhost:3000'
 };
+
+//https://e-pharma-server.herokuapp.com/

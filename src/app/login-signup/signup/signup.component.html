@@ -68,8 +68,11 @@
                                 <div class="col-md-6">
 
                                     <mat-form-field>
-                                        <mat-label>Country</mat-label>
-                                        <input matInput value="Sri Lanka" formControlName="country">
+                                        <mat-label>NIC</mat-label>
+                                        <input matInput  placeholder="NIC" formControlName="nic">
+                                        <mat-error *ngIf="signupForm.controls.nic.hasError('required')">
+                                            NIC is <strong>required</strong>
+                                        </mat-error>
                                     </mat-form-field>
 
                                 </div>
