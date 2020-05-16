@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component'
 import { MainComponent } from './Layouts/Main/main.component';
+import { LoginComponent } from './login-signup/login/login.component';
+import { SignupComponent } from './login-signup/signup/signup.component';
 
 const routes: Routes =[
   {
@@ -12,6 +14,14 @@ const routes: Routes =[
     redirectTo: 'home',
     pathMatch: 'full',
   }, 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
   {
     path: '',
     component: MainComponent,
