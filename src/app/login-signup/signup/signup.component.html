@@ -25,8 +25,8 @@
 
                                     <mat-form-field>
                                         <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name" formControlName="fName">
-                                        <mat-error *ngIf="signupForm.controls.fName.hasError('required')">
+                                        <input matInput placeholder="First Name" formControlName="firstname">
+                                        <mat-error *ngIf="signupForm.controls.firstname.hasError('required')">
                                             First Name is <strong>required</strong>
                                         </mat-error>
                                     </mat-form-field>
@@ -37,8 +37,8 @@
 
                                     <mat-form-field>
                                         <mat-label>Last Name</mat-label>
-                                        <input matInput placeholder="Last Name" formControlName="lName">
-                                        <mat-error *ngIf="signupForm.controls.lName.hasError('required')">
+                                        <input matInput placeholder="Last Name" formControlName="lastname">
+                                        <mat-error *ngIf="signupForm.controls.lastname.hasError('required')">
                                             Last Name is <strong>required</strong>
                                         </mat-error>
                                     </mat-form-field>

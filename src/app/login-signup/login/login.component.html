@@ -1,1 +1,84 @@
+<div class="main-content">
 
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+
+                <div class="card">
+
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Log In</h4>
+                    </div>
+
+                    <div class="card-body">
+                            
+                        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+                            <div class="row">
+
+                                <mat-form-field class="col-md-12">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Email" formControlName="email">
+                                    <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+                                        Email is <strong>required</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="loginForm.controls.email.hasError('email')">
+                                        Enter valid <strong>email</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="row">
+
+                                <mat-form-field class="col-md-12">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput placeholder="Password" type="password" formControlName="password">
+                                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                                        Password is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+
+                                    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Log In</button>
+
+                                </div>
+                                <div class="col-md-4"></div>
+
+                            </div>
+                        
+                        </form>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <a href="/password_reset"> Forget Password ? </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4"></div>
+
+        </div>
+
+    </div>
+
+</div>
