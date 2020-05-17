@@ -14,6 +14,7 @@ import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component';
 import { MainComponent } from './Layouts/Main/main.component';
 import { LoginSignupModule } from './login-signup/login-signup.module';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     LoginSignupModule,
     SharedModule,
     HttpModule,
+    HttpClientModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
