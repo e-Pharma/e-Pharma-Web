@@ -1,0 +1,73 @@
+body,html{
+    height: 100%;
+    margin: 0;
+    /* font-family: ; */
+    text-align: center;
+}
+.parallax1{
+    background: url(../../../assets/img/user/bg5.jpg);
+    height: 40%;
+}
+.parallax2{
+    background: url(../../../assets/img/user/bg5.jpg);
+    height: 20%;
+}
+.parallax1,.parallax2{
+    position: relative;
+    opacity: 60%;
+    background-position:center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.heading{
+    position: absolute;
+    text-align: center;
+    padding-right: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 550%;
+    top: 38%;
+    width: 100%;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px rgb(95, 93, 93);
+    
+}
+.heading-sm{
+    position: absolute;
+    top: 45%;
+    right: 0%;
+    left: 0%;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    font-size: 250%;
+    text-align: center;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgb(95, 93, 93);
+
+}
+.addr{
+    margin-right:0px;
+    margin-left: 30px;
+    text-align: right;
+    /* padding: 20px; */
+}
+.contactus{
+    padding: 30px;
+}
+.contact-col {
+    background-color: cornflowerblue;
+}
+.contact-infos{
+    margin: 40px 20px;
+}
+.contact-forms{
+    margin-left: 20px;
+    padding-left: 30px;
+}
+
+.btn{
+    background-color: cornflowerblue;
+}
