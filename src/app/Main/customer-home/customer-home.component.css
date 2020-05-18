@@ -1,0 +1,116 @@
+body,html{
+    height: 100%;
+    margin: 0;
+    /* font-family: ; */
+    text-align: center;
+}
+.parallax1{
+    background: url(../../../assets/img/user/bg5.jpg);
+    height: 100%;
+}
+.parallax2{
+    background: url(../../../assets/img/user/img5.jpg);
+    height: 40%;
+}
+.parallax3{
+    background: url(../../../assets/img/user/med1.jpg);
+    height: 40%;
+}
+.parallax4{
+    background: url(../../../assets/img/user/home1.jpg);
+    height: 60%;
+}
+.parallax1, .parallax2, .parallax3, .parallax4{
+    position: relative;
+    opacity: 60%;
+    background-position:center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.heading{
+    position: absolute;
+    text-align: right;
+    font-weight: 500;
+    padding-right: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 550%;
+    top: 38%;
+    width: 100%;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px rgb(95, 93, 93);
+    
+}
+
+.heading-sm{
+    position: absolute;
+    top: 45%;
+    right: 0%;
+    left: 0%;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    font-size: 250%;
+    text-align: center;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgb(95, 93, 93);
+
+}
+.content{
+    overflow: auto;
+    padding: 50px 80px;
+    /* color:#f2f2f2;
+    background-color: #323232; */
+}
+.col{
+    float: left;
+    width: 33%;
+    padding: 0 4%;
+    text-align: left ;
+
+} 
+.col-heading{
+    color: rgb(95, 93, 93);
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 2px;
+    /* text-shadow: 0 0 10px rgb(95, 93, 93); */
+}
+.image{
+    width:75%
+}
+p{
+    font-weight: 300;
+    text-align: justify ;
+    width:80%;
+    padding: 10px;
+}
+
+@media (max-width:768px){
+    .heading{
+        font-size: 250%;
+        font-weight: 650;
+    }
+    .heading-sm{
+        font-size: 180%;
+    }
+    .col{
+        width:100%;
+        padding: 0;
+        text-align: center;
+    }
+    .text{
+        font-size: 180%;
+     }
+     .content, .col-heading ,p{
+         text-align: center;
+     }
+     .image{
+         padding: 0;
+     }
+     
+
+}
+
