@@ -15,6 +15,7 @@ import { MainComponent } from './Layouts/Main/main.component';
 import { LoginSignupModule } from './login-signup/login-signup.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule,
     HttpClientModule,
     ComponentsModule,
+    CustomSharedComponentsModule,
     RouterModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({

@@ -6,8 +6,6 @@ import { CustomerContactComponent } from '../../Main/customer-contact/customer-c
 import { CustomerMainRoutes } from './main-components.routing';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [
     CustomerHomeComponent,

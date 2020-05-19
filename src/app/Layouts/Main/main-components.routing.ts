@@ -7,5 +7,5 @@ export const CustomerMainRoutes: Routes = [
 
     { path: 'home', component: CustomerHomeComponent },
     { path: 'about-us', component: CustomerAboutUsComponent },
-    { path: 'contact', component: CustomerContactComponent }
+    { path: 'contact', component: CustomerContactComponent },
 ];
