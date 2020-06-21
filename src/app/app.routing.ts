@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component'
 import { MainComponent } from './Layouts/Main/main.component';
 import { LoginComponent } from './login-signup/login/login.component';
 import { SignupComponent } from './login-signup/signup/signup.component';
+import {CustSidebarComponent} from './Dashboards/Customer/cust-sidebar/cust-sidebar.component'
 
 const routes: Routes =[
   {
@@ -21,6 +22,10 @@ const routes: Routes =[
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'sidebar',
+    component: CustSidebarComponent
   },
   {
     path: '',

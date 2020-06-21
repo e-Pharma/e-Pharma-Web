@@ -16,6 +16,7 @@ import { LoginSignupModule } from './login-signup/login-signup.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
+import { CustSidebarComponent } from './Dashboards/Customer/cust-sidebar/cust-sidebar.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { CustomSharedComponentsModule } from './custom-shared-components/custom-
     AppComponent,
     AdminLayoutComponent,
     MainComponent,
+    CustSidebarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
