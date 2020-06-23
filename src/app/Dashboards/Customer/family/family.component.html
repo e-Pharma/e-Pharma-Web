@@ -7,11 +7,35 @@
         <mat-card>
             <mat-form-field> 
                 <button mat-raised-button color="primary" (click)="addNewMember()"> ADD</button>
-                <input matInput  [(ngModel)]="inputValue">
+                <input matInput  [(ngModel)]="inputValue" >
             </mat-form-field>
         </mat-card>
 
             <p> {{newMember}}</p>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="mobile">
+                <th mat-header-cell *matHeaderCellDef> Mobile </th>
+                <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="relationship">
+                <th mat-header-cell *matHeaderCellDef> Relationship </th>
+                <td mat-cell *matCellDef="let element"> {{element.relationship}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    
         </div>
     </div>
 </div>

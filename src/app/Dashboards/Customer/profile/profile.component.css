@@ -1,0 +1,14 @@
+mat-card{
+    margin:10px;
+}
+.profile mat-card {
+    height: 100%;
+}
+img{
+    /* border-radius: 50%; */
+    width: 100%;
+    height: auto;
+}
+.userInfo{
+    margin: auto;
+}
