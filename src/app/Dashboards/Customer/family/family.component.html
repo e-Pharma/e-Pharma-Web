@@ -1,0 +1,17 @@
+<div class='main-content'>
+    <div class='container'>
+        <mat-card>
+            <h2 class='jumbotron'>My family</h2>
+        </mat-card>
+        <div>
+        <mat-card>
+            <mat-form-field> 
+                <button mat-raised-button color="primary" (click)="addNewMember()"> ADD</button>
+                <input matInput  [(ngModel)]="inputValue">
+            </mat-form-field>
+        </mat-card>
+
+            <p> {{newMember}}</p>
+        </div>
+    </div>
+</div>

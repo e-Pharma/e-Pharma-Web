@@ -1,8 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material/material.module';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -17,6 +18,12 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
 import { CustSidebarComponent } from './Dashboards/Customer/cust-sidebar/cust-sidebar.component';
+import { OrderHistoryComponent } from './Dashboards/Customer/order-history/order-history.component';
+import { ProfileComponent } from './Dashboards/Customer/profile/profile.component';
+import { FamilyComponent } from './Dashboards/Customer/family/family.component';
+import { AddressBookComponent } from './Dashboards/Customer/address-book/address-book.component';
+import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
+import { from } from 'rxjs';
 
 @NgModule({
   imports: [
@@ -24,6 +31,7 @@ import { CustSidebarComponent } from './Dashboards/Customer/cust-sidebar/cust-si
     FormsModule,
     ReactiveFormsModule,
     LoginSignupModule,
+    MaterialModule,
     SharedModule,
     HttpModule,
     HttpClientModule,
@@ -40,6 +48,11 @@ import { CustSidebarComponent } from './Dashboards/Customer/cust-sidebar/cust-si
     AdminLayoutComponent,
     MainComponent,
     CustSidebarComponent,
+    OrderHistoryComponent,
+    ProfileComponent,
+    FamilyComponent,
+    AddressBookComponent,
+    DashboardComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

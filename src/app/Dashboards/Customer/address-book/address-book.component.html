@@ -1,0 +1,16 @@
+<div class='main-content'>
+    <div class='container'>
+        <mat-card>
+            <h2 class='jumbotron'>Address Book</h2>
+        </mat-card>
+        <div>
+        <mat-card>
+            <mat-form-field> 
+                <button mat-raised-button color="primary" (click)="addNewAddress()"> ADD</button>
+                <input matInput  [(ngModel)]="inputValue">
+            </mat-form-field>       
+        </mat-card>
+            <p> {{newAddress}}</p>
+        </div>
+    </div>
+</div>
