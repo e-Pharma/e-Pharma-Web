@@ -16,6 +16,7 @@ import { LoginSignupModule } from './login-signup/login-signup.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CustomSharedComponentsModule } from './custom-shared-components/custom-
     HttpModule,
     HttpClientModule,
     ComponentsModule,
+    MatNativeDateModule,
     CustomSharedComponentsModule,
     RouterModule,
     AppRoutingModule,
