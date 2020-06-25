@@ -1,4 +1,96 @@
  <div class="main-content">
+
     <div class="container-fluid">
+
+        <mat-card>
+
+            <mat-card-header>
+                <mat-card-title> Prescription </mat-card-title>
+            </mat-card-header>
+
+            <form [formGroup]="prescriptionForm" (ngSubmit)="submit()">
+
+                <mat-card-content>
+
+                    <mat-form-field>
+
+                        <mat-label>Select Relations</mat-label>
+                        <mat-select formControlName="relations" required>
+                          <mat-option *ngFor="let relation of relationsList" [value]="relation">{{relation}}</mat-option>
+                        </mat-select>
+    
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Prefered Email" required formControlName="email">
+                        <mat-error *ngIf="prescriptionForm.controls.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.email.hasError('email')">
+                            Enter a <strong>valid email</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Contact</mat-label>
+                        <input matInput placeholder="Prefered Contact Number" required formControlName="contact">
+                        <mat-error *ngIf="prescriptionForm.controls.contact.hasError('required')">
+                            Contact is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.contact.hasError('pattern')">
+                            Enter a <strong>valid contact</strong>
+                        </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.contact.hasError('minlength')">
+                            Contact number should contain <strong>10 digits</strong>
+                        </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.contact.hasError('maxlength')">
+                            Contact number should contain <strong>10 digits</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label> Date </mat-label>
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="DatePicker" required formControlName="date">
+                        <mat-datepicker-toggle matSuffix [for]="DatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #DatePicker></mat-datepicker>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-full-width">
+                        <mat-label> Note </mat-label>
+                        <textarea matInput placeholder=" Any Special Notes" formControlName="note"></textarea>
+                    </mat-form-field>
+    
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <input type="file" accept="image/*" formControlName="image" id="imageUpload" (change)="onFileChange($event)">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="padding-top: 10px;">
+
+                        <div class="col-md-12">
+
+                            <img [src]="imageUrl" alt="Item Image" width="220px" height="200px" *ngIf="imageUrl !== null" id="itemImage"/>
+
+                        </div>
+
+                    </div>
+    
+                </mat-card-content>
+
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid">Submit</button>
+                </mat-card-actions>
+
+            </form>
+
+        </mat-card>
+
     </div>
+
 </div>

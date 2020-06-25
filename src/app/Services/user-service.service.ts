@@ -31,5 +31,9 @@ export class UserServiceService {
   verificationMail(mailData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/email/send_verification`, mailData);
   }
+
+  uploadPrescription(formData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/order/create`, formData);
+  }
   
 }
