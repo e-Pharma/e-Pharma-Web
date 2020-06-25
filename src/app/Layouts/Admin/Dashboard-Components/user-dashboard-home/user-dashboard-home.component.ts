@@ -20,7 +20,7 @@ export class UserDashboardHomeComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   /** Maximum Date allowed. */
   maxDate = new Date();
-  imageQuality: any;
+  imageQuality: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private imageService: ImageUploadingService,
@@ -66,12 +66,12 @@ export class UserDashboardHomeComponent implements OnInit {
       };
     }
 
-    this.checkImageClarity(this.file);
+    this.checkImageClarity();
 
   }
 
-  checkImageClarity(file: any) {
-    this.imageService.checkImageClarity(file).subscribe((response: any) => {
+  checkImageClarity() {
+    this.imageService.checkImageClarity(this.file[0]).subscribe((response: any) => {
       if(response.status === 200) {
         this.imageQuality = response.data;
       } else {

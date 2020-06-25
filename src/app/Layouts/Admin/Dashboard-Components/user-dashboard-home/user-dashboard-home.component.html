@@ -14,7 +14,7 @@
 
                     <mat-form-field>
 
-                        <mat-label>Select Relations</mat-label>
+                        <mat-label>Select Relation</mat-label>
                         <mat-select formControlName="relations" required>
                           <mat-option *ngFor="let relation of relationsList" [value]="relation">{{relation}}</mat-option>
                         </mat-select>
@@ -65,7 +65,7 @@
 
                         <div class="col-md-12">
 
-                            <input type="file" accept="image/*" formControlName="image" id="imageUpload" (change)="onFileChange($event)">
+                            <input type="file" accept="image/*" formControlName="image" name="prescription_image" (change)="onFileChange($event)">
 
                         </div>
 
@@ -80,11 +80,18 @@
                         </div>
 
                     </div>
+
+                    <div class="row" style="padding-top: 5px;padding-left: 50px;">
+
+                        <p style="color: red;" *ngIf="!imageQuality && imageUrl !== null"> <b> Quality is not enough! Please upload again!</b></p>
+                        <p style="color: green;" *ngIf="imageQuality && imageUrl !== null"> <b> Good Quality!</b></p>
+
+                    </div>
     
                 </mat-card-content>
 
                 <mat-card-actions align="center">
-                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid">Submit</button>
+                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid && imageQuality">Submit</button>
                 </mat-card-actions>
 
             </form>

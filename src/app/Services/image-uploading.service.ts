@@ -15,6 +15,7 @@ export class ImageUploadingService {
   checkImageClarity(file: any): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
+    formData.set(name, 'prescription_image');
     return this.http.post(`${this.baseAPI}/image/check_quality`, formData);
   }
 
