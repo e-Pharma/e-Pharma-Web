@@ -12,6 +12,17 @@ import {MatSelectModule} from '@angular/material/select';
 import { UserDashboardHomeComponent } from './Dashboard-Components/user-dashboard-home/user-dashboard-home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
+import { OrderHistoryComponent } from './Dashboard-Components/order-history/order-history.component';
+import { ProfileComponent } from './Dashboard-Components/profile/profile.component';
+import { FamilyComponent } from './Dashboard-Components/Family-member/family/family.component';
+import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-new-member/add-new-member.component';
 
 @NgModule({
   imports: [
@@ -26,9 +37,25 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSelectModule,
     MatTooltipModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatTabsModule,
+    MatDialogModule
   ],
-  declarations: [UserDashboardHomeComponent],
+  declarations: [
+    UserDashboardHomeComponent,
+    AddressBookComponent,
+    OrderHistoryComponent,
+    ProfileComponent,
+    FamilyComponent,
+    AddNewMemberComponent
+  ],
   providers: [DatePipe]
 })
 
