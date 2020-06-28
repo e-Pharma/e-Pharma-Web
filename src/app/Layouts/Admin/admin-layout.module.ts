@@ -23,7 +23,7 @@ import { OrderHistoryComponent } from './Dashboard-Components/order-history/orde
 import { ProfileComponent } from './Dashboard-Components/profile/profile.component';
 import { FamilyComponent } from './Dashboard-Components/Family-member/family/family.component';
 import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-new-member/add-new-member.component';
-
+import { MatDividerModule } from '@angular/material/divider'
 @NgModule({
   imports: [
     CommonModule,
@@ -46,7 +46,8 @@ import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-
     MatListModule,
     MatTableModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule
   ],
   declarations: [
     UserDashboardHomeComponent,
