@@ -8,12 +8,13 @@ import { MainComponent } from './Layouts/Main/main.component';
 import { LoginComponent } from './login-signup/login/login.component';
 import { SignupComponent } from './login-signup/signup/signup.component';
 import {CustSidebarComponent} from './Dashboards/Customer/cust-sidebar/cust-sidebar.component'
-// import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
+import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
 import { FamilyComponent } from './Dashboards/Customer/Family-member/family/family.component';
 import { OrderHistoryComponent } from './Dashboards/Customer/order-history/order-history.component';
 import { ProfileComponent } from './Dashboards/Customer/profile/profile.component';
 import { AddressBookComponent } from './Dashboards/Customer/address-book/address-book.component';
 import { AuthGuardService } from './Services/Auth-Guard/auth-guard.service';
+import { SidebarComponent } from './Admin-Shared-Components/sidebar/sidebar.component';
 
 const routes: Routes =[
   {
@@ -51,11 +52,11 @@ const routes: Routes =[
     ]
   },
  
-  // {
-  //   path: 'user/dashboard',
-  //   component: DashboardComponent
-  // }
-  // ,
+  {
+    path: 'user/dashboard',
+    component: SidebarComponent
+  }
+  ,
   {
     path: '',
     component: MainComponent,
