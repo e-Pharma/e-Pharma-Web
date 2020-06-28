@@ -39,9 +39,15 @@ export class LoginComponent implements OnInit {
    */
   submit() {
     const loginForm = this.loginForm.value;
+    console.log(loginForm)
     this.userService.loginUser(loginForm).subscribe(response => {
-      if(response.status === 200) this.router.navigate(['../dashboard'], { relativeTo: this.route});
-      else throw new Error('Not Successfull');
+      if(response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('expiresAt', response.data.expireDate);
+        this.router.navigate(['../dashboard-home'], { relativeTo: this.route});
+      } else {
+        alert(response.message);
+      }
     })
   }
 

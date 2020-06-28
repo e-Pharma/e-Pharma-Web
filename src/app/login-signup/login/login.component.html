@@ -2,27 +2,29 @@
 
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="row" style="margin-top: 50px">
 
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
 
-                <div class="card">
+                <mat-card>
 
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Log In</h4>
-                    </div>
+                    <mat-card-header>
 
-                    <div class="card-body">
-                            
-                        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                        <mat-card-title>LogIn</mat-card-title>
+
+                    </mat-card-header>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+                        <mat-card-content>
 
                             <div class="row">
 
                                 <mat-form-field class="col-md-12">
                                     <mat-label>User Name</mat-label>
-                                    <input matInput placeholder="Email" formControlName="email">
+                                    <input matInput placeholder="Email" required formControlName="email">
                                     <mat-error *ngIf="loginForm.controls.email.hasError('required')">
                                         Email is <strong>required</strong>
                                     </mat-error>
@@ -37,7 +39,7 @@
 
                                 <mat-form-field class="col-md-12">
                                     <mat-label>Password</mat-label>
-                                    <input matInput placeholder="Password" type="password" formControlName="password">
+                                    <input matInput placeholder="Password" required type="password" formControlName="password">
                                     <mat-error *ngIf="loginForm.controls.password.hasError('required')">
                                         Password is <strong>required</strong>
                                     </mat-error>
@@ -45,33 +47,15 @@
 
                             </div>
 
-                            <div class="row">
+                        </mat-card-content>
 
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4">
+                        <mat-card-actions align="center">
+                            <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LogIn</button>
+                        </mat-card-actions>
 
-                                    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Log In</button>
+                    </form>
 
-                                </div>
-                                <div class="col-md-4"></div>
-
-                            </div>
-                        
-                        </form>
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <a href="/password_reset"> Forget Password ? </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                </mat-card>
 
             </div>
 

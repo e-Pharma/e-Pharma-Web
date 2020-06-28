@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,8 +14,13 @@ import { UserServiceService } from 'app/Services/user-service.service';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
+  // relationshipCount: number = 0;
+  /** Minimum Date allowed. */
+  minDate = new Date(2000, 0, 1);
+  /** Maximum Date allowed. */
+  maxDate = new Date();
 
-  constructor(private FormBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private userService: UserServiceService
@@ -29,7 +34,7 @@ export class SignupComponent implements OnInit {
    * Initialize Signup Form.
    */
   createSignupForm() {
-    this.signupForm = this.FormBuilder.group({
+    this.signupForm = this.formBuilder.group({
       'firstname': ['', Validators.required],
       'lastname': ['', Validators.required],
       'address': ['', Validators.required],
@@ -38,7 +43,7 @@ export class SignupComponent implements OnInit {
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', [Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$'), Validators.maxLength(50), Validators.minLength(8)]],
       'rePassword': ['', [Validators.required, this.confirmPassword('password')]]
-    })
+    });
   }
 
   /**
@@ -65,32 +70,82 @@ export class SignupComponent implements OnInit {
    * Submits Registration Form.
    */
   submit() {
+    // let relationshipsArray: any[] = new Array();
     const registerForm = this.signupForm.value;
+    // for(let i=0;i<this.relationshipCount;i++) {
+    //   const nicId = 'nic' + (this.relationshipCount-1);
+    //   const firstNameId = 'firstName' + (this.relationshipCount);
+    //   const lastNameId = 'lastName' + (this.relationshipCount);
+    //   const dobId = 'dob' + (this.relationshipCount);
+    //   const relationshipId = 'relationship' + (this.relationshipCount);
+    //   const contactNumberId = 'contact_number' + (this.relationshipCount);
+    //   const genderId = 'gender' + (this.relationshipCount);
+    //   relationshipsArray.push({firstName: this.signupForm.value[firstNameId], lastName: this.signupForm.value[lastNameId],
+    //                       dob: this.signupForm.value[dobId], nic: this.signupForm.value[nicId], relationship: this.signupForm.value[relationshipId],
+    //                       contact_number: this.signupForm.value[contactNumberId], gender: this.signupForm.value[genderId]});
+    // }
+    // registerForm.relationships = relationshipsArray;
     console.log(registerForm)
     this.userService.registerUser(registerForm).subscribe(response => {
       console.log(response.status)
       if (response.status === 201 ) {
+        const token = response.data;
+        console.log(token)
         let from = 'benuraab@gmail.com';
         let to = registerForm.email;
         let subject = 'Verify Your Account';
-        let message = this.getMessage();
+        let message = this.getMessage(token);
         let data = {from: from, to: to, message: message, subject: subject };
         this.userService.verificationMail(data).subscribe(response => {
-          if (response.status === 200 ) console.log("Done");
-          else console.log("Error Sending Mail");
+          if (response.status === 200 ) {
+            alert(response.message);
+          } else {
+            alert(response.message);
+          }
         })
         this.router.navigate(['../login'], { relativeTo: this.route} );
       }
       else throw new Error();
   
-    })
+    });
   }
+
+  // addNewRelationship() {
+  //   this.relationshipCount = this.relationshipCount + 1;
+  //   const nicId = 'nic' + (this.relationshipCount-1);
+  //   const firstNameId = 'firstName' + (this.relationshipCount-1);
+  //   const lastNameId = 'lastName' + (this.relationshipCount-1);
+  //   const dobId = 'dob' + (this.relationshipCount-1);
+  //   const relationshipId = 'relationship' + (this.relationshipCount-1);
+  //   const contactNumberId = 'contact_number' + (this.relationshipCount-1);
+  //   const genderId = 'gender' + (this.relationshipCount-1);
+  //   console.log(nicId)
+  //   this.signupForm.addControl(nicId, new FormControl(''));
+  //   this.signupForm.addControl(firstNameId, new FormControl(''));
+  //   this.signupForm.addControl(lastNameId, new FormControl(''));
+  //   this.signupForm.addControl(dobId, new FormControl(''));
+  //   this.signupForm.addControl(relationshipId, new FormControl(''));
+  //   this.signupForm.addControl(contactNumberId, new FormControl('', [Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]));
+  //   this.signupForm.addControl(genderId, new FormControl(''));
+  // }
+
+  // showItem(stringVal: string) {
+  //   console.log(parseInt(stringVal, 10)===this.relationshipCount-1)
+  //   return parseInt(stringVal, 10) === (this.relationshipCount-1);
+  // }
+
+  // checkError(id: string, error: string) {
+  //   const contact_number = 'contact_number'+id;
+  //   return this.signupForm.controls[contact_number].hasError(error);
+  // }
+
 
   /**
    * Get message.
    * @param link Verification Link.
    */
-  getMessage(link:any = 'http://localhost:4200/login'){
+  getMessage(token: any){
+    const link:any = 'http://localhost:4200/verify_email'+token;
     let _href="<a href="+link+" style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
 
     let message="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html><head><meta charset='UTF-8'>"+

@@ -25,6 +25,7 @@ import { AddressBookComponent } from './Dashboards/Customer/address-book/address
 import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
 import { from } from 'rxjs';
 import { AddNewMemberComponent } from './Dashboards/Customer/Family-member/add-new-member/add-new-member.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { AddNewMemberComponent } from './Dashboards/Customer/Family-member/add-n
     HttpModule,
     HttpClientModule,
     ComponentsModule,
+    MatNativeDateModule,
     CustomSharedComponentsModule,
     RouterModule,
     AppRoutingModule,

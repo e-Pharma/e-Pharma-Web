@@ -13,6 +13,7 @@ import { FamilyComponent } from './Dashboards/Customer/Family-member/family/fami
 import { OrderHistoryComponent } from './Dashboards/Customer/order-history/order-history.component';
 import { ProfileComponent } from './Dashboards/Customer/profile/profile.component';
 import { AddressBookComponent } from './Dashboards/Customer/address-book/address-book.component';
+import { AuthGuardService } from './Services/Auth-Guard/auth-guard.service';
 
 const routes: Routes =[
   {
@@ -66,6 +67,7 @@ const routes: Routes =[
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuardService],
     children: [{
       path: '',
       loadChildren: './Layouts/Admin/admin-layout.module#AdminLayoutModule'

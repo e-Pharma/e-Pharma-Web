@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotificationsComponent } from './notifications.component';
+import { UserDashboardHomeComponent } from './user-dashboard-home.component';
 
-describe('NotificationsComponent', () => {
-  let component: NotificationsComponent;
-  let fixture: ComponentFixture<NotificationsComponent>;
+describe('UserDashboardHomeComponent', () => {
+  let component: UserDashboardHomeComponent;
+  let fixture: ComponentFixture<UserDashboardHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotificationsComponent ]
+      declarations: [ UserDashboardHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationsComponent);
+    fixture = TestBed.createComponent(UserDashboardHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
