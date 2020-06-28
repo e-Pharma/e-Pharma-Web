@@ -20,10 +20,11 @@ import { CustomSharedComponentsModule } from './custom-shared-components/custom-
 import { CustSidebarComponent } from './Dashboards/Customer/cust-sidebar/cust-sidebar.component';
 import { OrderHistoryComponent } from './Dashboards/Customer/order-history/order-history.component';
 import { ProfileComponent } from './Dashboards/Customer/profile/profile.component';
-import { FamilyComponent } from './Dashboards/Customer/family/family.component';
+import { FamilyComponent } from './Dashboards/Customer/Family-member/family/family.component';
 import { AddressBookComponent } from './Dashboards/Customer/address-book/address-book.component';
 import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
 import { from } from 'rxjs';
+import { AddNewMemberComponent } from './Dashboards/Customer/Family-member/add-new-member/add-new-member.component';
 
 @NgModule({
   imports: [
@@ -53,8 +54,9 @@ import { from } from 'rxjs';
     FamilyComponent,
     AddressBookComponent,
     DashboardComponent,
+    AddNewMemberComponent,
   ],
-  providers: [],
+   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

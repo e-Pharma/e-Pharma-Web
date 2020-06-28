@@ -8,8 +8,8 @@ import { MainComponent } from './Layouts/Main/main.component';
 import { LoginComponent } from './login-signup/login/login.component';
 import { SignupComponent } from './login-signup/signup/signup.component';
 import {CustSidebarComponent} from './Dashboards/Customer/cust-sidebar/cust-sidebar.component'
-import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
-import { FamilyComponent } from './Dashboards/Customer/family/family.component';
+// import { DashboardComponent } from './Dashboards/Customer/dashboard/dashboard.component';
+import { FamilyComponent } from './Dashboards/Customer/Family-member/family/family.component';
 import { OrderHistoryComponent } from './Dashboards/Customer/order-history/order-history.component';
 import { ProfileComponent } from './Dashboards/Customer/profile/profile.component';
 import { AddressBookComponent } from './Dashboards/Customer/address-book/address-book.component';
@@ -29,7 +29,7 @@ const routes: Routes =[
     component: SignupComponent
   },
   {
-    path: 'sidebar',
+    path: 'user',
     component: CustSidebarComponent,
     children: [
         {
@@ -50,11 +50,11 @@ const routes: Routes =[
     ]
   },
  
-  {
-    path: 'user',
-    component: DashboardComponent
-  }
-  ,
+  // {
+  //   path: 'user/dashboard',
+  //   component: DashboardComponent
+  // }
+  // ,
   {
     path: '',
     component: MainComponent,

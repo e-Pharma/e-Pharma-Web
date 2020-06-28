@@ -4,7 +4,7 @@
             <h2 class='jumbotron'>My Orders</h2>
         </mat-card>
         <div>
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf='dataSource.length >0'>
                 <!-- Position Column -->
                 <ng-container matColumnDef="position">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -37,6 +37,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+            <p *ngIf='dataSource.length <=0' class="no-order-text mat-body-strong">No Orders yet!!!</p>
         </div>
     </div>
 </div>

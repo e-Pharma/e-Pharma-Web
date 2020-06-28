@@ -6,3 +6,6 @@ table {
     width: 80%;
     margin: auto;
   }
+.no-data-text{
+    text-align: center;
+}

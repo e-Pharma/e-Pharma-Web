@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 export interface PeriodicElement {
   position: number;
-  dateOfOrder: number;
+  dateOfOrder: string;
   orderRef:string;
   netTotal: string;
   status:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, orderRef: 'Hydrogen', dateOfOrder: 1.0079, netTotal: 'H',status:'Copmlete'},
-  {position: 2, orderRef: 'Helium', dateOfOrder: 4.0026, netTotal: 'He',status:'canceled'},
- 
+  {position: 1, orderRef: 'Hydrogen', dateOfOrder: '22/02/2020', netTotal: 'H',status:'Complete'},
+  {position: 2, orderRef: 'Helium', dateOfOrder: '23/5/2019', netTotal: 'He',status:'Canceled'},
 ];
 
 @Component({

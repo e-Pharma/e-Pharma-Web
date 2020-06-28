@@ -7,8 +7,8 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { name: 'Hydrogen', mobile: 1.0079, relationship: 'Mother'},
-  { name: 'Helium', mobile: 4.0026, relationship: 'Granny'},
+  // { name: 'Hydrogen', mobile: 071258649, relationship: 'Mother'},
+  // { name: 'Helium', mobile: 072589648, relationship: 'Granny'},
  
 ];
 @Component({
@@ -16,14 +16,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './family.component.html',
   styleUrls: ['./family.component.css']
 })
-export class FamilyComponent  {
-  newMember = ' ';
-  inputValue=' ';
 
-  addNewMember() {
-    this.newMember=this.inputValue;
-  }
- 
+export class FamilyComponent  {
+  constructor() {}
+
   displayedColumns: string[] = [ 'name', 'mobile', 'relationship'];
   dataSource = ELEMENT_DATA;
 
