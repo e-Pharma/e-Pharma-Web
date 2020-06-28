@@ -1,0 +1,29 @@
+<div class='main-content'>
+<div>
+    <input type='checkbox' id ="check">
+    <label for ="check">
+        <mat-icon id='btn'>menu</mat-icon>
+        <mat-icon id='cancel'>cancel</mat-icon>
+    </label>
+
+        <div class="sidebar">
+            <h3>E-Pharma</h3>
+            <ul>
+                <li><a routerLink='#'><mat-icon>add_circle_outline</mat-icon>New Order</a></li>
+                <li><a routerLink='history'><mat-icon>history</mat-icon>Order History</a></li>
+                <li><a routerLink='profile'><mat-icon>account_circle</mat-icon>Profile</a></li>
+                <li><a routerLink="family"><mat-icon>people_outline</mat-icon>Family</a></li>
+                <li><a routerLink='address-book'><mat-icon>import_contacts</mat-icon>Address Book</a></li>
+                <li><a routerLink='#'><mat-icon>receipt</mat-icon>Payments</a></li>
+                <li><a routerLink='notification'><mat-icon>notifications</mat-icon>Notifications</a></li>
+                <li><a routerLink='#'><mat-icon>logout</mat-icon>Logout</a></li>
+            </ul>
+        </div>
+        <div class="section">
+            <router-outlet></router-outlet>
+        </div>
+</div>
+</div>
+
+
+
