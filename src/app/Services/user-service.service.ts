@@ -41,5 +41,11 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.post(`${this.apiUrl}/auth/relationship/create`, relationData, { headers: httpHeadersParam });
   }
+
+  getUserData(): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/auth/getData`, { headers: httpHeadersParam });
+  }
   
 }
