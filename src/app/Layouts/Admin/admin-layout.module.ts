@@ -24,6 +24,8 @@ import { ProfileComponent } from './Dashboard-Components/profile/profile.compone
 import { FamilyComponent } from './Dashboard-Components/Family-member/family/family.component';
 import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-new-member/add-new-member.component';
 import { MatDividerModule } from '@angular/material/divider'
+import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { MatDividerModule } from '@angular/material/divider'
     MatTableModule,
     MatTabsModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule
   ],
   declarations: [
     UserDashboardHomeComponent,
@@ -57,7 +60,10 @@ import { MatDividerModule } from '@angular/material/divider'
     FamilyComponent,
     AddNewMemberComponent
   ],
-  providers: [DatePipe]
+  providers: [
+    DatePipe,
+    UserDataResolver
+  ]
 })
 
 export class AdminLayoutModule {}

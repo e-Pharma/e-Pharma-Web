@@ -4,10 +4,19 @@ import { FamilyComponent } from './Dashboard-Components/Family-member/family/fam
 import { OrderHistoryComponent } from './Dashboard-Components/order-history/order-history.component';
 import { ProfileComponent } from './Dashboard-Components/profile/profile.component';
 import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
+import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
+import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
-        component: UserDashboardHomeComponent
+        component: UserDashboardHomeComponent,
+        resolve: {
+            userData: UserDataResolver
+        }
+    },
+    {
+        path: 'place-order',
+        component: PlaceOrderComponent
     },
     {
         path: 'family',
