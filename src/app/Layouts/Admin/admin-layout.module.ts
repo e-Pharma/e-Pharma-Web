@@ -17,12 +17,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
 import { OrderHistoryComponent } from './Dashboard-Components/order-history/order-history.component';
 import { ProfileComponent } from './Dashboard-Components/profile/profile.component';
 import { FamilyComponent } from './Dashboard-Components/Family-member/family/family.component';
 import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-new-member/add-new-member.component';
+import { EditProfileComponent } from './Dashboard-Components/profile/edit-profile/edit-profile/edit-profile.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-
     MatListModule,
     MatTableModule,
     MatTabsModule,
-    MatDialogModule
+    MatExpansionModule
   ],
   declarations: [
     UserDashboardHomeComponent,
@@ -54,7 +55,8 @@ import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-
     OrderHistoryComponent,
     ProfileComponent,
     FamilyComponent,
-    AddNewMemberComponent
+    AddNewMemberComponent,
+    EditProfileComponent
   ],
   providers: [DatePipe]
 })

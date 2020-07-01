@@ -4,5 +4,34 @@ mat-card{
 table {
 
     width: 80%;
-    margin: auto;
+    margin: 20px auto;
   }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: right;
+    right: 0;
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  .example-headers-align mat-icon{
+      right: 20px;
+      margin-right: 10px;
+
+  }
+  .info-text{
+    margin:10px;
+    text-align: center;
+}
+.table-head{
+  color: darkblue;
+
+  }
+ 

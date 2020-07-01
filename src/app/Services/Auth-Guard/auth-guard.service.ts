@@ -12,7 +12,9 @@ export class AuthGuardService  implements CanActivate {
     if(localStorage.getItem('token') !== null && (parseInt(localStorage.getItem('expiresAt')) >= new Date().getTime())) {
       return true
     } else {
-      this.router.navigate(['../login']);
+      return true
+
+      // this.router.navigate(['../login']);
     }
   }
 
