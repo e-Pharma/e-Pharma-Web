@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
 
 @NgModule({
   imports: [
@@ -38,9 +39,11 @@ import { MatNativeDateModule } from '@angular/material/core';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    MainComponent
+    MainComponent,
+    VerifyEmailComponent
   ],
-   providers: [],
+  exports: [VerifyEmailComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

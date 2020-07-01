@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 /** Custom Services. */
 import { UserServiceService } from 'app/Services/user-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -23,11 +24,18 @@ export class SignupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
+              private _snackBar: MatSnackBar,
               private userService: UserServiceService
     ) { }
 
   ngOnInit(): void {
     this.createSignupForm();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   /**
@@ -91,19 +99,19 @@ export class SignupComponent implements OnInit {
       if (response.status === 201 ) {
         const token = response.data;
         console.log(token)
-        let from = 'benuraab@gmail.com';
+        let from = 'benuraawsdev@gmail.com';
         let to = registerForm.email;
         let subject = 'Verify Your Account';
         let message = this.getMessage(token);
         let data = {from: from, to: to, message: message, subject: subject };
         this.userService.verificationMail(data).subscribe(response => {
           if (response.status === 200 ) {
-            alert(response.message);
+            this.openSnackBar(response.message, "OK");
+            this.router.navigate(['../login'], { relativeTo: this.route} );
           } else {
-            alert(response.message);
+            this.openSnackBar(response.message, "OK");
           }
-        })
-        this.router.navigate(['../login'], { relativeTo: this.route} );
+        });
       }
       else throw new Error();
   
@@ -145,8 +153,8 @@ export class SignupComponent implements OnInit {
    * @param link Verification Link.
    */
   getMessage(token: any){
-    const link:any = 'http://localhost:4200/verify_email'+token;
-    let _href="<a href="+link+" style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
+    const link:any = 'http://localhost:4200/verify_email/'+token;
+    let _href="<a href="+link+" title='Verify Email' style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
 
     let message="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html><head><meta charset='UTF-8'>"+
         "<meta content='width=device-width, initial-scale=1' name='viewport'>"+
@@ -199,13 +207,13 @@ export class SignupComponent implements OnInit {
                     "</center>"+
           "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
           "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
-            "</p><p>If you ignore this message, you will not be eligible to enter to the EventCorp.</p>"+
+            "</p><p>If you ignore this message, you will not be eligible to enter to the ePharma.</p>"+
           "<p>If you didn't request a email verification, let us know.</p>"+
           "<p></p>"+
           "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
           "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:normal;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
           "If the button above does not appear, please copy and paste this link into your browser's address bar:<br>"+
-          "</p><p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:normal;margin:0;margin-bottom:10px;padding:0;text-align:left'><a href='https://www.overleaf.com/user/password/set?passwordResetToken=c85f1f226d5acf5212e0069271279a5b7ff96c3a2d7c359c226fec5b8eaeca2a&amp;email=benuraab%40gmail.com' target='_blank' data-saferedirecturl='https://www.google.com/url?q=https://www.overleaf.com/user/password/set?passwordResetToken%3Dc85f1f226d5acf5212e0069271279a5b7ff96c3a2d7c359c226fec5b8eaeca2a%26email%3Dbenuraab%2540gmail.com&amp;source=gmail&amp;ust=1579308518849000&amp;usg=AFQjCNEJRyD1OJWAP4vbAthF3iUsm5woaw'>https://www.overleaf.com/user/<wbr>password/set?<wbr>passwordResetToken=<wbr>c85f1f226d5acf5212e0069271279a<wbr>5b7ff96c3a2d7c359c226fec5b8eae<wbr>ca2a&amp;email=benuraab%40gmail.<wbr>com</a></p>"+
+          "</p><p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:normal;margin:0;margin-bottom:10px;padding:0;text-align:left'><a href='"+link+"' target='_blank' data-saferedirecturl='http://localhost:4200/home'>"+link+"</a></p>"+
           "<p></p>"+
           "</th>"+
           "<th class='m_1283199651525359358expander' style='Margin:0;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;padding:0!important;text-align:left;width:0'></th></tr></tbody></table></th>"+

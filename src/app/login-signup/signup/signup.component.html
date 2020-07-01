@@ -26,7 +26,7 @@
     
                                     <mat-form-field>
                                         <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name" formControlName="firstname">
+                                        <input matInput placeholder="First Name" formControlName="firstname" autofocus>
                                         <mat-error *ngIf="signupForm.controls.firstname.hasError('required')">
                                             First Name is <strong>required</strong>
                                         </mat-error>

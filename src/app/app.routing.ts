@@ -9,6 +9,7 @@ import { LoginComponent } from './login-signup/login/login.component';
 import { SignupComponent } from './login-signup/signup/signup.component';
 import { AuthGuardService } from './Services/Auth-Guard/auth-guard.service';
 import { SidebarComponent } from './Admin-Shared-Components/sidebar/sidebar.component';
+import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
 
 const routes: Routes =[
   {
@@ -23,6 +24,14 @@ const routes: Routes =[
   {
     path: 'signup',
     component: SignupComponent
+  },
+  { path: 'verify_email', 
+    children: [
+      {
+          path: ':token',
+          component: VerifyEmailComponent,
+      }
+    ] 
   },
   {
     path: '',

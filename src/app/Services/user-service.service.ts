@@ -47,5 +47,11 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.get(`${this.apiUrl}/auth/getData`, { headers: httpHeadersParam });
   }
+
+  updateVerification(token: any) {
+    const httpHeaders = {'Authorization': 'Bearer'+ token}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.put(`${this.apiUrl}/auth/verify_user`, {isVerified: true}, { headers: httpHeadersParam });
+  }
   
 }

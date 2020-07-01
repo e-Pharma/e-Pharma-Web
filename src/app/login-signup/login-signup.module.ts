@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
@@ -27,7 +28,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTooltipModule,
     MatStepperModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSnackBarModule
   ]
 })
 export class LoginSignupModule { }
