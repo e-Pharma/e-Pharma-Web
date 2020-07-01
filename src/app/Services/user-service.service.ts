@@ -53,5 +53,11 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/auth/verify_user`, {isVerified: true}, { headers: httpHeadersParam });
   }
+
+  logoutUser() {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.put(`${this.apiUrl}/auth/logout`, {isLoggedIn: false}, {headers: httpHeadersParam});
+  }
   
 }
