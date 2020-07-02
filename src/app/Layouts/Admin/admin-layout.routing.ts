@@ -6,6 +6,7 @@ import { ProfileComponent } from './Dashboard-Components/profile/profile.compone
 import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
 import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
+import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
@@ -16,7 +17,10 @@ export const AdminLayoutRoutes: Routes = [
     },
     {
         path: 'place-order',
-        component: PlaceOrderComponent
+        component: PlaceOrderComponent,
+        resolve: {
+            orders: OrderTempDataResolver
+        }
     },
     {
         path: 'family',

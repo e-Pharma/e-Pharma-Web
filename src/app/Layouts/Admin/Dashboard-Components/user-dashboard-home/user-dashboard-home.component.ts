@@ -139,6 +139,10 @@ export class UserDashboardHomeComponent implements OnInit {
   submit() {
     console.log("Submitting")
     const dateFormat = "dd MMMM yyyy";
+    const dob = this.prescriptionForm.value.dob;
+    this.prescriptionForm.patchValue({
+      dob: this.datePipe.transform(dob, dateFormat)
+    });
     const formData = this.prescriptionForm.value;
     formData.date = this.datePipe.transform(new Date(), dateFormat);
     this.imageService.getImageUrl(this.file[0]).subscribe((response: any) => {
@@ -147,7 +151,7 @@ export class UserDashboardHomeComponent implements OnInit {
         console.log(formData)
         this.userService.uploadPrescription(formData).subscribe((response: any) => {
           if(response.status === 201) {
-            console.log(response.status)
+            //console.log(response.status)
             this.openSnackBar(response.message, "OK");
             this.router.navigate(['../place-order'], { relativeTo: this.route });
           } else {

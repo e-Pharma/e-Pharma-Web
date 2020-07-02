@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule} from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
 import { OrderHistoryComponent } from './Dashboard-Components/order-history/order-history.component';
@@ -27,6 +28,8 @@ import { MatDividerModule } from '@angular/material/divider'
 import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
+import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-or
     MatTabsModule,
     MatDialogModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule
   ],
   declarations: [
     UserDashboardHomeComponent,
@@ -64,7 +68,8 @@ import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-or
   ],
   providers: [
     DatePipe,
-    UserDataResolver
+    UserDataResolver,
+    OrderTempDataResolver
   ]
 })
 

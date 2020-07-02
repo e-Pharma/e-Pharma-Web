@@ -33,7 +33,9 @@ export class UserServiceService {
   }
 
   uploadPrescription(formData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/admin/order/create`, formData);
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.post(`${this.apiUrl}/admin/order/create`, formData, { headers: httpHeadersParam });
   }
 
   createRelationship(relationData: any): Observable<any> {
@@ -58,6 +60,12 @@ export class UserServiceService {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/auth/logout`, {isLoggedIn: false}, {headers: httpHeadersParam});
+  }
+
+  getOrderTempData(): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/admin/orderTemp/get`, {headers: httpHeadersParam});
   }
   
 }
