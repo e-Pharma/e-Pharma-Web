@@ -7,6 +7,7 @@ import { AddressBookComponent } from './Dashboard-Components/address-book/addres
 import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
+import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
@@ -38,5 +39,4 @@ export const AdminLayoutRoutes: Routes = [
         path: 'address-book',
         component: AddressBookComponent
     }
-
 ];

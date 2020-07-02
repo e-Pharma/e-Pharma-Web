@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
 
-        <label id="example-radio-group-label"> <b> Pick the preffered payment method </b></label>
+        <label id="example-radio-group-label"> <b> Pick the preferred payment method </b></label>
         <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControl]="paymentMethod">
             <mat-radio-button class="example-radio-button" *ngFor="let payment of paymentMethods" [value]="payment.value">
                 {{payment.name}}

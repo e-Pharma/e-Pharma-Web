@@ -1,0 +1,217 @@
+<div class="main-content" style="background-color:grey">
+
+    <div class="container-fluid">
+
+      <div class=" vertical-center">
+
+        <div class="container">
+
+          <form #form action="https://sandbox.payhere.lk/pay/checkout" method="POST">              
+
+            <input type="hidden" name="merchant_id" value="1214841"> 
+            <input type="hidden" name="return_url" value="">
+            <input type="hidden" name="cancel_url" value="">
+            <input type="hidden" name="notify_url" value="">  
+            <input type="hidden" name="order_id" value="o229f30af">
+            <input type="hidden" name="currency" value="LKR">
+            <input type="hidden" name="amount" value="3000">  
+
+            <input type="hidden" name="country" value="Sri Lanka"><br><br> 
+
+            <div class="section-container panel-body ph-body-bg-v2">
+
+              <div class="ph-md-con">
+
+                <div class="ph-mh-con">
+
+                   <div class="merchant-logo-v2" style="height: 80px;display: flex;align-items: center;"><img src="https://sandbox.payhere.lk/pay/resources/images/payhere_logo.png" alt="payhere-logo" width="80"></div>          
+
+                    <div class="product-details-container-ph">
+
+                        <div class="ph-merchant-title">E Pharma</div>
+                        <div class="ph-product-desc">Online checkout</div>                      
+                        <div class="ph-amount"><span id="currencyFormatted">Rs.</span> <span id="amount">3000</span>.<span id="amountDecimal">00</span></div>                
+                        <input type="hidden" id="unitPrice" value="1000">
+
+                    </div>
+
+                </div>  
+
+              </div>
+
+              <div style="height: 80px">
+
+                <div class="section-head ph-sh-v2">
+
+                    <div style="float: right; margin-top: 24px;">
+
+                        <div class="form-group" style="height: inherit;">
+
+                            <span class="product-desc">Qty</span>
+
+                                <div class="form-group fname">
+                                    <input type="number" value="3000">
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <div class="ph-sm-lbl lgray" style="font-size: 14px; ">PAY FOR</div>
+
+                    <div style="font-size: 16px; color:#444444; font-weight: 400; line-height: 24px;"> Order ID <span id="unit_price_text" style="color: #888888;">(RS: 3000)</span></div>
+                        
+                    <div>
+                        <small style="font-size: 12px; line-height: 15px;"></small>
+                    </div>
+
+                </div>
+
+              </div>
+
+              <div class="customer-info panel-body ph-ci-v2" style="padding-bottom: 0px; margin-top: 20px; margin-bottom: 15px;">
+
+                      <div id="personel-details">
+
+                        <div class="form-group ph-m-20-top" style="height: 30px;">
+
+                            <div class="ph-sm-lbl lgray" style="font-size: 14px; ">YOUR BILLING DETAILS</div>
+
+                        </div>
+
+                        <div class="form-group ph-m-10-top">
+
+                            <div class="form-group fname">
+                                <input type="text" name="first_name" placeholder="First Name" required class="form-control text-box-pay">
+                            </div>
+                            <div class="form-group lname">
+                                <input type="text" name="last_name" placeholder="Last Name" required class="form-control text-box-pay">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group ph-m-10-top">
+
+                            <input type="email" name="email" placeholder="Email" required class="form-control text-box-pay">
+                        
+                        </div>
+
+                        <div class="form-group ph-m-10-top">
+                            
+                            <input type="text" name="phone" placeholder="Contact" required="" class="form-control text-box-pay">
+                        
+                        </div>
+
+                        <div class="form-group ph-m-10-top">
+
+                            <input type="text" name="items" placeholder="Items" required class="form-control text-box-pay">
+                        
+                        </div>
+
+                      </div>
+  
+                      <div id="billing-address">
+
+                        <div class="form-group fname">
+
+                            <input type="text" name="address" placeholder="Address" required="" class="form-control text-box-pay">
+                        
+                        </div>
+
+                        <div class="form-group lname">
+
+                          <input type="text" name="city" placeholder="City" list="cityNames" class="form-control text-box-pay">
+
+                          <datalist id="cityNames"> 
+                            <option value="Colombo"></option>                        
+                            <option value="Dehiwala-Mount Lavinia"></option>
+                            <option value="Moratuwa"></option>
+                            <option value="Sri Jayawardenapura Kotte"></option>
+                            <option value="Negombo"></option>                    
+                            <option value="Kandy"></option>                      
+                            <option value="Kalmunai"></option>                       
+                            <option value="Vavuniya"></option>                       
+                            <option value="Galle"></option>                       
+                            <option value="Trincomalee"></option>                       
+                            <option value="Batticaloa"></option>                       
+                            <option value="Jaffna"></option>                       
+                            <option value="Katunayake"></option>                       
+                            <option value="Dambulla"></option>                      
+                            <option value="Kolonnawa"></option>                      
+                            <option value="Anuradhapura"></option>                      
+                            <option value="Ratnapura"></option>                       
+                            <option value="Badulla"></option>                       
+                            <option value="Matara"></option>                       
+                            <option value="Puttalam"></option>                       
+                            <option value="Chavakacheri"></option>                        
+                            <option value="Kattankudy"></option>                        
+                            <option value="Matale"></option>                       
+                            <option value="Kalutara"></option>                        
+                            <option value="Mannar"></option>                       
+                            <option value="Panadura"></option>                        
+                            <option value="Beruwala"></option>                       
+                            <option value="Ja-Ela"></option>                       
+                            <option value="Point Pedro"></option>                      
+                            <option value="Kelaniya"></option>                      
+                            <option value="Peliyagoda"></option>                      
+                            <option value="Kurunegala"></option> 
+                            <option value="Wattala"></option>                      
+                            <option value="Gampola"></option>                       
+                            <option value="Nuwara Eliya"></option>                       
+                            <option value="Valvettithurai"></option>                     
+                            <option value="Chilaw"></option>                     
+                            <option value="Eravur"></option>                     
+                            <option value="Avissawella"></option>                     
+                            <option value="Weligama"></option>                     
+                            <option value="Ambalangoda"></option>                     
+                            <option value="Ampara"></option>                        
+                            <option value="Kegalle"></option>                        
+                            <option value="Hatton"></option>                       
+                            <option value="Nawalapitiya"></option>                       
+                            <option value="Balangoda"></option>                       
+                            <option value="Hambantota"></option>                       
+                            <option value="Tangalle"></option>                       
+                            <option value="Moneragala"></option>                        
+                            <option value="Gampaha"></option>                       
+                            <option value="Horana"></option>                       
+                            <option value="Wattegama"></option>                      
+                            <option value="Minuwangoda"></option>                      
+                            <option value="Bandarawela"></option>                       
+                            <option value="Kuliyapitiya"></option>                       
+                            <option value="Haputale"></option>                       
+                            <option value="Talawakele"></option>                       
+                            <option value="Harispattuwa"></option>                       
+                            <option value="Kadugannawa"></option>                       
+                            <option value="Embilipitiya"></option>
+                          </datalist>
+
+                        </div>
+
+                      </div> 
+
+                      <div class="form-group text-center ph-m-30-top">
+
+                        <button type="submit" id="next-customer-info" class="btn btn-info signup_btn next-button" (click)="form.submit()"><b>PROCEED TO CHECKOUT</b></button>
+
+                      </div>
+
+                </div>
+
+            </div>
+
+            </form>
+  
+            <div class="text-center padder clearfix text-muted">
+
+                <div class="footer"  style="font-size: 13px;padding-left:160px"><img src="https://sandbox.payhere.lk/pay/resources/images/lock.png" width="12">Secured by</div>
+                <div><img src="https://sandbox.payhere.lk/pay/resources/images/logo.png" height="34" alt="payhere"></div>
+                <div class="copy">Central Bank approved Secure Payment Gateway Service</div>
+
+            </div>
+
+        </div>
+
+      </div>
+
+    </div>
+      
+</div>  

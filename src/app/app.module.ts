@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
+import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/payment-gateway/payment-gateway.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { VerifyEmailComponent } from './Main/verify-email/verify-email.component
     AppComponent,
     AdminLayoutComponent,
     MainComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    PaymentGatewayComponent
   ],
   exports: [VerifyEmailComponent],
   providers: [],

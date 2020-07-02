@@ -29,6 +29,7 @@ import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.res
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
+import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
 
 @NgModule({
   imports: [
