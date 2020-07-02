@@ -137,14 +137,17 @@ export class UserDashboardHomeComponent implements OnInit {
    * Submit Prescription Form.
    */
   submit() {
+    console.log("Submitting")
     const dateFormat = "dd MMMM yyyy";
     const formData = this.prescriptionForm.value;
     formData.date = this.datePipe.transform(new Date(), dateFormat);
-    this.imageService.getImageUrl(this.file).subscribe((response: any) => {
+    this.imageService.getImageUrl(this.file[0]).subscribe((response: any) => {
       if(response.status === 200) {
-        formData.image = response.data;
+        formData.image = response.data.url;
+        console.log(formData)
         this.userService.uploadPrescription(formData).subscribe((response: any) => {
-          if(response.status === 200) {
+          if(response.status === 201) {
+            console.log(response.status)
             this.openSnackBar(response.message, "OK");
             this.router.navigate(['../place-order'], { relativeTo: this.route });
           } else {
@@ -152,7 +155,7 @@ export class UserDashboardHomeComponent implements OnInit {
           }
         });
       } else {
-
+        this.openSnackBar(response.message, "OK");
       }
     })
   }

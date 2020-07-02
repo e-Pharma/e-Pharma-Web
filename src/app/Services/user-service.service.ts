@@ -33,7 +33,7 @@ export class UserServiceService {
   }
 
   uploadPrescription(formData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/order/create`, formData);
+    return this.http.post(`${this.apiUrl}/admin/order/create`, formData);
   }
 
   createRelationship(relationData: any): Observable<any> {

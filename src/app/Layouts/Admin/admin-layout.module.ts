@@ -26,6 +26,7 @@ import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-
 import { MatDividerModule } from '@angular/material/divider'
 import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,7 +59,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     OrderHistoryComponent,
     ProfileComponent,
     FamilyComponent,
-    AddNewMemberComponent
+    AddNewMemberComponent,
+    PlaceOrderComponent
   ],
   providers: [
     DatePipe,
