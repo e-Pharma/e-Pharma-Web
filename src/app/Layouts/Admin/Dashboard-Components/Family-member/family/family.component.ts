@@ -47,7 +47,7 @@ export class FamilyComponent implements OnInit{
     const relationshipForm = this.relationshipForm.value;
     const relationsArray: any[] = new Array();
     relationsArray.push(relationshipForm);
-    this.userService.createRelationship({ relations: relationsArray }).subscribe((response: any) => {
+    this.userService.createRelationship({ relations: relationsArray[0] }).subscribe((response: any) => {
       if(response.status === 201) {
         alert(response.message);
         window.location.reload();
