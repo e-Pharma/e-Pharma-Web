@@ -67,5 +67,19 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.get(`${this.apiUrl}/admin/orderTemp/get`, {headers: httpHeadersParam});
   }
+
+  passwordResetURL(email: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/auth/password-reset-url/${email}`);
+  }
+
+  sendPasswordResetLink(messageData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/email/send_password_reset_link`, messageData);
+  }
+
+  resetPassword(data: any, token: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ token}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.put(`${this.apiUrl}/auth/reset-password`, data, { headers: httpHeadersParam });
+  }
   
 }

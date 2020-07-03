@@ -2,276 +2,279 @@
 
     <div class="container-fluid">
 
-        <div class="row">
+        <mat-card>
+
+            <mat-card-header>
+
+                <mat-card-title>Sign Up</mat-card-title>
+
+              </mat-card-header>
+
+              <mat-divider></mat-divider>
+
+              <form [formGroup]="signupForm" (ngSubmit)="submit()">
+
+                <mat-card-content>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>First Name</mat-label>
+                                <input matInput placeholder="First Name" formControlName="firstname" autofocus>
+                                <mat-error *ngIf="signupForm.controls.firstname.hasError('required')">
+                                    First Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>Last Name</mat-label>
+                                <input matInput placeholder="Last Name" formControlName="lastname">
+                                <mat-error *ngIf="signupForm.controls.lastname.hasError('required')">
+                                    Last Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <mat-form-field>
+                                <mat-label>Address</mat-label>
+                                <input matInput placeholder="Address" formControlName="address">
+                                <mat-error *ngIf="signupForm.controls.address.hasError('required')">
+                                    Address <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>NIC</mat-label>
+                                <input matInput  placeholder="NIC" formControlName="nic">
+                                <mat-error *ngIf="signupForm.controls.nic.hasError('required')">
+                                    NIC is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>Contact</mat-label>
+                                <input matInput placeholder="Contact Number" formControlName="contact">
+                                <mat-error *ngIf="signupForm.controls.contact.hasError('required')">
+                                    Contact is <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.contact.hasError('pattern')">
+                                    Enter a <strong>valid contact</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.contact.hasError('minlength')">
+                                    Contact number should contain <strong>10 digits</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.contact.hasError('maxlength')">
+                                    Contact number should contain <strong>10 digits</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email" formControlName="email">
+                                <mat-error *ngIf="signupForm.controls.email.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.email.hasError('email')">
+                                    Enter a <strong>valid email</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="Password" type="password" formControlName="password">
+                                <mat-error *ngIf="signupForm.controls.password.hasError('required')">
+                                    Password is <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.password.hasError('pattern')">
+                                    Password should contain atleast one <strong>lowercase</strong> character,one <strong>uppercase character</strong> ,one <strong>special character</strong> .Must
+                                    contain minimum <strong>8 characters</strong>.
+                                </mat-error>
+                            </mat-form-field> 
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <mat-form-field>
+                                <mat-label>Re-Enter Password</mat-label>
+                                <input matInput placeholder="Re Enter Password" type="password" formControlName="rePassword">
+                                <mat-error *ngIf="signupForm.controls.rePassword.hasError('required')">
+                                    Password is <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.controls.password.hasError('notequal')">
+                                    Password does <strong>not match</strong>
+                                </mat-error>
+                            </mat-form-field> 
+
+                        </div>
+
+                    </div>
+
+                    <!-- <div *ngFor="let items of [].constructor(relationshipCount);let item=index">
+
+                        <div *ngIf="showItem(item)">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <mat-form-field>
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name" formControlName="firstName{{item}}">
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <mat-form-field>
+                                        <mat-label>Last Name</mat-label>
+                                        <input matInput placeholder="Last Name" formControlName="lastName{{item}}">
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <mat-form-field>
+                                        <mat-label>Relationship</mat-label>
+                                        <input matInput placeholder="Relationship" formControlName="relationship{{item}}">
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <mat-form-field>
+                                        <mat-label>Gender</mat-label>
+                                        <input matInput placeholder="Gender" formControlName="gender{{item}}">
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <mat-form-field>
+                                        <mat-label>Date Of Birth</mat-label>
+                                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dobDatePicker" formControlName="dob{{item}}">
+                                        <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #dobDatePicker></mat-datepicker>
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <mat-form-field>
+                                        <mat-label>NIC</mat-label>
+                                        <input matInput  placeholder="NIC" formControlName="nic{{item}}">
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <mat-form-field>
+                                        <mat-label>Contact</mat-label>
+                                        <input matInput placeholder="Contact Number" formControlName="contact_number{{item}}">
+                                        <mat-error *ngIf="checkError(item, 'pattern')">
+                                            Enter a <strong>valid contact</strong>
+                                        </mat-error>
+                                        <mat-error *ngIf="checkError(item, 'minlength')">
+                                            Contact number should contain <strong>10 digits</strong>
+                                        </mat-error>
+                                        <mat-error *ngIf="checkError(item, 'maxlength')">
+                                            Contact number should contain <strong>10 digits</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div> -->
+
+                </mat-card-content>
+
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" [disabled]="!signupForm.valid"> Register </button>
+                </mat-card-actions>
+
+            </form>
+
+        </mat-card>
+
+        <!-- <div class="row">
 
             <div class="col-md-3"></div>
 
             <div class="col-md-6">
 
-                <mat-card>
 
-                    <mat-card-header>
-
-                        <mat-card-title>SignUp</mat-card-title>
-
-                      </mat-card-header>
-
-                      <form [formGroup]="signupForm" (ngSubmit)="submit()">
-
-                        <mat-card-content>
-
-                            <div class="row">
-
-                                <div class="col-md-6">
-    
-                                    <mat-form-field>
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name" formControlName="firstname" autofocus>
-                                        <mat-error *ngIf="signupForm.controls.firstname.hasError('required')">
-                                            First Name is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                                <div class="col-md-6">
-    
-                                    <mat-form-field>
-                                        <mat-label>Last Name</mat-label>
-                                        <input matInput placeholder="Last Name" formControlName="lastname">
-                                        <mat-error *ngIf="signupForm.controls.lastname.hasError('required')">
-                                            Last Name is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                            </div>
-    
-                            <div class="row">
-    
-                                <div class="col-md-12">
-    
-                                    <mat-form-field>
-                                        <mat-label>Address</mat-label>
-                                        <input matInput placeholder="Address" formControlName="address">
-                                        <mat-error *ngIf="signupForm.controls.address.hasError('required')">
-                                            Address <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                            </div>
-    
-                            <div class="row">
-    
-                                <div class="col-md-6">
-    
-                                    <mat-form-field>
-                                        <mat-label>NIC</mat-label>
-                                        <input matInput  placeholder="NIC" formControlName="nic">
-                                        <mat-error *ngIf="signupForm.controls.nic.hasError('required')">
-                                            NIC is <strong>required</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                                <div class="col-md-6">
-    
-                                    <mat-form-field>
-                                        <mat-label>Contact</mat-label>
-                                        <input matInput placeholder="Contact Number" formControlName="contact">
-                                        <mat-error *ngIf="signupForm.controls.contact.hasError('required')">
-                                            Contact is <strong>required</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.contact.hasError('pattern')">
-                                            Enter a <strong>valid contact</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.contact.hasError('minlength')">
-                                            Contact number should contain <strong>10 digits</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.contact.hasError('maxlength')">
-                                            Contact number should contain <strong>10 digits</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                            </div>
-    
-                            <div class="row">
-    
-                                <div class="col-md-12">
-    
-                                    <mat-form-field>
-                                        <mat-label>Email</mat-label>
-                                        <input matInput placeholder="Email" formControlName="email">
-                                        <mat-error *ngIf="signupForm.controls.email.hasError('required')">
-                                            Email is <strong>required</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.email.hasError('email')">
-                                            Enter a <strong>valid email</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-    
-                                </div>
-    
-                            </div>
-    
-                            <div class="row">
-    
-                                <div class="col-md-12">
-    
-                                    <mat-form-field>
-                                        <mat-label>Password</mat-label>
-                                        <input matInput placeholder="Password" type="password" formControlName="password">
-                                        <mat-error *ngIf="signupForm.controls.password.hasError('required')">
-                                            Password is <strong>required</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.contact.hasError('required')">
-                                            Password should contain atleast one <strong>lowercase</strong> character,one <strong>uppercase character</strong> ,one <strong>special character</strong> .Must
-                                            contain minimum <strong>8 characters</strong>.
-                                        </mat-error>
-                                    </mat-form-field> 
-    
-                                </div>
-    
-                            </div>
-    
-                            <div class="row">
-    
-                                <div class="col-md-12">
-    
-                                    <mat-form-field>
-                                        <mat-label>Re-Enter Password</mat-label>
-                                        <input matInput placeholder="Re Enter Password" type="password" formControlName="rePassword">
-                                        <mat-error *ngIf="signupForm.controls.rePassword.hasError('required')">
-                                            Password is <strong>required</strong>
-                                        </mat-error>
-                                        <mat-error *ngIf="signupForm.controls.password.hasError('notequal')">
-                                            Password does <strong>not match</strong>
-                                        </mat-error>
-                                    </mat-form-field> 
-    
-                                </div>
-    
-                            </div>
-    
-                            <!-- <div *ngFor="let items of [].constructor(relationshipCount);let item=index">
-    
-                                <div *ngIf="showItem(item)">
-    
-                                    <div class="row">
-    
-                                        <div class="col-md-6">
-        
-                                            <mat-form-field>
-                                                <mat-label>First Name</mat-label>
-                                                <input matInput placeholder="First Name" formControlName="firstName{{item}}">
-                                            </mat-form-field>
-    
-                                        </div>
-        
-                                        <div class="col-md-6">
-        
-                                            <mat-form-field>
-                                                <mat-label>Last Name</mat-label>
-                                                <input matInput placeholder="Last Name" formControlName="lastName{{item}}">
-                                            </mat-form-field>
-        
-                                        </div>
-        
-                                    </div>
-        
-                                    <div class="row">
-        
-                                        <div class="col-md-12">
-        
-                                            <mat-form-field>
-                                                <mat-label>Relationship</mat-label>
-                                                <input matInput placeholder="Relationship" formControlName="relationship{{item}}">
-                                            </mat-form-field>
-        
-                                        </div>
-        
-                                    </div>
-    
-                                    <div class="row">
-        
-                                        <div class="col-md-12">
-        
-                                            <mat-form-field>
-                                                <mat-label>Gender</mat-label>
-                                                <input matInput placeholder="Gender" formControlName="gender{{item}}">
-                                            </mat-form-field>
-        
-                                        </div>
-        
-                                    </div>
-    
-                                    <div class="row">
-    
-                                        <div class="col-md-12">
-    
-                                            <mat-form-field>
-                                                <mat-label>Date Of Birth</mat-label>
-                                                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dobDatePicker" formControlName="dob{{item}}">
-                                                <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
-                                                <mat-datepicker #dobDatePicker></mat-datepicker>
-                                            </mat-form-field>
-    
-                                        </div>
-    
-                                    </div>
-        
-                                    <div class="row">
-        
-                                        <div class="col-md-6">
-        
-                                            <mat-form-field>
-                                                <mat-label>NIC</mat-label>
-                                                <input matInput  placeholder="NIC" formControlName="nic{{item}}">
-                                            </mat-form-field>
-        
-                                        </div>
-        
-                                        <div class="col-md-6">
-        
-                                            <mat-form-field>
-                                                <mat-label>Contact</mat-label>
-                                                <input matInput placeholder="Contact Number" formControlName="contact_number{{item}}">
-                                                <mat-error *ngIf="checkError(item, 'pattern')">
-                                                    Enter a <strong>valid contact</strong>
-                                                </mat-error>
-                                                <mat-error *ngIf="checkError(item, 'minlength')">
-                                                    Contact number should contain <strong>10 digits</strong>
-                                                </mat-error>
-                                                <mat-error *ngIf="checkError(item, 'maxlength')">
-                                                    Contact number should contain <strong>10 digits</strong>
-                                                </mat-error>
-                                            </mat-form-field>
-        
-                                        </div>
-        
-                                    </div>
-    
-                                </div>
-    
-                            </div> -->
-
-                        </mat-card-content>
-
-                        <mat-card-actions align="center">
-                            <button mat-raised-button color="primary" [disabled]="!signupForm.valid"> Register </button>
-                        </mat-card-actions>
-
-                    </form>
-
-                </mat-card>
-
-                <!-- <div class="card">
+                <div class="card">
 
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Sign Up</h4>
@@ -443,13 +446,13 @@
 
                     </div>
                     
-                </div> -->
+                </div>
 
             </div>
 
             <div class="col-md-3"></div>
 
-        </div>
+        </div> -->
 
     </div>
 

@@ -1,0 +1,8 @@
+.container-fluid {
+    max-width: 39rem;
+    padding-top: 50px;
+}
+
+form {
+    padding-top: 30px;
+}
