@@ -153,7 +153,8 @@ export class UserDashboardHomeComponent implements OnInit {
           if(response.status === 201) {
             //console.log(response.status)
             this.openSnackBar(response.message, "OK");
-            this.router.navigate(['../place-order'], { relativeTo: this.route });
+            console.log(response.data)
+            this.router.navigate(['../place-order', response.data], { relativeTo: this.route });
           } else {
             this.openSnackBar(response.message, "OK");
           }

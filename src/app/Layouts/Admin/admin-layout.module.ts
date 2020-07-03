@@ -30,6 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
 import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
+import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/
     ProfileComponent,
     FamilyComponent,
     AddNewMemberComponent,
-    PlaceOrderComponent
+    PlaceOrderComponent,
+    NotificationsComponent
   ],
   providers: [
     DatePipe,

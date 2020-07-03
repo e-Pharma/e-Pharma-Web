@@ -81,5 +81,11 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/auth/reset-password`, data, { headers: httpHeadersParam });
   }
+
+  getOrder(id: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/admin/order/get/${id}`, { headers: httpHeadersParam });
+  }
   
 }

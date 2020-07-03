@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
+import { UserServiceService } from 'app/Services/user-service.service';
 
 @Component({
   selector: 'app-place-order',
@@ -15,15 +16,16 @@ export class PlaceOrderComponent implements OnInit {
   paymentMethod: FormControl;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) { 
-    this.route.data.subscribe((data: { orders: any }) => {
-      this.orderData = data.orders.data;
-      this.orderData = this.orderData[0].orders;
-      console.log(this.orderData)
+              private userService: UserServiceService,
+              private route: ActivatedRoute) {
+    this.route.data.subscribe((data: { order: any }) => {
+      this.orderData = data.order.data;
     });
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.params['id'];
+    console.log(id)
     this.paymentMethod = new FormControl();
     //this.selectOnChange();
   }

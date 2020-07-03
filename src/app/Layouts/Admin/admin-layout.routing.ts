@@ -8,6 +8,7 @@ import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.res
 import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-order.component';
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
 import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
+import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
@@ -18,10 +19,15 @@ export const AdminLayoutRoutes: Routes = [
     },
     {
         path: 'place-order',
-        component: PlaceOrderComponent,
-        resolve: {
-            orders: OrderTempDataResolver
-        }
+        children: [
+            {
+                path: ':id',
+                component: PlaceOrderComponent,
+                resolve: {
+                    order: OrderTempDataResolver
+                }
+            }
+        ]
     },
     {
         path: 'family',
@@ -38,5 +44,9 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: 'address-book',
         component: AddressBookComponent
+    },
+    {
+        path: 'notifications',
+        component: NotificationsComponent
     }
 ];

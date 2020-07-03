@@ -195,7 +195,7 @@ export class SignupComponent implements OnInit {
                      "Hello,"+
                     "</p>"+
                     "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
-                    "</p><p>You have to verify your Email to enter to the EventCorp.</p>"+
+                    "</p><p>You have to verify your Email to enter to the EPharma.</p>"+
                     "<p></p>"+
                     "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
                       "<center style='min-width:532px;width:100%'>"+
