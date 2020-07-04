@@ -1,39 +1,82 @@
 <div class='main-content'>
     <div class='container'>
-        <mat-card>
-            <h2 class='jumbotron'>Address Book</h2>
-        </mat-card>
+        <div class="example-headers-align">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> New Address </mat-panel-title> 
+                    <mat-icon>add_circle_outline</mat-icon>
+                </mat-expansion-panel-header>
+                
+                <form (submit)="addNewAddress(addressForm) " #addressForm='ngForm'>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Type</mat-label>
+                                <input matInput placeholder="Home/Office" name='type' ngModel required #type="ngModel">
+                                <mat-error *ngIf="type.invalid">Enter a valid Type</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input matInput placeholder="City" name='city' ngModel required #city="ngModel">
+                                <mat-error *ngIf="city.invalid">Enter a valid city</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Address</mat-label>
+                                <input matInput name='address' ngModel required #address="ngModel">
+                                <mat-error *ngIf="address.invalid">Enter a valid address</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button mat-raised-button  type="submit" color="primary">Add</button>
+                </form>
+            </mat-expansion-panel>
+        </div>
+            <div *ngIf="userAddresses.length > 0">
+            <mat-card>
+                <table>
+                    <tr class='table-head mat-h3' >
+                        <th > Type </th> 
+                        <th> City </th>
+                        <th> Address</th>
+                    </tr>
+                   
+                    <tr *ngFor='let data of userAddresses'>
+                        <td>{{data.type}}</td>
+                        <td>{{data.city}}</td>
+                        <td>{{data.address}}</td>
+                    </tr>
+                </table>
+            </mat-card>
+            </div>
+            <p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p>
         <div>
-        <mat-card>
-            <mat-form-field> 
-                <button mat-raised-button color="primary" (click)="addNewAddress()"> ADD</button>
-                <input matInput  [(ngModel)]="inputValue">
-            </mat-form-field>       
-        </mat-card>
-            <p> {{newAddress}}</p>
+        
+            <!--table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                    <td mat-cell *matCellDef="let element of userAddresses"> {{element.type}} </td>
+                </ng-container>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <!-- Position Column -->
-            <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-            </ng-container>
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> City </th>
+                    <td mat-cell *matCellDef="let element of userAddresses"> {{element.city}} </td>
+                </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="city">
-                <th mat-header-cell *matHeaderCellDef> City </th>
-                <td mat-cell *matCellDef="let element"> {{element.city}} </td>
-            </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address 01 </th>
+                    <td mat-cell *matCellDef="let element of userAddresses"> {{element.address}} </td>
+                </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="address">
-                <th mat-header-cell *matHeaderCellDef> Address 01 </th>
-                <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table-->
         </div>
     </div>
 </div>

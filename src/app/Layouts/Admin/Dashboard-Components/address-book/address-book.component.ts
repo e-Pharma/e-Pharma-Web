@@ -1,34 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import {AddressBookService} from './address-book.service';
+import { Subscription } from 'rxjs';
 
-export interface PeriodicElement {
+export interface UserAddress {
   type: string;
   city: string;
   address: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { type: 'Hydrogen', city: 'colombo3', address: 'xxxxxxxxxxxx'},
-  { type: 'Helium', city: 'kohuwela', address: 'xxxxxxxxxxxxxx'},
- 
-];
+// const ELEMENT_DATA: UserAddress[] = [];
+
 @Component({
   selector: 'app-address-book',
   templateUrl: './address-book.component.html',
   styleUrls: ['./address-book.component.css']
 })
-export class AddressBookComponent implements OnInit {
+export class AddressBookComponent implements OnInit ,OnDestroy {
+ 
+  constructor(public addressService:AddressBookService) { }
 
-  newAddress = ' ';
-  inputValue=' ';
-
-  addNewAddress() {
-    this.newAddress=this.inputValue;
-  }
-  constructor() { }
+  userAddresses:UserAddress[]=[];
+  private addressSub:Subscription;
 
   ngOnInit(): void {
+    this.userAddresses=this.addressService.getAddress();
+    this.addressSub=this.addressService.getAddressUpdateListner()
+      .subscribe((addresses:UserAddress[])=>{
+        this.userAddresses=addresses;
+      })
   }
 
+  ngOnDestroy(){
+    this.addressSub.unsubscribe();
+  }
+
+  // newAddress = '';
+  // newType ='';
+  // newCity='';
+  
+  addNewAddress(form:NgForm) {
+    if(form.invalid){
+      return;
+    }
+      
+    this.addressService.addUserAddress(form.value.type,form.value.city,form.value.address);
+    form.resetForm();
+
+  }
+  
   displayedColumns: string[] = [ 'type', 'city', 'address'];
-  dataSource = ELEMENT_DATA;
+  dataSource = this.userAddresses;
 }

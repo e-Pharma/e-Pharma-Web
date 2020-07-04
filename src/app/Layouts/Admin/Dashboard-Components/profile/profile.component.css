@@ -1,14 +1,26 @@
-mat-card{
-    margin:10px;
+.profile{
+    margin: 20px 10px;
 }
-.profile mat-card {
-    height: 100%;
+.user-info{
+    max-width: 400px;
+    height: 600px;
+
 }
-img{
-    /* border-radius: 50%; */
-    width: 100%;
-    height: auto;
-}
-.userInfo{
+.info-content{
     margin: auto;
+    padding: 10px;
 }
+.edit-info mat-card{
+    height: 600px;
+}
+mat-card-image{
+    margin: 10px;
+    padding: 10px;
+}
+mat-icon{
+    margin: 0 10px;
+}
+mat-card-content p{
+    color: rgb(28, 38, 94);
+}
+
