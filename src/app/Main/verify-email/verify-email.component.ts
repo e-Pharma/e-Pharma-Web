@@ -34,16 +34,20 @@ export class VerifyEmailComponent implements OnInit {
   updateVerification() {
     this.userService.updateVerification(this.token).subscribe((response: any) => {
       console.log(response.status)
-      if(response.status === 200) {
+      if(response.status === 200 && response.message === "Success") {
         this.openSnackBar(response.message, "OK");
         this.isExpired = false;
-        // setTimeout(() => {
-        //   console.log("Processing");
-        //   this.router.navigate(['../../login'], { relativeTo: this.route });
-        // }, 5000);
-      } else {
+        setTimeout(() => {
+          console.log("Processing");
+          this.router.navigate(['../../login'], { relativeTo: this.route });
+        }, 5000);
+      } else if (response.status === 200 && response.message === "Already Validated!") {
         this.isExpired = true;
         this.openSnackBar(response.message, "OK");
+        setTimeout(() => {
+          console.log("Processing");
+          this.router.navigate(['../../login'], { relativeTo: this.route });
+        }, 5000);
       }
     })
   }

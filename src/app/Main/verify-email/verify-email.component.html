@@ -2,8 +2,8 @@
 
     <div class="container-fluid">
 
-        <h2 align="center" *ngIf="!isVerified" style="color: green;"> <b> <i class="material-icons" > check_circle </i> Email Verified </b></h2>
-        <h2 align="center" *ngIf="isVerified" style="color: red;"> <b> <i class="material-icons" > check_circle </i> Email Already Verified </b></h2>
+        <h2 align="center" *ngIf="!isExpired" style="color: green;padding-top: 100px;"> <b> <i class="material-icons" > check_circle </i> Email Verified </b></h2>
+        <h2 align="center" *ngIf="isExpired" style="color: red;padding-top: 100px;"> <b> <i class="material-icons" > highlight_off </i> Email Already Verified </b></h2>
 
     </div>
 
