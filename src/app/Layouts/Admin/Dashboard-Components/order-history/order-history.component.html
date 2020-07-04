@@ -2,7 +2,12 @@
 
     <div class='container-fluid'>
 
-        <div class="row mat-elevation-z8" *ngIf="orders.length > 0">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search Orders" #input>
+        </mat-form-field>
+
+        <div class="row mat-elevation-z8">
 
             <table mat-table [dataSource]="dataSource" class="col-md-12">
 
@@ -36,11 +41,11 @@
                 </ng-container>
     
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewOrder(row._id)"></tr>
     
             </table>
 
-            <mat-paginator class="col-md-12" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator class="col-md-12" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
         </div> 
 

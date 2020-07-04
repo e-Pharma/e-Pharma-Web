@@ -8,7 +8,9 @@
                 <mat-card-title> Prescription </mat-card-title>
             </mat-card-header>
 
-            <form [formGroup]="prescriptionForm" (ngSubmit)="submit()">
+            <mat-divider></mat-divider>
+
+            <form [formGroup]="prescriptionForm" style="padding-top: 10px;">
 
                 <mat-card-content>
 
@@ -17,8 +19,11 @@
                         <mat-label>Select Relation</mat-label>
                         <mat-select formControlName="relations" required>
                           <mat-option *ngFor="let relation of userData.relations" [value]="relation">{{relation.relationship}} - {{ relation.first_name + " " + relation.last_name }}</mat-option>
+                          <mat-option value="none">None - Me </mat-option>
                         </mat-select>
-    
+                        <mat-error *ngIf="prescriptionForm.controls.relations.hasError('required')">
+                            Relation is <strong>required</strong>
+                        </mat-error>
                     </mat-form-field>
 
                     <div class="row">
@@ -48,6 +53,13 @@
 
                     </div>
 
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput placeholder="Address" required formControlName="address">
+                        <mat-error *ngIf="prescriptionForm.controls.address.hasError('required')">
+                            Address Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>NIC</mat-label>
@@ -103,6 +115,37 @@
                         <mat-label> Note </mat-label>
                         <textarea matInput placeholder=" Any Special Notes" formControlName="note"></textarea>
                     </mat-form-field>
+
+                    <mat-checkbox formControlName="non_pres"> Upload Custom Medicines </mat-checkbox>
+
+                    <div *ngIf="isChecked">
+
+                        <div class="row" *ngFor="let count of [].constructor(medCount); let index=index">
+
+                            <div class="col-md-6">
+
+                                <mat-form-field>
+                                    <mat-label> Medicine - {{ index+1 }} </mat-label>
+                                    <input matInput placeholder="Medicine" required formControlName="med{{index}}">
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <button mat-raised-button color="primary" (click)="add()"> <i class="material-icons"> add_circle</i> Add</button>
+
+                            </div>
+
+                            <div class="col-md-3" *ngIf="index === medCount-1 && medCount !== 1">
+
+                                <button mat-raised-button color="warn" (click)="remove(index)"> <i class="material-icons"> highlight_off </i> Remove </button>
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
     
                     <div class="row">
 
@@ -116,9 +159,15 @@
 
                     <div class="row" style="padding-top: 10px;">
 
-                        <div class="col-md-12">
+                        <div class="col-md-8">
 
                             <img [src]="imageUrl" alt="Item Image" width="220px" height="200px" *ngIf="imageUrl !== null" id="itemImage"/>
+
+                        </div>
+
+                        <div class="col-md-4" style="margin-left: 1px !important;" *ngIf="imageUrl !== null">
+
+                            <button mat-raised-button color="warn" class="col-md-12" (click)="removeFile()" > <i class="material-icons"> highlight_off </i> Remove File </button>
 
                         </div>
 
@@ -135,7 +184,7 @@
                 </mat-card-content>
 
                 <mat-card-actions align="center">
-                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid && !imageQuality">Submit</button>
+                    <button mat-raised-button color="primary" (click)="submit()" [disabled]="!prescriptionForm.valid || (!imageQuality && !isChecked)">Submit</button>
                 </mat-card-actions>
 
             </form>

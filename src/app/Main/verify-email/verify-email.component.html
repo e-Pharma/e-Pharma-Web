@@ -1,1 +1,10 @@
-<p>verify-email works!</p>
+<div class="main-content">
+
+    <div class="container-fluid">
+
+        <h2 align="center" *ngIf="!isVerified" style="color: green;"> <b> <i class="material-icons" > check_circle </i> Email Verified </b></h2>
+        <h2 align="center" *ngIf="isVerified" style="color: red;"> <b> <i class="material-icons" > check_circle </i> Email Already Verified </b></h2>
+
+    </div>
+
+</div>

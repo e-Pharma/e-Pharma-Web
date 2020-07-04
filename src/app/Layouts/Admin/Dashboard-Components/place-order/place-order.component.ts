@@ -20,6 +20,7 @@ export class PlaceOrderComponent implements OnInit {
               private route: ActivatedRoute) {
     this.route.data.subscribe((data: { order: any }) => {
       this.orderData = data.order.data;
+      console.log(this.orderData)
     });
   }
 
@@ -34,6 +35,14 @@ export class PlaceOrderComponent implements OnInit {
     this.paymentMethod.valueChanges.subscribe((value: any) => {
       console.log(value)
     })
+  }
+
+  displayMedicines() {
+    var medString: string = "";
+    for(var medicines of this.orderData.non_prescription) {
+      medString = medString + medicines + " , "
+    }
+    return medString;
   }
 
 }

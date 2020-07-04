@@ -2,12 +2,21 @@
 
     <div class="container-fluid">
 
-        <label id="example-radio-group-label"> <b> Pick the preferred payment method </b></label>
-        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControl]="paymentMethod">
-            <mat-radio-button class="example-radio-button" *ngFor="let payment of paymentMethods" [value]="payment.value">
-                {{payment.name}}
-            </mat-radio-button>
-        </mat-radio-group>
+        <div *ngIf="orderData.is_reviewed">
+
+            <label id="example-radio-group-label"> <b> Pick the preferred payment method </b></label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControl]="paymentMethod">
+                <mat-radio-button class="example-radio-button" *ngFor="let payment of paymentMethods" [value]="payment.value">
+                    {{payment.name}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+        </div>
+
+        <div *ngIf="!orderData.is_reviewed">
+
+            <h3 style="color: green;"> <b> You will be eligible to do payments once the order is reviewed. </b></h3>
+        </div>
 
         <mat-card class="example-card">
 
@@ -63,7 +72,7 @@
 
                     </div>
 
-                    <div class="col-md-6 pr-5"> {{ orderData.address }} </div>
+                    <div class="col-md-6 pr-5"> {{ orderData.delivery_address }} </div>
 
                 </div>
 
@@ -91,7 +100,6 @@
 
                 </div>
 
-
                 <div class="row">
 
                     <div class="col-md-6 pl-5"> 
@@ -100,8 +108,8 @@
 
                     </div>
 
-                    <div class="col-md-6 pr-5" *ngIf="orderData.note !== null"> {{ orderData.note }} </div>
-                    <div class="col-md-6 pr-5" *ngIf="orderData.note === null"> None </div>
+                    <div class="col-md-6 pr-5" *ngIf="orderData.note !== ''"> {{ orderData.note }} </div>
+                    <div class="col-md-6 pr-5" *ngIf="orderData.note === ''"> None ... </div>
 
                 </div>
 
@@ -114,6 +122,31 @@
                     </div>
 
                     <div class="col-md-6 pr-5"> {{ orderData.ordered_at }}</div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Medicines </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5" *ngIf="orderData.non_prescription.length > 0"> {{ displayMedicines() }} </div>
+                    <div class="col-md-6 pr-5" *ngIf="orderData.non_prescription.length === 0"> None ... </div>
+
+                </div>
+
+                <div class="row" *ngIf="orderData.prescription_url !== null">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Prescription </b>
+
+                    </div>
+
+                    <img [src]="orderData.prescription_url" alt="Item Image" width="220px" height="200px"/>
 
                 </div>
 

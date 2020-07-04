@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,10 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit{
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   displayedColumns: string[] = ['name', 'contact', 'nic', 'ordered_at','status'];
   orders: any;
   dataSource: any;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   
   constructor(private route: ActivatedRoute,
               private router: Router) {
@@ -21,11 +21,12 @@ export class OrderHistoryComponent implements OnInit{
       this.orders = data.orders.data;
       console.log(this.orders)
       this.dataSource = new MatTableDataSource(this.orders);
+      console.log(this.paginator)
     });
   }
-  
+
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;
   }
 
   getCamelCase(word: string) {
@@ -34,6 +35,15 @@ export class OrderHistoryComponent implements OnInit{
     } else {
       return word[0].toUpperCase() + word.slice(1);
     }
+  }
+
+  viewOrder(id: any) {
+    this.router.navigate(['../view-order', id], { relativeTo: this.route });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

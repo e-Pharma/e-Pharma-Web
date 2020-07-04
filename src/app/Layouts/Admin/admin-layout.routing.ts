@@ -19,7 +19,7 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     {
-        path: 'place-order',
+        path: 'view-order',
         children: [
             {
                 path: ':id',

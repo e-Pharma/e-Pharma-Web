@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ImageUploadingService } from 'app/Services/image-uploading.service';
 import { DatePipe } from '@angular/common';
 import { UserServiceService } from 'app/Services/user-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-user-dashboard-home',
@@ -33,6 +34,10 @@ export class UserDashboardHomeComponent implements OnInit {
   imageQuality: boolean = false;
   /** Is Loading Quality. */
   isLoadingQuality: boolean = false;
+  /** Medicine Count. */
+  medCount: number = 1;
+  /** Prescription Type. */
+  isChecked: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private imageService: ImageUploadingService,
@@ -51,6 +56,7 @@ export class UserDashboardHomeComponent implements OnInit {
   ngOnInit(): void {
     this.setPrescriptionForm();
     this.selectValueChanges();
+    this.selectPrescriptionTypeChange();
   }
 
   /**
@@ -59,12 +65,38 @@ export class UserDashboardHomeComponent implements OnInit {
   selectValueChanges() {
     this.prescriptionForm.get('relations').valueChanges.subscribe((value: any) => {
       console.log(value)
-      this.prescriptionForm.get('contact').setValue(value.contact_number);
-      this.prescriptionForm.get('first_name').setValue(value.first_name);
-      this.prescriptionForm.get('last_name').setValue(value.last_name);
-      this.prescriptionForm.get('dob').setValue(new Date(value.dob));
-      this.prescriptionForm.get('nic').setValue(value.nic);
+      if(value !== "none") {
+        this.prescriptionForm.get('contact').setValue(value.contact_number);
+        this.prescriptionForm.get('first_name').setValue(value.first_name);
+        this.prescriptionForm.get('last_name').setValue(value.last_name);
+        this.prescriptionForm.get('dob').setValue(new Date(value.dob));
+        this.prescriptionForm.get('nic').setValue(value.nic);
+      } else {
+        console.log(this.userData)
+        this.prescriptionForm.get('contact').setValue(this.userData.contact_number);
+        this.prescriptionForm.get('first_name').setValue(this.userData.first_name);
+        this.prescriptionForm.get('last_name').setValue(this.userData.last_name);
+        this.prescriptionForm.get('nic').setValue(this.userData.nic);
+      }
     });
+  }
+
+  selectPrescriptionTypeChange() {
+    this.prescriptionForm.get('non_pres').valueChanges.subscribe((value: any) => {
+      console.log(value)
+      if(value === true) {
+        this.isChecked = true;
+        this.prescriptionForm.addControl('med0', new FormControl('', Validators.required));
+        //this.prescriptionForm.addControl('image', new FormControl('', [Validators.required]));
+      } else {
+        this.isChecked = false;
+        console.log(this.medCount)
+        for(var i=0; i<this.medCount; i++) {
+          const controlName = "med"+i;
+          this.prescriptionForm.removeControl(controlName);
+        }
+      }
+    })
   }
 
   openSnackBar(message: string, action: string) {
@@ -80,15 +112,35 @@ export class UserDashboardHomeComponent implements OnInit {
     this.prescriptionForm = this.formBuilder.group({
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
+      'address': ['', Validators.required],
+      'non_pres': [''],
       'nic': ['', Validators.required],
       'dob': ['', Validators.required],
       'relations': ['', Validators.required],
       'date': [{value: new Date(), disabled: true}],
-      'image': ['', Validators.required],
+      'image': [''],
       'note': [''],
       'email': ['', [Validators.required, Validators.email]],
       'contact': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]]
     })
+  }
+
+  add() {
+    this.medCount += 1;
+    const controlName = "med"+(this.medCount-1);
+    this.prescriptionForm.addControl(controlName, new FormControl('', Validators.required));
+  }
+
+  remove(index: any) {
+    this.medCount -= 1;
+    console.log(index)
+    const controlName = "med"+index;
+    this.prescriptionForm.removeControl(controlName);
+  }
+
+  removeFile() {
+    this.imageUrl = null;
+    this.prescriptionForm.get('image').setValue('');
   }
 
   /**
@@ -145,24 +197,44 @@ export class UserDashboardHomeComponent implements OnInit {
     });
     const formData = this.prescriptionForm.value;
     formData.date = this.datePipe.transform(new Date(), dateFormat);
-    this.imageService.getImageUrl(this.file[0]).subscribe((response: any) => {
-      if(response.status === 200) {
-        formData.image = response.data.url;
-        console.log(formData)
-        this.userService.uploadPrescription(formData).subscribe((response: any) => {
-          if(response.status === 201) {
-            //console.log(response.status)
-            this.openSnackBar(response.message, "OK");
-            console.log(response.data)
-            this.router.navigate(['../place-order', response.data], { relativeTo: this.route });
-          } else {
-            this.openSnackBar(response.message, "OK");
-          }
-        });
-      } else {
-        this.openSnackBar(response.message, "OK");
+    var medArray: any[] = new Array();
+    if(this.isChecked) {
+      for(let i=0; i< this.medCount; i++) {
+        const controlName = "med"+i;
+        medArray.push(this.prescriptionForm.get(controlName).value);
       }
-    })
+      formData.non_prescription = medArray;
+    }
+    console.log(formData)
+    if(this.imageUrl !== null) {
+      this.imageService.getImageUrl(this.file[0]).subscribe((response: any) => {
+        if(response.status === 200) {
+          formData.image = response.data.url;
+          console.log(formData)
+          this.userService.uploadPrescription(formData).subscribe((response: any) => {
+            if(response.status === 201) {
+              //console.log(response.status)
+              this.openSnackBar(response.message, "OK");
+              console.log(response.data)
+              this.router.navigate(['../view-order', response.data], { relativeTo: this.route });
+            } else {
+              this.openSnackBar(response.message, "OK");
+            }
+          });
+        } else {
+          this.openSnackBar(response.message, "OK");
+        }
+      });
+    } else {
+      this.userService.uploadNonePrescription(formData).subscribe((response: any) => {
+        if(response.status === 201) {
+          this.openSnackBar(response.message, "OK");
+          this.router.navigate(['../view-order', response.data], { relativeTo: this.route });
+        } else {
+          this.openSnackBar(response.status, "OK");
+        }
+      });
+    }
   }
 
 }
