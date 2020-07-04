@@ -12,9 +12,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { PasswordResetPageComponent } from './password-reset-page/password-reset-page.component';
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent],
+  declarations: [LoginComponent, SignupComponent, PasswordResetComponent, PasswordResetPageComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,7 +31,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTooltipModule,
     MatStepperModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSnackBarModule,
+    MatDividerModule
   ]
 })
 export class LoginSignupModule { }

@@ -1,0 +1,166 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+
+        <label id="example-radio-group-label"> <b> Pick the preferred payment method </b></label>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControl]="paymentMethod">
+            <mat-radio-button class="example-radio-button" *ngFor="let payment of paymentMethods" [value]="payment.value">
+                {{payment.name}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <mat-card class="example-card">
+
+            <mat-card-header>
+              <mat-card-title> Order Details </mat-card-title>
+            </mat-card-header>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+
+                <div class="row" style="padding-top: 10px;">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Name </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.patient }} </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Email </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.email }}</div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> NIC </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.nic }} </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Address </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.address }} </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Date Of Birth </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.dob }} </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Contact </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.contact}} </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Note </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5" *ngIf="orderData.note !== null"> {{ orderData.note }} </div>
+                    <div class="col-md-6 pr-5" *ngIf="orderData.note === null"> None </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 pl-5"> 
+
+                        <b> Date </b>
+
+                    </div>
+
+                    <div class="col-md-6 pr-5"> {{ orderData.ordered_at }}</div>
+
+                </div>
+
+            </mat-card-content>
+
+            <!-- <mat-card-actions align="center">
+                <form *ngIf="paymentMethod.value === 'p_here'" #form action="https://sandbox.payhere.lk/pay/o229f30af" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now" (click)="form.submit()"></form>
+                <button mat-raised-button color="warn" *ngIf="paymentMethod.value === 'c_del'"> Done </button>
+            </mat-card-actions> -->
+
+        </mat-card>
+          
+
+    </div>
+
+</div>
+
+
+
+<!-- <div class="main-content">
+    <div class="container-fluid">
+      <p>dbhjcgdyugb</p>
+        <div class="vertical-center">
+            <div class="container">
+                <form #form1 method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+                  <input type="hidden" name="merchant_id" value="1213034"> 
+                  <input type="hidden" name="return_url" value="http://localhost:4200/organizer-home">
+                  <input type="hidden" name="cancel_url" value="http://localhost:4200/organizer-home">
+                  <input type="hidden" name="notify_url" value="http://localhost:4200/organizer-home">  
+                  <br><br>Item Details<br>
+                  <input type="text" name="order_id" value="ob5d67668">
+                  <input type="text" name="items" value="Door bell wireless"><br>
+                  <input type="text" name="currency" value="LKR">
+                  <input type="text" name="amount" value="2000">  
+                  <input type="number" id="quantityInput" value="3">
+                  <br><br>Customer Details<br>
+                  <input type="text" name="first_name" value="Saman">
+                  <input type="text" name="last_name" value="Perera"><br>
+                  <input type="text" name="email" value="samanp@gmail.com">
+                  <input type="text" name="phone" value="0771234567"><br>
+                  <input type="text" name="address" value="No.1, Galle Road">
+                  <input type="text" name="city" value="Colombo">
+                  <input type="hidden" name="country" value="Sri Lanka"><br><br> 
+                  <input type="submit" value="Buy Now" (click)="form1.submit()">   
+              </form>
+            </div>
+          </div>
+    </div>
+    
+    </div> -->

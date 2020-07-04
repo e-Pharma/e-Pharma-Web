@@ -16,9 +16,52 @@
 
                         <mat-label>Select Relation</mat-label>
                         <mat-select formControlName="relations" required>
-                          <mat-option *ngFor="let relation of relationsList" [value]="relation">{{relation}}</mat-option>
+                          <mat-option *ngFor="let relation of userData.relations" [value]="relation">{{relation.relationship}} - {{ relation.first_name + " " + relation.last_name }}</mat-option>
                         </mat-select>
     
+                    </mat-form-field>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>First Name</mat-label>
+                                <input matInput placeholder="First Name" required formControlName="first_name">
+                                <mat-error *ngIf="prescriptionForm.controls.first_name.hasError('required')">
+                                    First Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <mat-form-field>
+                                <mat-label>Second Name</mat-label>
+                                <input matInput placeholder="Second Name" required formControlName="last_name">
+                                <mat-error *ngIf="prescriptionForm.controls.last_name.hasError('required')">
+                                    Second Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+
+                    <mat-form-field>
+                        <mat-label>NIC</mat-label>
+                        <input matInput placeholder="NIC" required formControlName="nic">
+                        <mat-error *ngIf="prescriptionForm.controls.nic.hasError('required')">
+                            NIC is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label> Date Of Birth </mat-label>
+                        <input matInput [max]="maxDate" [matDatepicker]="dobDatePicker" required formControlName="dob">
+                        <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobDatePicker></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field>
@@ -83,15 +126,16 @@
 
                     <div class="row" style="padding-top: 5px;padding-left: 50px;">
 
-                        <p style="color: red;" *ngIf="!imageQuality && imageUrl !== null"> <b> Quality is not enough! Please upload again!</b></p>
-                        <p style="color: green;" *ngIf="imageQuality && imageUrl !== null"> <b> Good Quality!</b></p>
+                        <p style="color: red;" *ngIf="isLoadingQuality" class="blink"> <b> Calculating Quality </b></p>
+                        <p style="color: red;" *ngIf="!imageQuality && imageUrl !== null && !isLoadingQuality"> <b> Quality is not enough! Please upload again!</b></p>
+                        <p style="color: green;" *ngIf="imageQuality && imageUrl !== null && !isLoadingQuality"> <b> Good Quality!</b></p>
 
                     </div>
     
                 </mat-card-content>
 
                 <mat-card-actions align="center">
-                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid && imageQuality">Submit</button>
+                    <button mat-raised-button color="primary" [disabled]="!prescriptionForm.valid && !imageQuality">Submit</button>
                 </mat-card-actions>
 
             </form>

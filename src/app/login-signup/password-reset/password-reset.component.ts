@@ -1,160 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-/** Custom Services. */
 import { UserServiceService } from 'app/Services/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-password-reset',
+  templateUrl: './password-reset.component.html',
+  styleUrls: ['./password-reset.component.css']
 })
-export class SignupComponent implements OnInit {
+export class PasswordResetComponent implements OnInit {
 
-  signupForm: FormGroup;
-  // relationshipCount: number = 0;
-  /** Minimum Date allowed. */
-  minDate = new Date(2000, 0, 1);
-  /** Maximum Date allowed. */
-  maxDate = new Date();
+  email: FormControl;
+  isError: string = null;
 
-  constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
+  constructor(private route: ActivatedRoute,
               private _snackBar: MatSnackBar,
-              private userService: UserServiceService
-    ) { }
+              private router: Router,
+              private userService: UserServiceService) { }
 
   ngOnInit(): void {
-    this.createSignupForm();
+    this.email = new FormControl('', [Validators.required, Validators.email]);
   }
 
+  /**
+   * Open Snack Bar.
+   * @param message Message.
+   * @param action Action.
+   */
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
 
-  /**
-   * Initialize Signup Form.
-   */
-  createSignupForm() {
-    this.signupForm = this.formBuilder.group({
-      'firstname': ['', Validators.required],
-      'lastname': ['', Validators.required],
-      'address': ['', Validators.required],
-      'contact': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]],
-      'nic': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
-      'password': ['', [Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$'), Validators.maxLength(50), Validators.minLength(8)]],
-      'rePassword': ['', [Validators.required, this.confirmPassword('password')]]
-    });
-  }
-
-  /**
-   * Confirm Change Password of Users.
-   * @param controlNameToCompare Form Control Name to be compared.
-   */
-  confirmPassword(controlNameToCompare: string): ValidatorFn {
-    return (c: AbstractControl): ValidationErrors|null => {
-        if (c.value == null || c.value.length === 0) {
-            return null;
-        }
-        const controlToCompare = c.root.get(controlNameToCompare);
-        if (controlToCompare) {
-            const subscription: Subscription = controlToCompare.valueChanges.subscribe(() => {
-                c.updateValueAndValidity();
-                subscription.unsubscribe();
-            });
-        }
-        return controlToCompare && controlToCompare.value !== c.value ? {'notequal': true} : null;
-    };
-  }
-
-  /**
-   * Submits Registration Form.
-   */
-  submit() {
-    // let relationshipsArray: any[] = new Array();
-    const registerForm = this.signupForm.value;
-    // for(let i=0;i<this.relationshipCount;i++) {
-    //   const nicId = 'nic' + (this.relationshipCount-1);
-    //   const firstNameId = 'firstName' + (this.relationshipCount);
-    //   const lastNameId = 'lastName' + (this.relationshipCount);
-    //   const dobId = 'dob' + (this.relationshipCount);
-    //   const relationshipId = 'relationship' + (this.relationshipCount);
-    //   const contactNumberId = 'contact_number' + (this.relationshipCount);
-    //   const genderId = 'gender' + (this.relationshipCount);
-    //   relationshipsArray.push({firstName: this.signupForm.value[firstNameId], lastName: this.signupForm.value[lastNameId],
-    //                       dob: this.signupForm.value[dobId], nic: this.signupForm.value[nicId], relationship: this.signupForm.value[relationshipId],
-    //                       contact_number: this.signupForm.value[contactNumberId], gender: this.signupForm.value[genderId]});
-    // }
-    // registerForm.relationships = relationshipsArray;
-    console.log(registerForm)
-    this.userService.registerUser(registerForm).subscribe(response => {
-      console.log(response.status)
-      if (response.status === 201 ) {
-        const token = response.data;
-        console.log(token)
+  sendResetURL() {
+    this.userService.passwordResetURL(this.email.value).subscribe((response: any) => {
+      if(response.status === 200) {
         let from = 'benuraawsdev@gmail.com';
-        let to = registerForm.email;
-        let subject = 'Verify Your Account';
-        let message = this.getMessage(token);
+        let to = this.email.value;
+        let subject = 'Reset Password';
+        let message = this.getMessage(response.data);
         let data = {from: from, to: to, message: message, subject: subject };
-        this.userService.verificationMail(data).subscribe(response => {
-          if (response.status === 200 ) {
-            this.openSnackBar(response.message, "OK");
-            this.router.navigate(['../login'], { relativeTo: this.route} );
+        this.userService.sendPasswordResetLink(data).subscribe((response: any) => {
+          if(response.status === 200) {
+            this.openSnackBar(response.message+" "+ "If you don't receive a resetting link Please Retry Sending!", "OK");
+            this.isError = "true";
           } else {
             this.openSnackBar(response.message, "OK");
+            this.isError = "false";
           }
         });
       }
-      else throw new Error();
-  
     });
   }
 
-  // addNewRelationship() {
-  //   this.relationshipCount = this.relationshipCount + 1;
-  //   const nicId = 'nic' + (this.relationshipCount-1);
-  //   const firstNameId = 'firstName' + (this.relationshipCount-1);
-  //   const lastNameId = 'lastName' + (this.relationshipCount-1);
-  //   const dobId = 'dob' + (this.relationshipCount-1);
-  //   const relationshipId = 'relationship' + (this.relationshipCount-1);
-  //   const contactNumberId = 'contact_number' + (this.relationshipCount-1);
-  //   const genderId = 'gender' + (this.relationshipCount-1);
-  //   console.log(nicId)
-  //   this.signupForm.addControl(nicId, new FormControl(''));
-  //   this.signupForm.addControl(firstNameId, new FormControl(''));
-  //   this.signupForm.addControl(lastNameId, new FormControl(''));
-  //   this.signupForm.addControl(dobId, new FormControl(''));
-  //   this.signupForm.addControl(relationshipId, new FormControl(''));
-  //   this.signupForm.addControl(contactNumberId, new FormControl('', [Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]));
-  //   this.signupForm.addControl(genderId, new FormControl(''));
-  // }
-
-  // showItem(stringVal: string) {
-  //   console.log(parseInt(stringVal, 10)===this.relationshipCount-1)
-  //   return parseInt(stringVal, 10) === (this.relationshipCount-1);
-  // }
-
-  // checkError(id: string, error: string) {
-  //   const contact_number = 'contact_number'+id;
-  //   return this.signupForm.controls[contact_number].hasError(error);
-  // }
-
-
   /**
    * Get message.
-   * @param link Verification Link.
+   * @param link Reset Link.
    */
   getMessage(token: any){
-    const link:any = 'http://localhost:4200/verify_email/'+token;
-    let _href="<a href="+link+" title='Verify Email' style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
+    const link:any = 'http://localhost:4200/password_reset_page/'+token;
+    let _href="<a href="+link+" title='Reset Password' style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
 
     let message="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html><head><meta charset='UTF-8'>"+
         "<meta content='width=device-width, initial-scale=1' name='viewport'>"+
@@ -188,27 +95,27 @@ export class SignupComponent implements OnInit {
                   "<table class='m_1283199651525359358row' style='border-collapse:collapse;border-spacing:0;display:table;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'>"+
                     "<th class='m_1283199651525359358small-12 m_1283199651525359358columns' style='Margin:0 auto;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:16px;text-align:left;width:564px'><table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><th style='Margin:0;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;padding:0;text-align:left'>"+
                     "<h3 class='m_1283199651525359358avoid-auto-linking' style='Margin:0;color:#5d6879;font-family:Georgia,serif;font-size:24px;font-weight:normal;line-height:1.3;margin:0;padding:0;text-align:left;word-wrap:normal'>"+
-                       "Verify Email"+
+                       "Reset Password"+
                     "</h3>"+
                   "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
                     "<p style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
                      "Hello,"+
                     "</p>"+
                     "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
-                    "</p><p>You have to verify your Email to enter to the EPharma.</p>"+
+                    "</p><p>You have been requested to reset your password.</p>"+
                     "<p></p>"+
                     "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
                       "<center style='min-width:532px;width:100%'>"+
                     "<table class='m_1283199651525359358button' style='Margin:0 0 16px 0;border-collapse:collapse;border-spacing:0;float:none;margin:0 0 16px 0;padding:0;text-align:center;vertical-align:top;width:auto'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td style='Margin:0;border-collapse:collapse!important;border-radius:9999px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'><table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td style='Margin:0;background:#4f9c45;border:none;border-collapse:collapse!important;border-radius:9999px;color:#fefefe;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>"+
                       _href+
-                        "Verify Email"+
+                        "Reset Password"+
                       "</a>"+
                     "</td></tr></tbody></table></td></tr></tbody></table>"+
                     "</center>"+
           "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
           "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+
-            "</p><p>If you ignore this message, you will not be eligible to enter to the ePharma.</p>"+
-          "<p>If you didn't request a email verification, let us know.</p>"+
+            "</p><p>If you ignore this message, you will not be eligible to change the password.</p>"+
+          "<p>If you didn't request a password resetting, let us know.</p>"+
           "<p></p>"+
           "<table style='border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%'><tbody><tr style='padding:0;text-align:left;vertical-align:top'><td height='20px' style='Margin:0;border-collapse:collapse!important;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;line-height:20px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word'>&nbsp;</td></tr></tbody></table>"+
           "<p class='m_1283199651525359358avoid-auto-linking' style='Margin:0;Margin-bottom:10px;color:#5d6879;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:normal;margin:0;margin-bottom:10px;padding:0;text-align:left'>"+

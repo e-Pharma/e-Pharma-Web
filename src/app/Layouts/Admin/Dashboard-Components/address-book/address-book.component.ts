@@ -17,7 +17,6 @@ export interface UserAddress {
   styleUrls: ['./address-book.component.css']
 })
 export class AddressBookComponent implements OnInit ,OnDestroy {
-
  
   constructor(public addressService:AddressBookService) { }
 
@@ -46,6 +45,7 @@ export class AddressBookComponent implements OnInit ,OnDestroy {
     }
       
     this.addressService.addUserAddress(form.value.type,form.value.city,form.value.address);
+    form.resetForm();
 
   }
   

@@ -9,6 +9,10 @@ import { LoginComponent } from './login-signup/login/login.component';
 import { SignupComponent } from './login-signup/signup/signup.component';
 import { AuthGuardService } from './Services/Auth-Guard/auth-guard.service';
 import { SidebarComponent } from './Admin-Shared-Components/sidebar/sidebar.component';
+import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
+import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/payment-gateway/payment-gateway.component';
+import { PasswordResetComponent } from './login-signup/password-reset/password-reset.component';
+import { PasswordResetPageComponent } from './login-signup/password-reset-page/password-reset-page.component';
 
 const routes: Routes =[
   {
@@ -23,6 +27,31 @@ const routes: Routes =[
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent
+  },
+  {
+    path: 'password-reset-page',
+    children: [
+      {
+        path: ':token',
+        component: PasswordResetPageComponent
+      }
+    ]
+  },
+  {
+    path: 'payment',
+    component: PaymentGatewayComponent
+  },
+  { path: 'verify_email', 
+    children: [
+      {
+          path: ':token',
+          component: VerifyEmailComponent,
+      }
+    ] 
   },
   {
     path: '',

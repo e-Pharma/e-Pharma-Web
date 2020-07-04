@@ -1,26 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { UserServiceService } from 'app/Services/user-service.service';
 
-export interface PeriodicElement {
-  name: string;
-  mobile: number;
-  relationship: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  // { name: 'Hydrogen', mobile: 071258649, relationship: 'Mother'},
-  // { name: 'Helium', mobile: 072589648, relationship: 'Granny'},
- 
-];
 @Component({
   selector: 'app-family',
   templateUrl: './family.component.html',
   styleUrls: ['./family.component.css']
 })
 
-export class FamilyComponent  {
-  constructor() {}
+export class FamilyComponent implements OnInit{
 
-  displayedColumns: string[] = [ 'name', 'mobile', 'relationship'];
-  dataSource = ELEMENT_DATA;
+  relationshipForm: FormGroup;
+  /** Maximum Date allowed. */
+  maxDate = new Date();
+
+  constructor(private formBuilder: FormBuilder,
+              private datePipe: DatePipe,
+              private userService: UserServiceService) {}
+
+  ngOnInit() {
+    this.setRelationshipForm();
+  }
+
+  /**
+   * Set Relationship Form.
+   */
+  setRelationshipForm() {
+    this.relationshipForm = this.formBuilder.group({
+      'first_name': ['', Validators.required],
+      'last_name': ['', Validators.required],
+      'nic': ['', Validators.required],
+      'relationship': ['', Validators.required],
+      'dob': ['', Validators.required],
+      'contact_number': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]],
+      'gender': ['', Validators.required]
+    });
+  }
+
+  submit() {
+    const dateFormat = "dd MMMM yyyy";
+    const dob = this.relationshipForm.value.dob;
+    this.relationshipForm.patchValue({
+      dob: this.datePipe.transform(dob, dateFormat)
+    });
+    const relationshipForm = this.relationshipForm.value;
+    const relationsArray: any[] = new Array();
+    relationsArray.push(relationshipForm);
+    this.userService.createRelationship({ relations: relationsArray }).subscribe((response: any) => {
+      if(response.status === 201) {
+        alert(response.message);
+        window.location.reload();
+      } else {
+        alert(response.message);
+      }
+    })
+  }
 
 }

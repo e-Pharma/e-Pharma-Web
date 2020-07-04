@@ -5,21 +5,23 @@ import { CustomerAboutUsComponent } from '../../Main/customer-about-us/customer-
 import { CustomerContactComponent } from '../../Main/customer-contact/customer-contact.component';
 import { CustomerMainRoutes } from './main-components.routing';
 import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     CustomerHomeComponent,
     CustomerAboutUsComponent,
-    CustomerContactComponent
+    CustomerContactComponent,
   ],
   imports: [
     CommonModule,
+    MatSnackBarModule,
     RouterModule.forChild(CustomerMainRoutes),
   ],
   exports: [
     CustomerAboutUsComponent,
     CustomerContactComponent,
-    CustomerHomeComponent
+    CustomerHomeComponent,
   ]
 })
 export class MainComponentsModule { }

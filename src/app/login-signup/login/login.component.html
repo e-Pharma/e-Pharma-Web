@@ -2,66 +2,76 @@
 
     <div class="container-fluid">
 
-        <div class="row" style="margin-top: 50px">
+        <mat-card>
 
-            <div class="col-md-4"></div>
+            <mat-card-header>
 
-            <div class="col-md-4">
+                <mat-card-title>LogIn</mat-card-title>
 
-                <mat-card>
+            </mat-card-header>
 
-                    <mat-card-header>
+            <mat-divider></mat-divider>
 
-                        <mat-card-title>LogIn</mat-card-title>
+            <form [formGroup]="loginForm" (ngSubmit)="submit()" style="padding-top: 20px;">
 
-                    </mat-card-header>
+                <mat-card-content>
 
-                    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                    <div class="row">
 
-                        <mat-card-content>
+                        <mat-form-field class="col-md-12">
+                            <mat-label>User Name</mat-label>
+                            <input matInput placeholder="Email" required formControlName="email">
+                            <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.controls.email.hasError('email')">
+                                Enter valid <strong>email</strong>
+                            </mat-error>
+                        </mat-form-field>
 
-                            <div class="row">
+                    </div>
 
-                                <mat-form-field class="col-md-12">
-                                    <mat-label>User Name</mat-label>
-                                    <input matInput placeholder="Email" required formControlName="email">
-                                    <mat-error *ngIf="loginForm.controls.email.hasError('required')">
-                                        Email is <strong>required</strong>
-                                    </mat-error>
-                                    <mat-error *ngIf="loginForm.controls.email.hasError('email')">
-                                        Enter valid <strong>email</strong>
-                                    </mat-error>
-                                </mat-form-field>
+                    <div class="row">
 
-                            </div>
+                        <mat-form-field class="col-md-12">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" required type="password" formControlName="password">
+                            <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
 
-                            <div class="row">
+                    </div>
 
-                                <mat-form-field class="col-md-12">
-                                    <mat-label>Password</mat-label>
-                                    <input matInput placeholder="Password" required type="password" formControlName="password">
-                                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
-                                        Password is <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
+                    <div class="row">
 
-                            </div>
+                        <div class="col-md-12" align="center">
 
-                        </mat-card-content>
+                            <a href="/password-reset"> Forgot Password ? </a>
+                            
+                        </div>
 
-                        <mat-card-actions align="center">
-                            <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LogIn</button>
-                        </mat-card-actions>
+                    </div>
 
-                    </form>
+                    <div class="row">
 
-                </mat-card>
+                        <div class="col-md-12" align="center">
 
-            </div>
+                            <a href="/signup"> Not a member ? SignUp from here </a>
+                            
+                        </div>
 
-            <div class="col-md-4"></div>
+                    </div>
 
-        </div>
+                </mat-card-content>
+
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LogIn</button>
+                </mat-card-actions>
+
+            </form>
+
+        </mat-card>
 
     </div>
 
