@@ -39,21 +39,20 @@
             </mat-expansion-panel>
         </div>
             <div *ngIf="userAddresses.length > 0">
-            <mat-card>
-                <table>
+                <table >
                     <tr class='table-head mat-h3' >
                         <th > Type </th> 
                         <th> City </th>
                         <th> Address</th>
+                        <th></th>
                     </tr>
-                   
                     <tr *ngFor='let data of userAddresses'>
                         <td>{{data.type}}</td>
                         <td>{{data.city}}</td>
                         <td>{{data.address}}</td>
+                        <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
                     </tr>
-                </table>
-            </mat-card>
+               </table>
             </div>
             <p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p>
         <div>

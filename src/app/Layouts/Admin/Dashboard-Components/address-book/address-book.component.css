@@ -34,4 +34,9 @@ table {
   color: darkblue;
 
   }
- 
+  mat-list-item{
+
+  }
+ .btn-dlt{
+   margin-right: 0;
+ }
