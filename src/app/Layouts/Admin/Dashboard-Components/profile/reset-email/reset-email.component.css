@@ -1,0 +1,7 @@
+.btn-profile{
+    margin:0 auto;
+    display: flex;
+}
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }

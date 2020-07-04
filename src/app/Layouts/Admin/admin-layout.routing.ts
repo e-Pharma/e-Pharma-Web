@@ -9,6 +9,7 @@ import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-or
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
 import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
+import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
@@ -35,7 +36,10 @@ export const AdminLayoutRoutes: Routes = [
     },
     {
         path: 'history',
-        component: OrderHistoryComponent
+        component: OrderHistoryComponent,
+        resolve: {
+            orders: OrdersResolver
+        }
     },
     {
         path: 'profile',

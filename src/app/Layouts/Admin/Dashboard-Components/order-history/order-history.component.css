@@ -1,11 +1,9 @@
-mat-card{
-    padding-top: 5px;
-    margin:10px;
+.blink{
+    animation: blink 1s linear infinite;
 }
-table {
-    width: 80%;
-    margin: auto;
-  }
-.no-order-text{
-    text-align: center;
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
 }

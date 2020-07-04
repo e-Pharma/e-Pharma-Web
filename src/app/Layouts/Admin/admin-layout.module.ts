@@ -33,6 +33,10 @@ import { PlaceOrderComponent } from './Dashboard-Components/place-order/place-or
 import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-data-temp.resolver';
 import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
+import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/reset-email.component';
+import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -60,7 +64,8 @@ import { NotificationsComponent } from './Dashboard-Components/notifications/not
     MatDialogModule,
     MatDividerModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   declarations: [
     UserDashboardHomeComponent,
@@ -71,12 +76,15 @@ import { NotificationsComponent } from './Dashboard-Components/notifications/not
     AddNewMemberComponent,
     EditProfileComponent,
     PlaceOrderComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ResetEmailComponent,
+    ResetPasswordComponent
   ],
   providers: [
     DatePipe,
     UserDataResolver,
-    OrderTempDataResolver
+    OrderTempDataResolver,
+    OrdersResolver
   ]
 })
 
