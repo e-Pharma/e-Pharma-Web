@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { MatRadioModule} from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddressBookComponent } from './Dashboard-Components/address-book/address-book.component';
@@ -24,6 +25,7 @@ import { OrderHistoryComponent } from './Dashboard-Components/order-history/orde
 import { ProfileComponent } from './Dashboard-Components/profile/profile.component';
 import { FamilyComponent } from './Dashboard-Components/Family-member/family/family.component';
 import { AddNewMemberComponent } from './Dashboard-Components/Family-member/add-new-member/add-new-member.component';
+import { EditProfileComponent } from './Dashboard-Components/profile/edit-profile/edit-profile/edit-profile.component';
 import { MatDividerModule } from '@angular/material/divider'
 import { UserDataResolver } from './Dashboard-Components/Resolvers/user-data.resolver';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -34,6 +36,9 @@ import { NotificationsComponent } from './Dashboard-Components/notifications/not
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/reset-email.component';
+import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +61,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     MatListModule,
     MatTableModule,
     MatTabsModule,
+    MatExpansionModule,
     MatDialogModule,
     MatDividerModule,
     MatSnackBarModule,
@@ -71,8 +77,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     ProfileComponent,
     FamilyComponent,
     AddNewMemberComponent,
+    EditProfileComponent,
     PlaceOrderComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ResetEmailComponent,
+    ResetPasswordComponent
   ],
   providers: [
     DatePipe,
