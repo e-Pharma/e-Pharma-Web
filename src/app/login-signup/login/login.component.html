@@ -14,6 +14,8 @@
 
             <form [formGroup]="loginForm" (ngSubmit)="submit()" style="padding-top: 20px;">
 
+                <h5 style="color: red;" *ngIf="hasError !== null"> <b> {{ hasError }} </b> </h5>
+
                 <mat-card-content>
 
                     <div class="row">

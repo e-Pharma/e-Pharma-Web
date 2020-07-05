@@ -28,7 +28,7 @@
     
                 <ng-container matColumnDef="ordered_at">
                     <th mat-header-cell *matHeaderCellDef> Ordered At </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ordered_at}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.ordered_at | date }} </td>
                 </ng-container>
     
                 <ng-container matColumnDef="status">
