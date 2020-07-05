@@ -20,7 +20,9 @@ export class AddressBookComponent implements OnInit ,OnDestroy {
  
   constructor(public addressService:AddressBookService) { }
 
-  userAddresses:UserAddress[]=[ ];
+  userAddresses:UserAddress[]=[
+    {type:'Home',city:'Kohuwela',address:'No.45,Dutugemunu road,Kohuwela'}
+   ];
   private addressSub:Subscription;
 
   ngOnInit(): void {

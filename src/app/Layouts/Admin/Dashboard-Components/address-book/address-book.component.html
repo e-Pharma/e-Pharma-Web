@@ -38,13 +38,19 @@
                 </form>
             </mat-expansion-panel>
         </div>
-            <div *ngIf="userAddresses.length > 0">
+            <div >
                 <table >
                     <tr class='table-head mat-h3' >
                         <th > Type </th> 
                         <th> City </th>
                         <th> Address</th>
                         <th></th>
+                    </tr>
+                    <tr>
+                        <td>Home</td>
+                        <td>Kohuwala</td>
+                        <td>No.43 , Dutugemunu road, Kohuwela</td>
+                        <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
                     </tr>
                     <tr *ngFor='let data of userAddresses'>
                         <td>{{data.type}}</td>
@@ -62,7 +68,7 @@
 
             <div>
             </div>
-            <p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p>
+            <!--p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p-->
         <div>
         
             <!--table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
