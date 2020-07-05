@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class VerifyEmailComponent implements OnInit {
 
   token: any;
+  isExpired: boolean = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -32,11 +33,21 @@ export class VerifyEmailComponent implements OnInit {
 
   updateVerification() {
     this.userService.updateVerification(this.token).subscribe((response: any) => {
-      if(response.status === 200) {
+      console.log(response.status)
+      if(response.status === 200 && response.message === "Success") {
         this.openSnackBar(response.message, "OK");
-        this.router.navigate(['../../login'], { relativeTo: this.route });
-      } else {
+        this.isExpired = false;
+        setTimeout(() => {
+          console.log("Processing");
+          this.router.navigate(['../../login'], { relativeTo: this.route });
+        }, 5000);
+      } else if (response.status === 200 && response.message === "Already Validated!") {
+        this.isExpired = true;
         this.openSnackBar(response.message, "OK");
+        setTimeout(() => {
+          console.log("Processing");
+          this.router.navigate(['../../login'], { relativeTo: this.route });
+        }, 5000);
       }
     })
   }

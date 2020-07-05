@@ -35,7 +35,13 @@ export class UserServiceService {
   uploadPrescription(formData: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.post(`${this.apiUrl}/admin/order/create`, formData, { headers: httpHeadersParam });
+    return this.http.post(`${this.apiUrl}/client/order/create`, formData, { headers: httpHeadersParam });
+  }
+
+  uploadNonePrescription(formData: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.post(`${this.apiUrl}/client/order/create/non_prescription`, formData, { headers: httpHeadersParam });
   }
 
   createRelationship(relationData: any): Observable<any> {
@@ -51,7 +57,7 @@ export class UserServiceService {
   }
 
   updateVerification(token: any) {
-    const httpHeaders = {'Authorization': 'Bearer'+ token}
+    const httpHeaders = {'Authorization': 'Bearer'+ token, 'Access-Control-Allow-Origin': '*'}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/auth/verify_user`, {isVerified: true}, { headers: httpHeadersParam });
   }
@@ -62,11 +68,11 @@ export class UserServiceService {
     return this.http.put(`${this.apiUrl}/auth/logout`, {isLoggedIn: false}, {headers: httpHeadersParam});
   }
 
-  getOrderTempData(): Observable<any> {
-    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
-    const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.get(`${this.apiUrl}/admin/orderTemp/get`, {headers: httpHeadersParam});
-  }
+  // getOrderTempData(): Observable<any> {
+  //   const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+  //   const httpHeadersParam = new HttpHeaders(httpHeaders);
+  //   return this.http.get(`${this.apiUrl}/admin/orderTemp/get`, {headers: httpHeadersParam});
+  // }
 
   passwordResetURL(email: any): Observable<any> {
     return this.http.get(`${this.apiUrl}/auth/password-reset-url/${email}`);
@@ -85,13 +91,13 @@ export class UserServiceService {
   getOrder(id: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.get(`${this.apiUrl}/admin/order/get/${id}`, { headers: httpHeadersParam });
+    return this.http.get(`${this.apiUrl}/client/order/get/${id}`, { headers: httpHeadersParam });
   }
 
   getOrders(): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.get(`${this.apiUrl}/admin/order/get`, { headers: httpHeadersParam });
+    return this.http.get(`${this.apiUrl}/client/order/get`, { headers: httpHeadersParam });
   }
   
 }

@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
+import {MatRippleModule, MatOptionModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
@@ -35,6 +35,7 @@ import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/reset-email.component';
 import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
 
@@ -65,7 +66,9 @@ import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-pas
     MatDividerModule,
     MatSnackBarModule,
     MatRadioModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatOptionModule
   ],
   declarations: [
     UserDashboardHomeComponent,

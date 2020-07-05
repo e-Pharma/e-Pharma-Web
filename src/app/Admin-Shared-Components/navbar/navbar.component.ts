@@ -121,6 +121,10 @@ export class NavbarComponent implements OnInit {
               return this.listTitles[item].title.toUpperCase();
           }
       }
+      if(titlee.includes('/')) {
+          const index = titlee.slice(1).indexOf('/');
+          return titlee.slice(1).toUpperCase().substring(0,index);
+      }
       return titlee.slice(1).toUpperCase();
     }
 

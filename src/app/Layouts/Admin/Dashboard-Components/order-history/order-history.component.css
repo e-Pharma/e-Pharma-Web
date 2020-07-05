@@ -2,6 +2,10 @@
     animation: blink 1s linear infinite;
 }
 
+table:hover {
+    cursor: pointer;
+}
+
 @keyframes blink{
     0%{opacity: 0;}
     50%{opacity: .5;}

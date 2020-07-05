@@ -24,7 +24,7 @@ export class PasswordResetPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.setResetPasswordForm();
   }
 
   openSnackBar(message: string, action: string) {

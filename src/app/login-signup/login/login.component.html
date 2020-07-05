@@ -14,6 +14,8 @@
 
             <form [formGroup]="loginForm" (ngSubmit)="submit()" style="padding-top: 20px;">
 
+                <h5 style="color: red;" *ngIf="hasError !== null"> <b> {{ hasError }} </b> </h5>
+
                 <mat-card-content>
 
                     <div class="row">
@@ -43,30 +45,23 @@
 
                     </div>
 
-                    <div class="row">
-
-                        <div class="col-md-12" align="center">
-
-                            <a href="/password-reset"> Forgot Password ? </a>
-                            
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-12" align="center">
-
-                            <a href="/signup"> Not a member ? SignUp from here </a>
-                            
-                        </div>
-
-                    </div>
-
                 </mat-card-content>
 
-                <mat-card-actions align="center">
-                    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LogIn</button>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" class="col-md-12" [disabled]="!loginForm.valid">LogIn</button>
+
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="col-md-12" align="center">
+                            <a href="/password-reset"> Forgot Password ? </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" align="center">
+                            <a href="/signup"> Not a member ? SignUp from here </a>    
+                        </div>
+                    </div>
+
                 </mat-card-actions>
 
             </form>
