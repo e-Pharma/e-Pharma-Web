@@ -7,7 +7,7 @@
                     <mat-icon>add_circle_outline</mat-icon>
                 </mat-expansion-panel-header>
                 
-                <form (submit)="addNewAddress(addressForm) " #addressForm='ngForm'>
+                <form (submit)="addNewAddress(addressForm)" #addressForm='ngForm'>
                     <div class="row">
                         <div class="col">
                             <mat-form-field appearance="outline">
@@ -38,24 +38,37 @@
                 </form>
             </mat-expansion-panel>
         </div>
-            <div *ngIf="userAddresses.length > 0">
-            <mat-card>
-                <table>
+            <div >
+                <table >
                     <tr class='table-head mat-h3' >
                         <th > Type </th> 
                         <th> City </th>
                         <th> Address</th>
+                        <th></th>
                     </tr>
-                   
+                    <tr>
+                        <td>Home</td>
+                        <td>Kohuwala</td>
+                        <td>No.43 , Dutugemunu road, Kohuwela</td>
+                        <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
+                    </tr>
                     <tr *ngFor='let data of userAddresses'>
                         <td>{{data.type}}</td>
                         <td>{{data.city}}</td>
                         <td>{{data.address}}</td>
+                        <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
                     </tr>
-                </table>
-            </mat-card>
+               </table>
+               <!--mat-action-list>
+                    <button mat-list-item (click)="save()"> Save </button>
+                    <button mat-list-item (click)="undo()"> Undo </button>
+                </mat-action-list-->
             </div>
-            <p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p>
+            <div>
+
+            <div>
+            </div>
+            <!--p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p-->
         <div>
         
             <!--table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
