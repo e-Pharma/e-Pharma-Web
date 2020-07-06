@@ -33,7 +33,7 @@ const routes: Routes =[
     component: PasswordResetComponent
   },
   {
-    path: 'password-reset-page',
+    path: 'password_reset_page',
     children: [
       {
         path: ':token',

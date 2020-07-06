@@ -37,7 +37,7 @@ export class PasswordResetComponent implements OnInit {
   sendResetURL() {
     this.userService.passwordResetURL(this.email.value).subscribe((response: any) => {
       if(response.status === 200) {
-        let from = 'benuraawsdev@gmail.com';
+        let from = 'epharmatest123@gmail.com';
         let to = this.email.value;
         let subject = 'Reset Password';
         let message = this.getMessage(response.data);
@@ -45,10 +45,10 @@ export class PasswordResetComponent implements OnInit {
         this.userService.sendPasswordResetLink(data).subscribe((response: any) => {
           if(response.status === 200) {
             this.openSnackBar(response.message+" "+ "If you don't receive a resetting link Please Retry Sending!", "OK");
-            this.isError = "true";
+            this.isError = "false";
           } else {
             this.openSnackBar(response.message, "OK");
-            this.isError = "false";
+            this.isError = "true";
           }
         });
       }
@@ -63,7 +63,7 @@ export class PasswordResetComponent implements OnInit {
     const link:any = 'http://localhost:4200/password_reset_page/'+token;
     let _href="<a href="+link+" title='Reset Password' style='Margin:0;border:0 solid #4f9c45;border-radius:9999px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none' target='_blank'  data-saferedirecturl="+link+">";
 
-    let message="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html><head><meta charset='UTF-8'>"+
+    let message="<!DOCTYPE html><html><head><meta charset='UTF-8'>"+
         "<meta content='width=device-width, initial-scale=1' name='viewport'>"+
         "<meta name='x-apple-disable-message-reformatting'>"+
         "<meta http-equiv='X-UA-Compatible' content='IE=edge'>"+
