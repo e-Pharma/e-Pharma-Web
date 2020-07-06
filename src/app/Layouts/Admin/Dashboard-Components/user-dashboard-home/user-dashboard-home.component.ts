@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, KeyValueDiffers } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ImageUploadingService } from 'app/Services/image-uploading.service';
 import { DatePipe } from '@angular/common';
@@ -71,12 +71,14 @@ export class UserDashboardHomeComponent implements OnInit {
         this.prescriptionForm.get('last_name').setValue(value.last_name);
         this.prescriptionForm.get('dob').setValue(new Date(value.dob));
         this.prescriptionForm.get('nic').setValue(value.nic);
+        this.prescriptionForm.get('email').setValue(this.userData.email);
       } else {
         console.log(this.userData)
         this.prescriptionForm.get('contact').setValue(this.userData.contact_number);
         this.prescriptionForm.get('first_name').setValue(this.userData.first_name);
         this.prescriptionForm.get('last_name').setValue(this.userData.last_name);
         this.prescriptionForm.get('nic').setValue(this.userData.nic);
+        this.prescriptionForm.get('email').setValue(this.userData.email);
       }
     });
   }
@@ -87,9 +89,12 @@ export class UserDashboardHomeComponent implements OnInit {
       if(value === true) {
         this.isChecked = true;
         this.prescriptionForm.addControl('med0', new FormControl('', Validators.required));
+        this.prescriptionForm.get('image').setValidators([]);
+        this.prescriptionForm.get('image').updateValueAndValidity();
         //this.prescriptionForm.addControl('image', new FormControl('', [Validators.required]));
       } else {
         this.isChecked = false;
+        this.prescriptionForm.get('image').setValidators(Validators.required);
         console.log(this.medCount)
         for(var i=0; i<this.medCount; i++) {
           const controlName = "med"+i;
@@ -118,7 +123,7 @@ export class UserDashboardHomeComponent implements OnInit {
       'dob': ['', Validators.required],
       'relations': ['', Validators.required],
       'date': [{value: new Date(), disabled: true}],
-      'image': [''],
+      'image': ['', Validators.required],
       'note': [''],
       'email': ['', [Validators.required, Validators.email]],
       'contact': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]]
@@ -140,7 +145,7 @@ export class UserDashboardHomeComponent implements OnInit {
 
   removeFile() {
     this.imageUrl = null;
-    this.prescriptionForm.get('image').setValue('');
+    this.prescriptionForm.get('image').setValue(null);
   }
 
   /**
