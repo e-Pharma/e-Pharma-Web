@@ -114,7 +114,7 @@ export class UserDashboardHomeComponent implements OnInit {
       'last_name': ['', Validators.required],
       'address': ['', Validators.required],
       'non_pres': [''],
-      'nic': ['', Validators.required],
+      'nic': ['', [Validators.required, Validators.maxLength(10)]],
       'dob': ['', Validators.required],
       'relations': ['', Validators.required],
       'date': [{value: new Date(), disabled: true}],

@@ -20,9 +20,9 @@
 
                         <div class="col-md-6">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name" formControlName="firstname" autofocus>
+                                <input matInput placeholder="First Name" formControlName="firstname" autofocus required>
                                 <mat-error *ngIf="signupForm.controls.firstname.hasError('required')">
                                     First Name is <strong>required</strong>
                                 </mat-error>
@@ -32,9 +32,9 @@
 
                         <div class="col-md-6">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>Last Name</mat-label>
-                                <input matInput placeholder="Last Name" formControlName="lastname">
+                                <input matInput placeholder="Last Name" formControlName="lastname" required>
                                 <mat-error *ngIf="signupForm.controls.lastname.hasError('required')">
                                     Last Name is <strong>required</strong>
                                 </mat-error>
@@ -48,9 +48,9 @@
 
                         <div class="col-md-12">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>Address</mat-label>
-                                <input matInput placeholder="Address" formControlName="address">
+                                <input matInput placeholder="Address" formControlName="address" required>
                                 <mat-error *ngIf="signupForm.controls.address.hasError('required')">
                                     Address <strong>required</strong>
                                 </mat-error>
@@ -64,9 +64,9 @@
 
                         <div class="col-md-6">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>NIC</mat-label>
-                                <input matInput  placeholder="NIC" formControlName="nic">
+                                <input matInput  placeholder="NIC" formControlName="nic" required>
                                 <mat-error *ngIf="signupForm.controls.nic.hasError('required')">
                                     NIC is <strong>required</strong>
                                 </mat-error>
@@ -76,9 +76,9 @@
 
                         <div class="col-md-6">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>Contact</mat-label>
-                                <input matInput placeholder="Contact Number" formControlName="contact">
+                                <input matInput placeholder="Contact Number" formControlName="contact" required>
                                 <mat-error *ngIf="signupForm.controls.contact.hasError('required')">
                                     Contact is <strong>required</strong>
                                 </mat-error>
@@ -101,7 +101,7 @@
 
                         <div class="col-md-12">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline" required>
                                 <mat-label>Email</mat-label>
                                 <input matInput placeholder="Email" formControlName="email">
                                 <mat-error *ngIf="signupForm.controls.email.hasError('required')">
@@ -120,9 +120,11 @@
 
                         <div class="col-md-12">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline" required>
                                 <mat-label>Password</mat-label>
-                                <input matInput placeholder="Password" type="password" formControlName="password">
+                                <input matInput placeholder="Password" type="password" formControlName="password" id="password">
+                                <mat-icon matSuffix *ngIf="!isVisible"> <a href="javascript:void(0)" (click)="visibility('on')" style="text-decoration: none"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility </i> </a> </mat-icon>
+                                <mat-icon matSuffix *ngIf="isVisible"> <a href="javascript:void(0)" (click)="visibility('off')" style="text-decoration: none;"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility_off </i> </a> </mat-icon>
                                 <mat-error *ngIf="signupForm.controls.password.hasError('required')">
                                     Password is <strong>required</strong>
                                 </mat-error>
@@ -140,9 +142,11 @@
 
                         <div class="col-md-12">
 
-                            <mat-form-field>
+                            <mat-form-field appearance="outline" required>
                                 <mat-label>Re-Enter Password</mat-label>
-                                <input matInput placeholder="Re Enter Password" type="password" formControlName="rePassword">
+                                <input matInput placeholder="Re Enter Password" type="password" formControlName="rePassword" id="re_password">
+                                <mat-icon matSuffix *ngIf="!isVisibleRePassword"> <a href="javascript:void(0)" (click)="visibility('on')" style="text-decoration: none"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility </i> </a> </mat-icon>
+                                <mat-icon matSuffix *ngIf="isVisibleRePassword"> <a href="javascript:void(0)" (click)="visibility('off')" style="text-decoration: none;"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility_off </i> </a> </mat-icon>
                                 <mat-error *ngIf="signupForm.controls.rePassword.hasError('required')">
                                     Password is <strong>required</strong>
                                 </mat-error>

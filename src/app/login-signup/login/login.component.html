@@ -6,7 +6,7 @@
 
             <mat-card-header>
 
-                <mat-card-title>LogIn</mat-card-title>
+                <mat-card-title>Log In</mat-card-title>
 
             </mat-card-header>
 
@@ -20,7 +20,7 @@
 
                     <div class="row">
 
-                        <mat-form-field class="col-md-12">
+                        <mat-form-field class="col-md-12" appearance="outline">
                             <mat-label>User Name</mat-label>
                             <input matInput placeholder="Email" required formControlName="email">
                             <mat-error *ngIf="loginForm.controls.email.hasError('required')">
@@ -35,9 +35,11 @@
 
                     <div class="row">
 
-                        <mat-form-field class="col-md-12">
+                        <mat-form-field class="col-md-12" appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input matInput placeholder="Password" required type="password" formControlName="password">
+                            <input matInput placeholder="Password" required type="password" formControlName="password" id="password">
+                            <mat-icon matSuffix *ngIf="!isVisible"> <a href="javascript:void(0)" (click)="visibility('on')" style="text-decoration: none"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility </i> </a> </mat-icon>
+                            <mat-icon matSuffix *ngIf="isVisible"> <a href="javascript:void(0)" (click)="visibility('off')" style="text-decoration: none;"> <i class="material-icons" style="margin-top: -20px;color: black"> visibility_off </i> </a> </mat-icon>
                             <mat-error *ngIf="loginForm.controls.password.hasError('required')">
                                 Password is <strong>required</strong>
                             </mat-error>

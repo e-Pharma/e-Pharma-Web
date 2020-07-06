@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   hasError: string = null;
+  isVisible: boolean = false;
 
   constructor(private formBuild: FormBuilder,
               private userService: UserServiceService,
@@ -65,7 +66,21 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('password').setValue(null);
         this.openSnackBar(response.message, "OK");
       }
-    })
+    });
   }
+
+  /**
+   * Visibility Control.
+   * @param type Visibility Type.
+   */
+  visibility(type: string) {
+    if(type === 'on') {
+      this.isVisible = true;
+      (<HTMLInputElement>document.getElementById('password')).type = 'text';
+    } else {
+      this.isVisible = false;
+      (<HTMLInputElement>document.getElementById('password')).type = 'password';
+    }
+  } 
 
 }

@@ -21,6 +21,7 @@
                           <mat-option *ngFor="let relation of userData.relations" [value]="relation">{{relation.relationship}} - {{ relation.first_name + " " + relation.last_name }}</mat-option>
                           <mat-option value="none">None - Me </mat-option>
                         </mat-select>
+                        <mat-hint> You can add a new relationship from <a href="/family"> Add New Relationship</a> page. </mat-hint>
                         <mat-error *ngIf="prescriptionForm.controls.relations.hasError('required')">
                             Relation is <strong>required</strong>
                         </mat-error>
@@ -54,10 +55,10 @@
                     </div>
 
                     <mat-form-field>
-                        <mat-label>Address</mat-label>
+                        <mat-label>Delivery Address</mat-label>
                         <input matInput placeholder="Address" required formControlName="address">
                         <mat-error *ngIf="prescriptionForm.controls.address.hasError('required')">
-                            Address Name is <strong>required</strong>
+                            Delivery Address is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
 
@@ -66,6 +67,9 @@
                         <input matInput placeholder="NIC" required formControlName="nic">
                         <mat-error *ngIf="prescriptionForm.controls.nic.hasError('required')">
                             NIC is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.nic.hasError('maxlength')">
+                            NIC should not contain more than <strong> 12 characters. </strong>
                         </mat-error>
                     </mat-form-field>
 
@@ -112,8 +116,8 @@
                     </mat-form-field>
     
                     <mat-form-field class="example-full-width">
-                        <mat-label> Note </mat-label>
-                        <textarea matInput placeholder=" Any Special Notes" formControlName="note"></textarea>
+                        <mat-label> Additional Note </mat-label>
+                        <textarea matInput placeholder="Any Special Notes" formControlName="note"></textarea>
                     </mat-form-field>
 
                     <mat-checkbox formControlName="non_pres"> Upload Custom Medicines </mat-checkbox>

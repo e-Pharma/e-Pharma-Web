@@ -20,6 +20,8 @@ export class SignupComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   /** Maximum Date allowed. */
   maxDate = new Date();
+  isVisible: boolean = false;
+  isVisibleRePassword: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -310,6 +312,30 @@ export class SignupComponent implements OnInit {
     //       "</html>";
 
     return message;
+  }
+
+  /**
+   * Visibility Control.
+   * @param type Visibility Type.
+   */
+  visibility(type: string) {
+    if(type === 'on') {
+      this.isVisible = true;
+      (<HTMLInputElement>document.getElementById('password')).type = 'text';
+    } else {
+      this.isVisible = false;
+      (<HTMLInputElement>document.getElementById('password')).type = 'password';
+    }
+  } 
+
+  visibilityRePassword(type: string) {
+    if(type === 'on') {
+      this.isVisibleRePassword = true;
+      (<HTMLInputElement>document.getElementById('re_password')).type = 'text';
+    } else {
+      this.isVisibleRePassword = false;
+      (<HTMLInputElement>document.getElementById('re_password')).type = 'password';
+    }
   }
 
 }
