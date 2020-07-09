@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
       'lastname': ['', Validators.required],
       'address': ['', Validators.required],
       'contact': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]],
-      'nic': ['', Validators.required],
+      'nic': ['', [Validators.required, Validators.maxLength(12), Validators.minLength(10)]],
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', [Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$'), Validators.maxLength(50), Validators.minLength(8)]],
       'rePassword': ['', [Validators.required, this.confirmPassword('password')]]

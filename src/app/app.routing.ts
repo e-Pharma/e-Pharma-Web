@@ -13,6 +13,7 @@ import { VerifyEmailComponent } from './Main/verify-email/verify-email.component
 import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/payment-gateway/payment-gateway.component';
 import { PasswordResetComponent } from './login-signup/password-reset/password-reset.component';
 import { PasswordResetPageComponent } from './login-signup/password-reset-page/password-reset-page.component';
+import { OrderTempDataResolver } from './Layouts/Admin/Dashboard-Components/Resolvers/order-data-temp.resolver';
 
 const routes: Routes =[
   {
@@ -43,7 +44,15 @@ const routes: Routes =[
   },
   {
     path: 'payment',
-    component: PaymentGatewayComponent
+    children: [
+      {
+        path: ':id',
+        component: PaymentGatewayComponent,
+        resolve: {
+          order: OrderTempDataResolver
+        }
+      },
+    ]
   },
   { path: 'verify_email', 
     children: [

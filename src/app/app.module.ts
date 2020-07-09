@@ -18,6 +18,7 @@ import { CustomSharedComponentsModule } from './custom-shared-components/custom-
 import { MatNativeDateModule } from '@angular/material/core';
 import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
 import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/payment-gateway/payment-gateway.component';
+import { OrderTempDataResolver } from './Layouts/Admin/Dashboard-Components/Resolvers/order-data-temp.resolver';
 
 @NgModule({
   imports: [
@@ -45,7 +46,7 @@ import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/pa
     PaymentGatewayComponent
   ],
   exports: [VerifyEmailComponent],
-  providers: [],
+  providers: [OrderTempDataResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

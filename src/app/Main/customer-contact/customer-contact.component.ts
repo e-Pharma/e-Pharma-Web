@@ -10,6 +10,11 @@ export class CustomerContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    var tab = document.getElementById('contact');
+    console.log(tab);
+    tab.className += " active";
+    document.getElementById('home').classList.remove('active');
+    document.getElementById('about').classList.remove('active');
   }
 
 }

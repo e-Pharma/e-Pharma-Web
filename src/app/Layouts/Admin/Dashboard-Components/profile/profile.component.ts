@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,13 @@ import {HttpClient} from '@angular/common/http'
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  userData: any;
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
+    this.route.data.subscribe((data: { userData: any }) => {
+      this.userData = data.userData;
+    })
+  }
 
   ngOnInit(): void {
   }

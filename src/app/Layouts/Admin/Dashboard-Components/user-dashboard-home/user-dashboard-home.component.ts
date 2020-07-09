@@ -119,7 +119,7 @@ export class UserDashboardHomeComponent implements OnInit {
       'last_name': ['', Validators.required],
       'address': ['', Validators.required],
       'non_pres': [''],
-      'nic': ['', [Validators.required, Validators.maxLength(10)]],
+      'nic': ['', [Validators.required, Validators.maxLength(12), Validators.minLength(10)]],
       'dob': ['', Validators.required],
       'relations': ['', Validators.required],
       'date': [{value: new Date(), disabled: true}],
@@ -183,7 +183,7 @@ export class UserDashboardHomeComponent implements OnInit {
     this.imageService.checkImageClarity(this.file[0]).subscribe((response: any) => {
       this.isLoadingQuality  = false;
       if(response.status === 200) {
-        this.imageQuality = response.data;
+        this.imageQuality = response.data.isQuality;
       } else {
         console.log("Error Calculating")
       }

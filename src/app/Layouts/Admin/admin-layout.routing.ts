@@ -43,7 +43,10 @@ export const AdminLayoutRoutes: Routes = [
     },
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        resolve: {
+            userData: UserDataResolver
+        }
     },
     {
         path: 'address-book',
