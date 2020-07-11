@@ -7,7 +7,7 @@
                     <mat-icon>add_circle_outline</mat-icon>
                 </mat-expansion-panel-header>
                 
-                <form (submit)="addNewAddress(addressForm)" #addressForm='ngForm'>
+                <form (submit)="addNewAddress(addressForm)" #addressForm='ngForm' method="post">
                     <div class="row">
                         <div class="col">
                             <mat-form-field appearance="outline">
@@ -53,8 +53,8 @@
                         <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
                     </tr>
                     <tr *ngFor='let data of userAddresses'>
-                        <td>{{data.type}}</td>
-                        <td>{{data.city}}</td>
+                        <!--td>{{data.type}}</td>
+                        <td>{{data.city}}</td-->
                         <td>{{data.address}}</td>
                         <td><a type='submit'><mat-icon class='btn-dlt'> delete</mat-icon></a></td>
                     </tr>

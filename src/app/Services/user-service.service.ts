@@ -100,4 +100,9 @@ export class UserServiceService {
     return this.http.get(`${this.apiUrl}/client/order/get`, { headers: httpHeadersParam });
   }
   
+  getUser(): Observable<any>{
+    // return [...this.user]
+      return this.http.get<{status:Number,message:String,data:[]}>("http://localhost:3000/client/get/5eff0dbb44376c5f074aaa63")
+  }
+
 }

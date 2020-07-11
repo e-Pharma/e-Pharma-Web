@@ -26,7 +26,7 @@ export class AddressBookComponent implements OnInit ,OnDestroy {
   private addressSub:Subscription;
 
   ngOnInit(): void {
-    this.userAddresses=this.addressService.getAddress();
+    this.addressService.getAddress();
     this.addressSub=this.addressService.getAddressUpdateListner()
       .subscribe((addresses:UserAddress[])=>{
         this.userAddresses=addresses;
