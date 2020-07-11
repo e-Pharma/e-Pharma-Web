@@ -17,12 +17,16 @@ export interface UserAddress {
   styleUrls: ['./address-book.component.css']
 })
 export class AddressBookComponent implements OnInit ,OnDestroy {
- 
-  constructor(public addressService:AddressBookService) { }
+  
+  userAddresses :any=[];
 
-  userAddresses:UserAddress[]=[
-    {type:'Home',city:'Kohuwela',address:'No.45,Dutugemunu road,Kohuwela'}
-   ];
+  constructor(public addressService:AddressBookService) {
+      // this.addNewAddress(form:NgForm);
+   }
+
+  // userAddresses:UserAddress[]=[
+  //   {type:'Home',city:'Kohuwela',address:'No.45,Dutugemunu road,Kohuwela'}
+  //  ];
   private addressSub:Subscription;
 
   ngOnInit(): void {
@@ -37,10 +41,6 @@ export class AddressBookComponent implements OnInit ,OnDestroy {
     this.addressSub.unsubscribe();
   }
 
-  // newAddress = '';
-  // newType ='';
-  // newCity='';
-  
   addNewAddress(form:NgForm) {
     if(form.invalid){
       return;

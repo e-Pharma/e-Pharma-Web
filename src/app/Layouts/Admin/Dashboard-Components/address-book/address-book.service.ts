@@ -27,7 +27,7 @@ export class AddressBookService{
 
     addUserAddress(type:string,city:string,addressInfo:string){
         const post:UserAddress ={type:type,city:city,address:addressInfo};
-        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress/5eff0dbb44376c5f074aaa63',post)
+        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress',post)
             .subscribe((responseData)=>{
                 console.log(responseData.message)
                 this.address.push(post);

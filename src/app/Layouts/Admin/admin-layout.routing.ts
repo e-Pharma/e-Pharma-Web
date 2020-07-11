@@ -42,7 +42,7 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     {
-        path: 'profile',
+        path: 'profile/:id',
         component: ProfileComponent
     },
     {
