@@ -10,6 +10,8 @@ import { OrderTempDataResolver } from './Dashboard-Components/Resolvers/order-da
 import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/payment-gateway.component';
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
+import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
+
 export const AdminLayoutRoutes: Routes = [
     {
         path: 'dashboard-home',
@@ -54,6 +56,9 @@ export const AdminLayoutRoutes: Routes = [
     },
     {
         path: 'notifications',
-        component: NotificationsComponent
+        component: NotificationsComponent,
+        resolve: {
+            notifications: NotificationsResolver
+        }
     }
 ];

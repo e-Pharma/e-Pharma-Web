@@ -99,5 +99,11 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.get(`${this.apiUrl}/client/order/get`, { headers: httpHeadersParam });
   }
+
+  getNotifications(): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/auth/user/get_notifications`, { headers: httpHeadersParam });
+  }
   
 }

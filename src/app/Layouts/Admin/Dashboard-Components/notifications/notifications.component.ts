@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
+  notificationData: any;
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
+    this.route.data.subscribe((data: { notifications: any }) => {
+      this.notificationData = data.notifications.data;
+    });
+  }
 
   ngOnInit(): void {
   }
