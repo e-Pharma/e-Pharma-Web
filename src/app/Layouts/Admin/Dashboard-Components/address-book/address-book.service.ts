@@ -2,6 +2,7 @@ import {UserAddress} from './address-book.component'
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs'
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({providedIn:'root'})
 
@@ -10,8 +11,14 @@ export class AddressBookService{
     private address:UserAddress[]=[];
     private addressUpdated =new Subject<UserAddress[]>();
    
-    constructor(private http:HttpClient){}
-
+    constructor(private http:HttpClient,
+            private _snackBar: MatSnackBar){}
+   
+    openSnackBar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+            duration: 2000,
+        });
+        }
     getAddress(id){
         // return [...this.address];
         this.http.get<{message:string,address:UserAddress[]}>('http://localhost:3000/client/viewAddress/'+id)
@@ -35,8 +42,10 @@ export class AddressBookService{
         this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress/'+id,data)
             .subscribe((responseData)=>{
                 console.log(responseData.message)
+                this.openSnackBar(responseData.message,'done');
+
                 if(responseData.message=="success"){
-                    alert(responseData.message);
+                    // alert(responseData.message);
                     window.location.reload();
 
                 }else{

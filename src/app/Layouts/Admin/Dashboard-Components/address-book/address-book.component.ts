@@ -16,8 +16,6 @@ export interface UserAddress {
   
 }
 
-// const ELEMENT_DATA: UserAddress[] = [];
-
 @Component({
   selector: 'app-address-book',
   templateUrl: './address-book.component.html',
@@ -26,7 +24,7 @@ export interface UserAddress {
 export class AddressBookComponent implements OnInit  {
   
   userAddresses :any=[];
-  userId:''
+  userId:'';
   datasource:any;
   displayedColumns: string[] = [ 'type', 'city', 'address'];
 
@@ -80,7 +78,5 @@ export class AddressBookComponent implements OnInit  {
       this.addressService.addUserAddress(params['id'],type,city,address);
       form.resetForm();
     })
-
   }
-  
 }

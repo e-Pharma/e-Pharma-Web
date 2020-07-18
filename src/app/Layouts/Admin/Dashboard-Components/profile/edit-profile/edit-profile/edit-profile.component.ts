@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {ProfileService} from '../../profile.service'
 import {UserServiceService} from '../../../../../../Services/user-service.service'
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-profile',
@@ -28,11 +29,17 @@ export class EditProfileComponent implements OnInit {
     private userService :UserServiceService,
     // private profileService:ProfileService,
     private route:ActivatedRoute,
+    private _snackBar: MatSnackBar
     ) { 
     this.readUserDetails()
     // this.editUserDetaisl();
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+        duration: 3000,
+    });
+  }
   ngOnInit(): void {
 
   }
@@ -43,20 +50,19 @@ export class EditProfileComponent implements OnInit {
 
     this.userService.getUser(this.userId)
         .subscribe((data)=>{
-          console.log(data);
+          // console.log(data);
           this.userDetails=data;
           // console.log(this.userDetails.data.email)
         })
    }
 
    editUserDetails(userfName,userlName,userAddress,userContact){
-     console.log('username')
-     console.log(userfName)
-    this.route.params.subscribe(params=>{
+      this.route.params.subscribe(params=>{
       this.userService.editProfile(params['id'],userfName,userlName,userAddress,userContact)
         .subscribe(res=>{
           console.log(res)
           this.userDetails=res;
+          this.openSnackBar("Address Added Successfully"," ");
           this.readUserDetails()
         })
     })
