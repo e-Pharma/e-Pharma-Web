@@ -62,7 +62,7 @@ export class EditProfileComponent implements OnInit {
         .subscribe(res=>{
           console.log(res)
           this.userDetails=res;
-          this.openSnackBar("Address Added Successfully"," ");
+          this.openSnackBar("Profile updated successfully"," ");
           this.readUserDetails()
         })
     })

@@ -71,6 +71,9 @@
                         <mat-error *ngIf="prescriptionForm.controls.nic.hasError('maxlength')">
                             NIC should not contain more than <strong> 12 characters. </strong>
                         </mat-error>
+                        <mat-error *ngIf="prescriptionForm.controls.nic.hasError('minlength')">
+                            NIC should not be less than <strong> 12 characters. </strong>
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field>
@@ -180,7 +183,7 @@
                     <div class="row" style="padding-top: 5px;padding-left: 50px;">
 
                         <p style="color: red;" *ngIf="isLoadingQuality" class="blink"> <b> Calculating Quality </b></p>
-                        <p style="color: red;" *ngIf="!imageQuality && imageUrl !== null && !isLoadingQuality"> <b> Quality is not enough! Please upload again!</b></p>
+                        <p style="color: red;" *ngIf="!imageQuality && imageUrl !== null && !isLoadingQuality"> <b> Quality is not good enough! Please upload again!</b></p>
                         <p style="color: green;" *ngIf="imageQuality && imageUrl !== null && !isLoadingQuality"> <b> Good Quality!</b></p>
 
                     </div>

@@ -38,6 +38,7 @@ import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/reset-email.component';
 import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
+import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
 
 @NgModule({
   imports: [
@@ -87,7 +88,8 @@ import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-pas
     DatePipe,
     UserDataResolver,
     OrderTempDataResolver,
-    OrdersResolver
+    OrdersResolver,
+    NotificationsResolver
   ]
 })
 

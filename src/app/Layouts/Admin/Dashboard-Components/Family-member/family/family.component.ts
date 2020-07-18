@@ -30,7 +30,7 @@ export class FamilyComponent implements OnInit{
     this.relationshipForm = this.formBuilder.group({
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
-      'nic': ['', Validators.required],
+      'nic': ['', [Validators.required, Validators.maxLength(12), Validators.minLength(10)]],
       'relationship': ['', Validators.required],
       'dob': ['', Validators.required],
       'contact_number': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]],

@@ -50,7 +50,7 @@
                             <span class="product-desc">Qty</span>
 
                                 <div class="form-group fname">
-                                    <input type="number" value="3000">
+                                    <input type="number" value="1">
                                 </div>
                         </div>
 
@@ -58,7 +58,7 @@
 
                     <div class="ph-sm-lbl lgray" style="font-size: 14px; ">PAY FOR</div>
 
-                    <div style="font-size: 16px; color:#444444; font-weight: 400; line-height: 24px;"> Order ID <span id="unit_price_text" style="color: #888888;">(RS: 3000)</span></div>
+                    <div style="font-size: 16px; color:#444444; font-weight: 400; line-height: 24px;"> Order </div>
                         
                     <div>
                         <small style="font-size: 12px; line-height: 15px;"></small>
@@ -81,29 +81,29 @@
                         <div class="form-group ph-m-10-top">
 
                             <div class="form-group fname">
-                                <input type="text" name="first_name" placeholder="First Name" required class="form-control text-box-pay">
+                                <input type="text" [value]="getName('first')" name="first_name" placeholder="First Name" required class="form-control text-box-pay">
                             </div>
                             <div class="form-group lname">
-                                <input type="text" name="last_name" placeholder="Last Name" required class="form-control text-box-pay">
+                                <input type="text" [value]="getName('last')" name="last_name" placeholder="Last Name" required class="form-control text-box-pay">
                             </div>
 
                         </div>
 
                         <div class="form-group ph-m-10-top">
 
-                            <input type="email" name="email" placeholder="Email" required class="form-control text-box-pay">
+                            <input type="email" [value]="order.email" name="email" placeholder="Email" required class="form-control text-box-pay">
                         
                         </div>
 
                         <div class="form-group ph-m-10-top">
                             
-                            <input type="text" name="phone" placeholder="Contact" required="" class="form-control text-box-pay">
+                            <input type="text" [value]="order.contact" name="phone" placeholder="Contact" required="" class="form-control text-box-pay">
                         
                         </div>
 
                         <div class="form-group ph-m-10-top">
 
-                            <input type="text" name="items" placeholder="Items" required class="form-control text-box-pay">
+                            <input type="text" [value]="getItems()" name="items" placeholder="Items" required class="form-control text-box-pay">
                         
                         </div>
 
@@ -113,16 +113,16 @@
 
                         <div class="form-group fname">
 
-                            <input type="text" name="address" placeholder="Address" required="" class="form-control text-box-pay">
+                            <input type="text" [value]="order.delivery_address" name="address" placeholder="Address" required class="form-control text-box-pay">
                         
                         </div>
 
                         <div class="form-group lname">
 
-                          <input type="text" name="city" placeholder="City" list="cityNames" class="form-control text-box-pay">
+                          <input type="text" value="Colombo" name="city" placeholder="City" list="cityNames" class="form-control text-box-pay">
 
                           <datalist id="cityNames"> 
-                            <option value="Colombo"></option>                        
+                            <option value="Colombo" selected></option>                        
                             <option value="Dehiwala-Mount Lavinia"></option>
                             <option value="Moratuwa"></option>
                             <option value="Sri Jayawardenapura Kotte"></option>

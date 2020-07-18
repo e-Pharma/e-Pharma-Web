@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-gateway',
@@ -7,9 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentGatewayComponent implements OnInit {
 
-  constructor() { }
+  order: any;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
+    this.route.data.subscribe((data: { order: any }) => {
+      this.order = data.order.data;
+      console.log(this.order)
+    });
+  }
 
   ngOnInit(): void {
+    
+  }
+
+  getName(type:string) {
+    if (type === 'first') {
+      return this.order.name.split(" ")[0];
+    } else {
+      return this.order.name.split(" ")[1];
+    }
+  }
+
+  getItems() {
+    if (this.order.non_prescription.length === 0) {
+      return "Prescription";
+    } else if (this.order.non_prescription.length > 0 && (this.order.prescription_url !== null || this.order.prescription_url !== "")) {
+      var medicine: string = "";
+      for (var item of this.order.non_prescription) {
+        medicine += item + ",";
+      }
+      medicine += "prescribed medicines";
+    } else if (this.order.non_prescription.length === 0 && (this.order.prescription_url !== null || this.order.prescription_url !== "")) {
+      return "Prescrbed Medicines"
+    }
   }
 
 }

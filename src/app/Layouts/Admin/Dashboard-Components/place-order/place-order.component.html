@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
 
-        <div *ngIf="orderData.is_reviewed">
+        <div *ngIf="orderData.status === 'reviewed'">
 
             <label id="example-radio-group-label"> <b> Pick the preferred payment method </b></label>
             <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControl]="paymentMethod">
@@ -13,7 +13,7 @@
 
         </div>
 
-        <div *ngIf="!orderData.is_reviewed">
+        <div *ngIf="orderData.status === 'pending'">
 
             <h3 style="color: green;"> <b> You will be eligible to do payments once the order is reviewed. </b></h3>
         </div>
@@ -152,10 +152,10 @@
 
             </mat-card-content>
 
-            <!-- <mat-card-actions align="center">
-                <form *ngIf="paymentMethod.value === 'p_here'" #form action="https://sandbox.payhere.lk/pay/o229f30af" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now" (click)="form.submit()"></form>
-                <button mat-raised-button color="warn" *ngIf="paymentMethod.value === 'c_del'"> Done </button>
-            </mat-card-actions> -->
+            <mat-card-actions align="center">
+                <form *ngIf="paymentMethod.value === 'p_here' && orderData.status === 'reviewed'" #form action="https://sandbox.payhere.lk/pay/o229f30af" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now" (click)="form.submit()"></form>
+                <button mat-raised-button color="warn" *ngIf="paymentMethod.value === 'c_del' && orderData.status === 'reviewed'"> Done </button>
+            </mat-card-actions>
 
         </mat-card>
           
