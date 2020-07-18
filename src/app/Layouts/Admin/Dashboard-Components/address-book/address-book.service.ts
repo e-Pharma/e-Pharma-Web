@@ -12,9 +12,9 @@ export class AddressBookService{
    
     constructor(private http:HttpClient){}
 
-    getAddress(){
+    getAddress(id){
         // return [...this.address];
-        this.http.get<{message:string,address:UserAddress[]}>('http://localhost:3000/client/viewAddress/:id')
+        this.http.get<{message:string,address:UserAddress[]}>('http://localhost:3000/client/viewAddress/'+id)
             .subscribe((info)=>{
                 this.address=info.address;
                 this.addressUpdated.next([...this.address]);
@@ -25,15 +25,25 @@ export class AddressBookService{
         return this.addressUpdated.asObservable();
     }
 
-    addUserAddress(type:string,city:string,addressInfo:string){
-        const post:UserAddress ={type:type,city:city,address:addressInfo};
-        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress',post)
+    addUserAddress(id:any,type:string,city:string,addressInfo:string){
+        const data=[{
+            type:type,
+            city:city,
+            address:addressInfo
+        }]
+        console.log(data)
+        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress/'+id,data)
             .subscribe((responseData)=>{
                 console.log(responseData.message)
-                this.address.push(post);
+                if(responseData.message=="success"){
+                    alert(responseData.message);
+                    window.location.reload();
+
+                }else{
+                    alert(responseData.message);
+                }
+                // this.address.push(data);
                 this.addressUpdated.next([...this.address]);
             })
-        
     }
-
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import {ProfileService} from '../../profile.service'
 import {UserServiceService} from '../../../../../../Services/user-service.service'
 import { ActivatedRoute } from '@angular/router';
@@ -13,8 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditProfileComponent implements OnInit {
 
   // email = new FormControl('', [Validators.required, Validators.email]);
-  userDetails:any =[]
-  userId=''
+ 
   // getErrorMessage() {
   //   if (this.email.hasError('required')) {
   //     return 'You must enter a value';
@@ -22,9 +20,13 @@ export class EditProfileComponent implements OnInit {
 
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
+
+  userDetails:any =[]
+  userId=''
+  
   constructor( 
     private userService :UserServiceService,
-    private profileService:ProfileService,
+    // private profileService:ProfileService,
     private route:ActivatedRoute,
     ) { 
     this.readUserDetails()
@@ -51,10 +53,11 @@ export class EditProfileComponent implements OnInit {
      console.log('username')
      console.log(userfName)
     this.route.params.subscribe(params=>{
-      this.profileService.editProfile(params['id'],userfName,userlName,userAddress,userContact)
+      this.userService.editProfile(params['id'],userfName,userlName,userAddress,userContact)
         .subscribe(res=>{
           console.log(res)
           this.userDetails=res;
+          this.readUserDetails()
         })
     })
   }

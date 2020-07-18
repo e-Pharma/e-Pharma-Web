@@ -105,5 +105,14 @@ export class UserServiceService {
     // <{status:Number,message:String,data:[]}>
       return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/'+id)
   }
-
+  
+  editProfile(id,userfName,userlName,userAddress,userContact){
+    const obj={
+      first_name:userfName,
+      last_name:userlName,
+      address:userAddress,
+      contact_number:userContact
+    }
+    return this.http.post("http://localhost:3000/client/edit/"+id,obj)
+  }
 }
