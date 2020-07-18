@@ -115,4 +115,7 @@ export class UserServiceService {
     }
     return this.http.post("http://localhost:3000/client/edit/"+id,obj)
   }
+  getAddress(id:any):Observable<any>{
+    return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address/'+id)
+  }
 }
