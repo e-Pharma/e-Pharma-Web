@@ -109,7 +109,8 @@ export class UserServiceService {
   cancelOrder(orderId: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.delete(`${this.apiUrl}/client/order/cancel_order/${orderId}`, { headers: httpHeadersParam });
+    console.log(httpHeaders)
+    return this.http.put(`${this.apiUrl}/client/order/cancel_order/${orderId}`, {}, { headers: httpHeadersParam });
   }
   
   getUser(id:any): Observable<any>{

@@ -48,7 +48,8 @@ export class PlaceOrderComponent implements OnInit {
 
   cancelOrder() {
     this.userService.cancelOrder(this.orderId).subscribe((response: any) => {
-      if (response.message === "success") {
+      if (response.message === "Success") {
+        location.reload()
         this.router.navigate(['../../dashboard-home'], {relativeTo: this.route});
       } else {
         alert(response.message)

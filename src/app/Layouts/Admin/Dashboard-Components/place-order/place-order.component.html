@@ -16,6 +16,13 @@
         <div *ngIf="orderData.status === 'pending'">
 
             <h3 style="color: green;"> <b> You will be eligible to do payments once the order is reviewed. </b></h3>
+        
+        </div>
+
+        <div *ngIf="orderData.status === 'rejected'">
+
+            <h3 style="color: red;"> <b> Your Order is cancelled. </b></h3>
+        
         </div>
 
         <mat-card class="example-card">
@@ -155,7 +162,7 @@
             <mat-card-actions align="center">
                 <form *ngIf="paymentMethod.value === 'p_here' && orderData.status === 'reviewed'" #form action="http://localhost:4200/payment/{{orderData._id}}" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now" (click)="form.submit()"></form>
                 <button mat-raised-button color="primary" *ngIf="paymentMethod.value === 'c_del' && orderData.status === 'reviewed'"> Done </button>
-                <button mat-raised-button color="warn" (click)="cancelOrder()"> Cancel Order </button>
+                <button mat-raised-button color="warn" *ngIf="orderData.status !== 'rejected'" (click)="cancelOrder()"> Cancel Order </button>
             </mat-card-actions>
 
         </mat-card>
