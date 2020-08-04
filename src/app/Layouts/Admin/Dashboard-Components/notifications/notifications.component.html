@@ -5,7 +5,7 @@
         <div class="alert alert-info alert-with-icon" data-notify="container" *ngFor="let notifications of notificationData">
             <i class="material-icons" data-notify="icon">add_alert</i>
             <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">  <i class="material-icons">close</i></button>
-            <span data-notify="message"> Your order on {{ notifications.ordered_at | date }} has been reviewed. <a href="/view-order/{{notifications._id}}"> Click here </a> to proceed with the payment. </span>
+            <span data-notify="message"> Your order on {{ notifications.ordered_at | date }} has been reviewed. <a href="javascript:void(0)" (click)="viewDetails(notifications._id)"> Click here </a> to view details. </span>
         </div>
 
     </div>

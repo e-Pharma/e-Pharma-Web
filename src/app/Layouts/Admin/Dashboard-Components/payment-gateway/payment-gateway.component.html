@@ -14,7 +14,7 @@
             <input type="hidden" name="notify_url" value="">  
             <input type="hidden" name="order_id" value="o229f30af">
             <input type="hidden" name="currency" value="LKR">
-            <input type="hidden" name="amount" value="3000">  
+            <input type="hidden" name="amount" value="{{order.full_amount}}">  
 
             <input type="hidden" name="country" value="Sri Lanka"><br><br> 
 
@@ -30,7 +30,7 @@
 
                         <div class="ph-merchant-title">E Pharma</div>
                         <div class="ph-product-desc">Online checkout</div>                      
-                        <div class="ph-amount"><span id="currencyFormatted">Rs.</span> <span id="amount">3000</span>.<span id="amountDecimal">00</span></div>                
+                        <div class="ph-amount"><span id="currencyFormatted">Rs.</span> <span id="amount"> {{order.full_amount}} </span>.<span id="amountDecimal">00</span></div>                
                         <input type="hidden" id="unitPrice" value="1000">
 
                     </div>

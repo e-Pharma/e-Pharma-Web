@@ -39,6 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/reset-email.component';
 import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
 import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
+import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-message-dialog/view-message-dialog.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifica
     PlaceOrderComponent,
     NotificationsComponent,
     ResetEmailComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ViewMessageDialogComponent
   ],
   providers: [
     DatePipe,
