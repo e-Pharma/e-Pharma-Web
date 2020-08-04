@@ -44,14 +44,20 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     {
-        path: 'profile',
-        component: ProfileComponent,
-        resolve: {
-            userData: UserDataResolver
-        }
+        path: 'profile/:id',
+        component: ProfileComponent
+        // children:[
+        //     {
+        //         component: ProfileComponent,
+        //         resolve: {
+        //             userData: UserDataResolver
+        //         }
+        //     }
+        // ]
+       
     },
     {
-        path: 'address-book',
+        path: 'address-book/:id',
         component: AddressBookComponent
     },
     {
