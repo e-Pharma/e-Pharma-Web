@@ -103,7 +103,13 @@ export class UserServiceService {
   getNotifications(): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    return this.http.get(`${this.apiUrl}/auth/user/get_notifications`, { headers: httpHeadersParam });
+    return this.http.get(`${this.apiUrl}/client/order/get_notifications`, { headers: httpHeadersParam });
+  }
+
+  cancelOrder(orderId: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.delete(`${this.apiUrl}/client/order/cancel_order/${orderId}`, { headers: httpHeadersParam });
   }
   
 }

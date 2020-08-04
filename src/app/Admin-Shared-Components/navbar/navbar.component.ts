@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private count: number = 0;
 
     constructor(location: Location,  private element: ElementRef, private router: Router, private userService: UserServiceService, private route: ActivatedRoute) {
       this.location = location;
@@ -33,6 +34,7 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
+     this.getNotificationCount()
     }
 
     sidebarOpen() {
@@ -123,6 +125,9 @@ export class NavbarComponent implements OnInit {
       }
       if(titlee.includes('/')) {
           const index = titlee.slice(1).indexOf('/');
+          if (titlee === '/notifications') {
+              return "Notifications"
+          }
           return titlee.slice(1).toUpperCase().substring(0,index);
       }
       return titlee.slice(1).toUpperCase();
@@ -136,6 +141,16 @@ export class NavbarComponent implements OnInit {
                 this.router.navigate(['/']);
             } else {
                 alert(response.message);
+            }
+        })
+    }
+
+    getNotificationCount() {
+        this.userService.getNotifications().subscribe((response: any) => {
+            if (response.message === "Success") {
+                this.count = response.data.count;
+            } else {
+                alert(response.message)
             }
         })
     }

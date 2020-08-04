@@ -14,6 +14,7 @@ export class PlaceOrderComponent implements OnInit {
   orderData: any;
   paymentMethods: any[] = [{name: 'Cash On Delivery', value: 'c_del'}, {name: 'Pay Here', value: 'p_here'}];
   paymentMethod: FormControl;
+  orderId: any;
 
   constructor(private router: Router,
               private userService: UserServiceService,
@@ -25,8 +26,8 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    console.log(id)
+    this.orderId = this.route.snapshot.params['id'];
+    console.log(this.orderId)
     this.paymentMethod = new FormControl();
     //this.selectOnChange();
   }
@@ -43,6 +44,16 @@ export class PlaceOrderComponent implements OnInit {
       medString = medString + medicines + " , "
     }
     return medString;
+  }
+
+  cancelOrder() {
+    this.userService.cancelOrder(this.orderId).subscribe((response: any) => {
+      if (response.message === "success") {
+        this.router.navigate(['../../dashboard-home'], {relativeTo: this.route});
+      } else {
+        alert(response.message)
+      }
+    });
   }
 
 }

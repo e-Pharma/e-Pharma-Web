@@ -12,7 +12,8 @@ export class NotificationsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router) {
     this.route.data.subscribe((data: { notifications: any }) => {
-      this.notificationData = data.notifications.data;
+      this.notificationData = data.notifications.data.list;
+      console.log(this.notificationData)
     });
   }
 
