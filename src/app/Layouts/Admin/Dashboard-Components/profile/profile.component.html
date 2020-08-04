@@ -16,10 +16,10 @@
                     <img mat-card-image  src='../../../assets/img/faces/marc.jpg' >
                 <div class='info-content'>
                     <mat-card-content>
-                        <p><mat-icon>face</mat-icon>Test User </p>
-                        <p><mat-icon>contact_mail</mat-icon>test@gmail.com</p>
-                        <p><mat-icon>file_copy</mat-icon>9645782135v</p>
-                        <p><mat-icon>call</mat-icon>0712548639</p>
+                        <p><mat-icon>face</mat-icon>{{userDetails.data.first_name}} {{userDetails.data.last_name}} </p>
+                        <p><mat-icon>contact_mail</mat-icon>{{userDetails.data.email}}</p>
+                        <p><mat-icon>file_copy</mat-icon>{{userDetails.data.nic}}</p>
+                        <p><mat-icon>call</mat-icon>{{userDetails.data.contact_number}}</p>
                     </mat-card-content>
                 </div>
                 </mat-card>
