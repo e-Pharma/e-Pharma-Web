@@ -29,7 +29,7 @@ export class ViewMessageDialogComponent implements OnInit {
   }
 
   navigateToPayment() {
-    this.router.navigate(['../payment', this.data._id], {relativeTo: this.route});
+    this.router.navigate(['../view-order', this.data._id], {relativeTo: this.route});
   }
 
 }

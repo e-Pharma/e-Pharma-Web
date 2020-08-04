@@ -109,7 +109,6 @@ export class UserServiceService {
   cancelOrder(orderId: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
-    console.log(httpHeaders)
     return this.http.put(`${this.apiUrl}/client/order/cancel_order/${orderId}`, {}, { headers: httpHeadersParam });
   }
   
@@ -130,5 +129,11 @@ export class UserServiceService {
   }
   getAddress(id:any):Observable<any>{
     return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address/'+id)
+  }
+
+  payOrder(orderId: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.put(`${this.apiUrl}/client/order/pay_order/${orderId}`, {status: 'paid'}, { headers: httpHeadersParam });
   }
 }
