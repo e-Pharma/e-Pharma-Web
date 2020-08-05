@@ -6,7 +6,7 @@
 
         <div class="container">
 
-          <form #form action="https://sandbox.payhere.lk/pay/checkout" method="POST">              
+          <form #form action="https://sandbox.payhere.lk/pay/checkout" method="POST" id="form">              
 
             <input type="hidden" name="merchant_id" value="1214841"> 
             <input type="hidden" name="return_url" value="">
@@ -190,7 +190,7 @@
 
                       <div class="form-group text-center ph-m-30-top">
 
-                        <button type="submit" id="next-customer-info" class="btn btn-info signup_btn next-button" (click)="form.submit()"><b>PROCEED TO CHECKOUT</b></button>
+                        <button type="submit" id="next-customer-info" class="btn btn-info signup_btn next-button" (click)="pay()"><b>PROCEED TO CHECKOUT</b></button>
 
                       </div>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserServiceService } from 'app/Services/user-service.service';
 
 @Component({
   selector: 'app-payment-gateway',
@@ -11,6 +12,7 @@ export class PaymentGatewayComponent implements OnInit {
   order: any;
 
   constructor(private route: ActivatedRoute,
+              private userService: UserServiceService,
               private router: Router) {
     this.route.data.subscribe((data: { order: any }) => {
       this.order = data.order.data;
@@ -42,6 +44,18 @@ export class PaymentGatewayComponent implements OnInit {
     } else if (this.order.non_prescription.length === 0 && (this.order.prescription_url !== null || this.order.prescription_url !== "")) {
       return "Prescrbed Medicines"
     }
+  }
+
+  pay() {
+    this.userService.payOrder(this.order._id).subscribe((response: any) => {
+      if(response.message === "Success") {
+        alert(response.message);
+        (<HTMLFormElement>document.getElementById('form')).submit();
+        //this.router.navigate(['../../dashboard-home'], { relativeTo: this.route });
+      } else {
+        alert(response.message);
+      }
+    })
   }
 
 }

@@ -1,7 +1,7 @@
-<h2 mat-dialog-title> Notification </h2>
+<h2 mat-dialog-title align="center" style="color: red"> Notification </h2>
 <mat-dialog-content class="mat-typography">
     <mat-list role="list">
-        <mat-list-item *ngFor="let medicine of data.medList; let index=index" role="listitem"> {{ medicine.name }}  -  <div style="padding-left: 5px;" id="availability{{index}}"> {{ availability(medicine.is_available, index) }} </div> <div style="padding-left: 5px;"> - RS: {{ medicine.unit_price }} </div> </mat-list-item>
+        <mat-list-item *ngFor="let medicine of data.medList; let index=index" role="listitem"> {{ medicine.name }}  -  <div style="padding-left: 5px;" id="availability{{index}}"> {{ availability(medicine.is_available, index) }} </div> <div style="padding-left: 5px;"> - RS. {{ medicine.unit_price }} </div> </mat-list-item>
     </mat-list>
     <div class="row">
 
@@ -11,13 +11,13 @@
 
           <div class="col-md-6">
 
-            <p style="padding-left: 15px;padding-top: 10px;"> <b> Total </b>  : </p>
+            <p style="padding-left: 16px;padding-top: 10px;"> <b> Total </b>  : </p>
 
           </div>
 
           <div class="col-md-6">
 
-            <p style="padding-top: 10px;"> RS: <b style="padding-left: 5px;"> {{ data.price }} </b> </p>
+            <p style="padding-top: 10px;"> RS. <b style="padding-left: 5px;"> {{ data.price }} </b> </p>
 
           </div>
 
