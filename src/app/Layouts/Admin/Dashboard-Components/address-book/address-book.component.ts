@@ -128,13 +128,14 @@ export class AddressBookComponent implements OnInit  {
     if(result=='OK'){
       this.route.params.subscribe(params=>{
         this.addressService.addUserAddress(params['id'],type,city,address);
+        this.viewAddressBook()
         form.resetForm();
         console.log(result)       
         })
       }
     else{
       console.log('add address failed',result)
-      // alert(result)
+      alert(result)
       form.resetForm();
     }
   }

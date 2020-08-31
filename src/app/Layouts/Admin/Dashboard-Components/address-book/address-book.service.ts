@@ -10,7 +10,6 @@ export class AddressBookService{
     
     private address:UserAddress[]=[];
     private addressUpdated =new Subject<UserAddress[]>();
-    public latValue:number;
   
     constructor(private http:HttpClient,
             private _snackBar: MatSnackBar){}
