@@ -11,8 +11,10 @@ import {ActivatedRoute} from '@angular/router'
 })
 export class ProfileComponent implements OnInit {
 
-  userDetails :any=[];
+  public userDetails :any=[];
   userId =''
+  // public message =''
+
   constructor(
     private userService:UserServiceService,
     private route:ActivatedRoute
@@ -32,8 +34,13 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(this.userId)
         .subscribe((data)=>{
           console.log(data);
-          this.userDetails=data;
+          this.userDetails=data.data;
           // console.log(this.userDetails.data.email)
         })
+   }
+   newUserDetails(data){
+     this.userDetails=data;
+     this.readUserDetails()
+
    }
 }

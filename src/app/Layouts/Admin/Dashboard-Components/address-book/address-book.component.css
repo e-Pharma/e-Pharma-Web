@@ -1,5 +1,15 @@
-mat-card{
-    margin:10px;
+.data-table{
+  margin: 0;
+}
+agm-map {
+  height: 300px;
+}
+.map-view{
+  top: 0em;
+  margin-top: 0;
+  width: 80%;
+  margin: 20px auto;
+
 }
 table {
 
