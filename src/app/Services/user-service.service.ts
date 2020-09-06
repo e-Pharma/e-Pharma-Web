@@ -53,6 +53,7 @@ export class UserServiceService {
   getUserData(): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
+    console.log('headerparam',httpHeaders)
     return this.http.get(`${this.apiUrl}/auth/getData`, { headers: httpHeadersParam });
   }
 
@@ -135,5 +136,10 @@ export class UserServiceService {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/client/order/pay_order/${orderId}`, {status: 'paid'}, { headers: httpHeadersParam });
+  }
+
+  getDeliveryPersonData(){
+    return this.http.get(`${this.apiUrl}/admin/drivers`);
+
   }
 }

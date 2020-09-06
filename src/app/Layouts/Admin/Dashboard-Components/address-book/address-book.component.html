@@ -43,7 +43,7 @@
                 </form>
             </mat-expansion-panel>
         </div>
-    <!--Address table-->
+<!--Address display table-->
         <div class='data-table'>
             <p class='mat-body-1 info-text' *ngIf="userAddresses.length <= 0">No Content Yet</p>
             <div *ngIf="userAddresses.length > 0" >
@@ -68,32 +68,16 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </div>
-        </div>        
-    <div class=' map-view'>
-        <button mat-raised-button  
-                    type="submit" 
-                    color="primary"
-            >Show</button>
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15 >
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              <agm-polygon [paths]="paths">
-                </agm-polygon>
-              <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [fillColor]="'red'"
-                   [circleDraggable]="false" [editable]="false" (dragEnd)="radiusDragEnd($event)"
-                    (radiusChange)="event('radiusChange',$event)">
-              </agm-circle>
-        </agm-map>
-            <div id="map" style="width: 320px; height: 480px;"></div>
-            <!--button mat-raised-button  
-                    type="submit" 
-                    color="primary"
-                    (click)= "initMap()">Show</button>
-
-            <div>
-                <input id="address" type="textbox" value="Sydney, NSW">
-                <input type="button" value="Encode" (click)="codeAddress()">
-            </div-->
+        </div> 
+    <!--Delivery are on Google map -->       
+        <div class=' map-view'>
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]=11 >
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [fillColor]="'orange'"
+                    [circleDraggable]="false" [editable]="false" (dragEnd)="radiusDragEnd($event)"
+                        (radiusChange)="event('radiusChange',$event)">
+                </agm-circle>
+            </agm-map>
         </div>
-
    </div>
 </div>

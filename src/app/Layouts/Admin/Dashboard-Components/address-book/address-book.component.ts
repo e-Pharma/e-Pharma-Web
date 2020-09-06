@@ -14,8 +14,7 @@ export interface UserAddress {
    }]
   
 }
-//AIzaSyDRbx17EYlBP1rcPruz1zyMFHRk1bwvqkI
-//AIzaSyDRbx17EYlBP1rcPruz1zyMFHRk1bwvqkI
+
 @Component({
   selector: 'app-address-book',
   templateUrl: './address-book.component.html',
@@ -35,7 +34,7 @@ export class AddressBookComponent implements OnInit  {
   lng = 79.861218;
 
 /* Delivery area-radius */
-  radius = 500;
+  radius = 15000; // 15 km
    
   latMax=7.038110;
   latMin=6.763110;
@@ -45,9 +44,7 @@ export class AddressBookComponent implements OnInit  {
 
   /*new  user added address*/
    new_lat;
-   // 6.858255
    new_lng;
-   // 79.917147
  
 
   constructor(
