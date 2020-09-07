@@ -26,7 +26,7 @@ export class OrderTrackerComponent implements OnInit {
   deliveryPerson:any =[];
   deliveryLat:Number;
   deliveryLng:Number;
-  deliveryPersonId;
+  Id;
   
   driverIcon = {
     url: 'https://jillyscarwash.com/wp-content/uploads/2018/09/jillys-marker-map-pin-300x300.png',
@@ -51,22 +51,23 @@ export class OrderTrackerComponent implements OnInit {
 
 /* customize with the order ID*/
   getDeliveryPerson(){
-    let orderId='5eff770f7d96fd1aa09f2971';
-    let Id;
+    let orderId='5eff770f7d96fd1aa09f2971'; // get the order id from parent 
     this.userService.getOrder(orderId).subscribe(
       (data)=>{
         console.log('order',data)
-        Id=data.data.driver;
-        console.log('driver id:',Id)
+        this.Id=data.data.driver;
+
+        this.userService.getDeliveryPersonData(this.Id)
+        .subscribe((data)=>{
+          console.log('driver:',data);
+          this.deliveryPerson=data;
+          this.deliveryLat=this.deliveryPerson.data.lat;
+          this.deliveryLng=this.deliveryPerson.data.long;
+        })
       }
     )
+
     //set the delivery persons' location
-    this.userService.getDeliveryPersonData(Id)
-      .subscribe((data)=>{
-        console.log('driver:',data);
-        this.deliveryPerson=data;
-        this.deliveryLat=this.deliveryPerson.data.lat;
-        this.deliveryLng=this.deliveryPerson.data.long;
-      })
+   
   }
 }

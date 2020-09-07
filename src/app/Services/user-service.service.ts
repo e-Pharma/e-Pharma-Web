@@ -115,7 +115,6 @@ export class UserServiceService {
   
   getUser(id:any): Observable<any>{
     // return [...this.user]
-    // <{status:Number,message:String,data:[]}>
       return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/'+id)
   }
   
@@ -143,8 +142,8 @@ export class UserServiceService {
   //   return this.http.get<{status:Number,message:String,data:[]}>(`${this.apiUrl}/client/get/order/${orderId}`)
   // }
   getDeliveryPersonData(id){
-    const driverId='5f27cb71ef97983f74b05313'
-       return this.http.get(`${this.apiUrl}/driver/get/${driverId}`);//
+    // const driverId='5f27cb71ef97983f74b05313'
+       return this.http.get(`${this.apiUrl}/driver/get/${id}`);
   }
 
 }
