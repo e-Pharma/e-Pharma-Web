@@ -11,32 +11,34 @@ export class OrderTrackerComponent implements OnInit {
 
   socket;
 
-  /* Pharamcy location*/
+/* Pharamcy location*/
   lat = 6.902118;
   lng = 79.861218;
   pharmacyIcon = {
     url: 'https://cdn2.iconfinder.com/data/icons/map-locations-colored-outlined-pixel-perfect/64/pin-map-location-03-512.png',
     scaledSize: {
-      width: 30,
-      height: 30 
+      width: 40,
+      height: 40 
     }
 }
 
-/*Delivery Paerson Data*/
+/*Delivery Person Data*/
   deliveryPerson:any =[];
   deliveryLat:Number;
   deliveryLng:Number;
+  deliveryPersonId;
+  
   driverIcon = {
     url: 'https://jillyscarwash.com/wp-content/uploads/2018/09/jillys-marker-map-pin-300x300.png',
     scaledSize: {
-      width: 30,
-      height: 30 
-    }
+      width: 40,
+      height: 40 
+    },
 } 
  
   constructor(public userService:UserServiceService) { 
     this.getDeliveryPerson();
-    this.socket=io('http://localhost:3000');
+    this.socket=io('http://localhost:3000'); // change in to the base url
 
   }
 
@@ -49,14 +51,22 @@ export class OrderTrackerComponent implements OnInit {
 
 /* customize with the order ID*/
   getDeliveryPerson(){
-    this.userService.getDeliveryPersonData()
+    let orderId='5eff770f7d96fd1aa09f2971';
+    let Id;
+    this.userService.getOrder(orderId).subscribe(
+      (data)=>{
+        console.log('order',data)
+        Id=data.data.driver;
+        console.log('driver id:',Id)
+      }
+    )
+    //set the delivery persons' location
+    this.userService.getDeliveryPersonData(Id)
       .subscribe((data)=>{
         console.log('driver:',data);
         this.deliveryPerson=data;
-        this.deliveryLat=this.deliveryPerson.data[0].lat;
-        this.deliveryLng=this.deliveryPerson.data[0].long;
-       
+        this.deliveryLat=this.deliveryPerson.data.lat;
+        this.deliveryLng=this.deliveryPerson.data.long;
       })
   }
-
 }

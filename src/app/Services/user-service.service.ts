@@ -137,9 +137,14 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/client/order/pay_order/${orderId}`, {status: 'paid'}, { headers: httpHeadersParam });
   }
-
-  getDeliveryPersonData(){
-    return this.http.get(`${this.apiUrl}/admin/drivers`);
-
+  // getDriverId(orderId:any){
+  //   // const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+  //   // const httpHeadersParam = new HttpHeaders(httpHeaders);
+  //   return this.http.get<{status:Number,message:String,data:[]}>(`${this.apiUrl}/client/get/order/${orderId}`)
+  // }
+  getDeliveryPersonData(id){
+    const driverId='5f27cb71ef97983f74b05313'
+       return this.http.get(`${this.apiUrl}/driver/get/${driverId}`);//
   }
+
 }
