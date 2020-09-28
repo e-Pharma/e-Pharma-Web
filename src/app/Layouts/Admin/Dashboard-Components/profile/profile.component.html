@@ -3,9 +3,10 @@
         <div class='row'>
             
         <div class='profile edit-info col-md-7'>
+        <a href='/track'>track</a>
                 <mat-card>
                     <mat-tab-group>
-                        <mat-tab label="Edit Profile "><app-edit-profile></app-edit-profile></mat-tab>
+                        <mat-tab label="Edit Profile "><app-edit-profile (updateEvent)="newUserDetails($event)" ></app-edit-profile></mat-tab>
                         <mat-tab label="Change Password"><app-reset-password> </app-reset-password> </mat-tab>
                         <mat-tab label="Change Email"><app-reset-email></app-reset-email></mat-tab>
                     </mat-tab-group>
@@ -16,10 +17,10 @@
                     <img mat-card-image  src='../../../assets/img/faces/marc.jpg' >
                 <div class='info-content'>
                     <mat-card-content>
-                        <p><mat-icon>face</mat-icon>{{userDetails.data.first_name}} {{userDetails.data.last_name}} </p>
-                        <p><mat-icon>contact_mail</mat-icon>{{userDetails.data.email}}</p>
-                        <p><mat-icon>file_copy</mat-icon>{{userDetails.data.nic}}</p>
-                        <p><mat-icon>call</mat-icon>{{userDetails.data.contact_number}}</p>
+                        <p><mat-icon>face</mat-icon>{{userDetails.first_name}} {{userDetails.last_name}} </p>
+                        <p><mat-icon>contact_mail</mat-icon>{{userDetails.email}}</p>
+                        <p><mat-icon>file_copy</mat-icon>{{userDetails.nic}}</p>
+                        <p><mat-icon>call</mat-icon>{{userDetails.contact_number}}</p>
                     </mat-card-content>
                 </div>
                 </mat-card>

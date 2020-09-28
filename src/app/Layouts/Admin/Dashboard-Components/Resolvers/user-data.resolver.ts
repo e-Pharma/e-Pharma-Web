@@ -1,6 +1,6 @@
 /** Angular Imports */
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { Resolve,ActivatedRouteSnapshot } from '@angular/router';
 
 /** rxjs Imports */
 import { Observable } from 'rxjs';
@@ -23,7 +23,10 @@ export class UserDataResolver implements Resolve<Object> {
    * Returns the user data.
    * @returns {Observable<any>}
    */
-  resolve(): Observable<any> {
+  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+    const userId=route.paramMap.get('id');
+    console.log(userId)
+
     return this.userService.getUserData();
   }
 
