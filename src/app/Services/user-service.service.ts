@@ -53,6 +53,7 @@ export class UserServiceService {
   getUserData(): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
     const httpHeadersParam = new HttpHeaders(httpHeaders);
+    console.log('headerparam',httpHeaders)
     return this.http.get(`${this.apiUrl}/auth/getData`, { headers: httpHeadersParam });
   }
 
@@ -114,7 +115,6 @@ export class UserServiceService {
   
   getUser(id:any): Observable<any>{
     // return [...this.user]
-    // <{status:Number,message:String,data:[]}>
       return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/'+id)
   }
   
@@ -136,4 +136,14 @@ export class UserServiceService {
     const httpHeadersParam = new HttpHeaders(httpHeaders);
     return this.http.put(`${this.apiUrl}/client/order/pay_order/${orderId}`, {status: 'paid'}, { headers: httpHeadersParam });
   }
+  // getDriverId(orderId:any){
+  //   // const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+  //   // const httpHeadersParam = new HttpHeaders(httpHeaders);
+  //   return this.http.get<{status:Number,message:String,data:[]}>(`${this.apiUrl}/client/get/order/${orderId}`)
+  // }
+  getDeliveryPersonData(id){
+    // const driverId='5f27cb71ef97983f74b05313'
+       return this.http.get(`${this.apiUrl}/driver/get/${id}`);
+  }
+
 }

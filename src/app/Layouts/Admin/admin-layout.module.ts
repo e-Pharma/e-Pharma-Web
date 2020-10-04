@@ -40,12 +40,15 @@ import { ResetEmailComponent } from './Dashboard-Components/profile/reset-email/
 import { ResetPasswordComponent } from './Dashboard-Components/profile/reset-password/reset-password.component';
 import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
 import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-message-dialog/view-message-dialog.component';
+import { AgmCoreModule } from '@agm/core';
+import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    AgmCoreModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatRippleModule,
@@ -84,7 +87,8 @@ import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-
     NotificationsComponent,
     ResetEmailComponent,
     ResetPasswordComponent,
-    ViewMessageDialogComponent
+    ViewMessageDialogComponent,
+    OrderTrackerComponent
   ],
   providers: [
     DatePipe,

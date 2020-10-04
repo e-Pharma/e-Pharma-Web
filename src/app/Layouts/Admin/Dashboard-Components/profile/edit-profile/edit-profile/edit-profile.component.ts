@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {ProfileService} from '../../profile.service'
 import {UserServiceService} from '../../../../../../Services/user-service.service'
@@ -22,9 +22,12 @@ export class EditProfileComponent implements OnInit {
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
 
-  userDetails:any =[]
-  userId=''
-  
+  userDetails:any =[];
+  userId='';
+  // @Input() public profileData:any=[];
+  @Output() public updateEvent:EventEmitter<any> = new EventEmitter<any>() ;
+
+
   constructor( 
     private userService :UserServiceService,
     // private profileService:ProfileService,
@@ -37,14 +40,13 @@ export class EditProfileComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-        duration: 3000,
+        duration: 2000,
     });
   }
   ngOnInit(): void {
 
   }
-
-  readUserDetails(){
+   readUserDetails(){
     this.userId = this.route.snapshot.params.id;
     console.log(this.userId);
 
@@ -52,18 +54,21 @@ export class EditProfileComponent implements OnInit {
         .subscribe((data)=>{
           // console.log(data);
           this.userDetails=data;
-          // console.log(this.userDetails.data.email)
+          console.log(this.userDetails.data.nic)
         })
    }
 
    editUserDetails(userfName,userlName,userAddress,userContact){
-      this.route.params.subscribe(params=>{
+     this.userDetails=[userfName,userlName,userAddress,userContact]
+
+     this.route.params.subscribe(params=>{
       this.userService.editProfile(params['id'],userfName,userlName,userAddress,userContact)
         .subscribe(res=>{
           console.log(res)
-          this.userDetails=res;
-          this.openSnackBar("Profile updated successfully"," ");
-          this.readUserDetails()
+          this.userDetails=[userfName,userlName,userlName,userAddress];
+          this.updateEvent.emit(this.userDetails);
+          this.openSnackBar("Profile updated successfully","OK");
+          // this.readUserDetails()
         })
     })
   }

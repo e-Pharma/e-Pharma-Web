@@ -11,6 +11,7 @@ import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
 import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
+import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component'
 
 export const AdminLayoutRoutes: Routes = [
     {
@@ -48,6 +49,7 @@ export const AdminLayoutRoutes: Routes = [
         component: ProfileComponent
         // children:[
         //     {
+        //         path:':id',
         //         component: ProfileComponent,
         //         resolve: {
         //             userData: UserDataResolver
@@ -66,5 +68,10 @@ export const AdminLayoutRoutes: Routes = [
         resolve: {
             notifications: NotificationsResolver
         }
+    },
+    {
+        path: 'track',
+        component: OrderTrackerComponent,
+       
     }
 ];

@@ -1,0 +1,19 @@
+<div class="main-content">
+    <div class ="container-fluid">
+       <agm-map [latitude]="lat" [longitude]="lng" [zoom]=14>
+        <agm-marker
+            [latitude]="lat" 
+            [longitude]="lng"
+            title="Pharmacy"
+            [iconUrl]='pharmacyIcon'
+        ></agm-marker>
+        <agm-marker 
+            [latitude]="deliveryLat" 
+            [longitude]="deliveryLng"
+            title = "deliveryPerson"
+            [iconUrl]='driverIcon'
+        ></agm-marker>
+    </agm-map>
+    </div>
+
+</div>
