@@ -60,7 +60,9 @@ export class PlaceOrderComponent implements OnInit {
   pay() {
     this.userService.payOrder(this.orderId).subscribe((response: any) => {
       if(response.message === "Success") {
-        this.router.navigate(['../../dashboard-home'], { relativeTo: this.route });
+        this.router.navigate(['../../dashboard-home'], { relativeTo: this.route }).then(() => {
+          location.reload();
+        });
       } else {
         alert(response.message);
       }

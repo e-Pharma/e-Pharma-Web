@@ -41,6 +41,7 @@ export class PaymentGatewayComponent implements OnInit {
         medicine += item + ",";
       }
       medicine += "prescribed medicines";
+      return medicine;
     } else if (this.order.non_prescription.length === 0 && (this.order.prescription_url !== null || this.order.prescription_url !== "")) {
       return "Prescrbed Medicines"
     }
