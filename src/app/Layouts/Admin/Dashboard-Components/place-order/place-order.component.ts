@@ -21,7 +21,7 @@ export class PlaceOrderComponent implements OnInit {
               private route: ActivatedRoute) {
     this.route.data.subscribe((data: { order: any }) => {
       this.orderData = data.order.data;
-      console.log(this.orderData)
+      console.log(this.orderData.prescription_url)
     });
   }
 
