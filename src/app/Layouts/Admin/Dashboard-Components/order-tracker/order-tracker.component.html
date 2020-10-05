@@ -1,5 +1,6 @@
 <div class="main-content">
     <div class ="container-fluid">
+    <div >
        <agm-map [latitude]="lat" [longitude]="lng" [zoom]=14>
         <agm-marker
             [latitude]="lat" 
@@ -14,6 +15,10 @@
             [iconUrl]='driverIcon'
         ></agm-marker>
     </agm-map>
+    </div>
+    </div>
+    <div class='feedback-btn'>
+        <button mat-button (click)="openDialog()" color ="primary">Feedback</button>
     </div>
 
 </div>
