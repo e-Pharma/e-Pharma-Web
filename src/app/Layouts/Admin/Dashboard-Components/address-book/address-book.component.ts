@@ -27,7 +27,7 @@ export class AddressBookComponent implements OnInit  {
   userAddresses :any=[];
   userId:'';
   datasource:any;
-  displayedColumns: string[] = [ 'type', 'city', 'address'];
+  displayedColumns: string[] = ['address'];
   
 /* Pharamcy location*/
   lat = 6.902118;
@@ -74,7 +74,7 @@ export class AddressBookComponent implements OnInit  {
   }
  
  /* get the latitude and longtitude of user added address*/
- codeAddress(type,city,address,form:NgForm){
+ codeAddress(address,form:NgForm){
   let result
   console.log("codeaddress func")
    this.addressService.getLatLng(address)
@@ -85,7 +85,8 @@ export class AddressBookComponent implements OnInit  {
            this.new_lat=data.results[0].geometry.location.lat
            this.new_lng=data.results[0].geometry.location.lng
            result=this.checkAddress(this.new_lat,this.new_lng)
-           this.addNewAddress(type,city,address,form,result)
+           this.addNewAddress(this.new_lat,this.new_lng,address,form,result)
+          //  this.addNewAddress(type,city,address,form,result)
            console.log('codeAddress/result:',result)
            return result;
       }else{
