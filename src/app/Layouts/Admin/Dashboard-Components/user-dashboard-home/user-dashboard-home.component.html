@@ -56,7 +56,10 @@
 
                     <mat-form-field>
                         <mat-label>Delivery Address</mat-label>
-                        <input matInput placeholder="Address" required formControlName="address">
+                        <mat-select formControlName="address" required>
+                            <mat-option *ngFor="let address of addressBook" [value]="address"> {{ address.address }} </mat-option>
+                          </mat-select>
+                        <mat-hint> You can add a valid delivery address from <a href="/address-book/5eff0dbb44376c5f074aaa63"> Add Delivery Address </a> page. </mat-hint>
                         <mat-error *ngIf="prescriptionForm.controls.address.hasError('required')">
                             Delivery Address is <strong>required</strong>
                         </mat-error>

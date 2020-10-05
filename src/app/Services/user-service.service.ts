@@ -146,4 +146,16 @@ export class UserServiceService {
        return this.http.get(`${this.apiUrl}/driver/get/${id}`);
   }
 
+  initializeConnection(message: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.post('/initChat', message, { headers: httpHeadersParam });
+  }
+
+  getAddressBook(): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/client/address/getAll`, { headers: httpHeadersParam });
+  }
+
 }

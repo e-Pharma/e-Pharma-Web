@@ -42,6 +42,7 @@ import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifica
 import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-message-dialog/view-message-dialog.component';
 import { AgmCoreModule } from '@agm/core';
 import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component';
+import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolver';
 
 @NgModule({
   imports: [
@@ -95,7 +96,8 @@ import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/orde
     UserDataResolver,
     OrderTempDataResolver,
     OrdersResolver,
-    NotificationsResolver
+    NotificationsResolver,
+    AddressResolver
   ]
 })
 
