@@ -25,7 +25,6 @@ export class AddressBookComponent implements OnInit  {
 
   
   userAddresses :any=[];
-  userId:'';
   datasource:any;
   displayedColumns: string[] = ['address'];
   
@@ -98,10 +97,10 @@ export class AddressBookComponent implements OnInit  {
  
 /* display delivery addresses */
   viewAddressBook(){
-    this.userId=this.route.snapshot.params.id;
-    console.log(this.userId);
+    // this.userId=this.route.snapshot.params.id;
+    // console.log(this.userId);
 
-    this.user.getAddress(this.userId)
+    this.user.getAddressBook()
       .subscribe((data)=>{
         console.log(data);
         this.userAddresses=data.data;

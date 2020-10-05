@@ -127,9 +127,12 @@ export class UserServiceService {
     }
     return this.http.post("http://localhost:3000/client/edit/"+id,obj)
   }
-  getAddress(id:any):Observable<any>{
-    return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address/'+id)
-  }
+  
+  // getAddress(id:any):Observable<any>{
+  //   const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+  //   const httpHeadersParam = new HttpHeaders(httpHeaders);
+  //   return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address', {headers: httpHeadersParam})
+  // }
 
   payOrder(orderId: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}

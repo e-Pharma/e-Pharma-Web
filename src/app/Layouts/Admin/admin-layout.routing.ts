@@ -61,7 +61,7 @@ export const AdminLayoutRoutes: Routes = [
        
     },
     {
-        path: 'address-book/:id',
+        path: 'address-book',
         component: AddressBookComponent
     },
     {
