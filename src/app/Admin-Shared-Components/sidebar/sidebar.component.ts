@@ -14,7 +14,7 @@ let userId='5eff0dbb44376c5f074aaa63';
 
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard-home', title: 'Dashboard-Home',  icon: 'dashboard', class: '' },
-    { path: '/address-book/5eff0dbb44376c5f074aaa63', title: 'Address Book',  icon:'contacts', class: '' },
+    { path: '/address-book', title: 'Address Book',  icon:'contacts', class: '' },
     { path: '/family', title: 'Family',  icon:'add_circle', class: '' },
     { path: '/history', title: 'History',  icon:'history', class: '' },
     { path: '/profile/'+userId, title: 'User Profile',  icon:'person', class: '' },

@@ -11,6 +11,7 @@ import { PaymentGatewayComponent } from './Dashboard-Components/payment-gateway/
 import { NotificationsComponent } from './Dashboard-Components/notifications/notifications.component';
 import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver';
 import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
+import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolver';
 import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component'
 import {FeedbackComponent} from './Dashboard-Components/feedback/feedback.component'
 
@@ -19,7 +20,8 @@ export const AdminLayoutRoutes: Routes = [
         path: 'dashboard-home',
         component: UserDashboardHomeComponent,
         resolve: {
-            userData: UserDataResolver
+            userData: UserDataResolver,
+            addressData: AddressResolver
         }
     },
     {
@@ -60,7 +62,7 @@ export const AdminLayoutRoutes: Routes = [
        
     },
     {
-        path: 'address-book/:id',
+        path: 'address-book',
         component: AddressBookComponent
     },
     {
@@ -75,9 +77,5 @@ export const AdminLayoutRoutes: Routes = [
         component: OrderTrackerComponent,
        
     },
-    {
-        path: 'feedback/:id',
-        component: FeedbackComponent   ,
-       
-    }
+  
 ];

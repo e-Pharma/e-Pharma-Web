@@ -38,6 +38,10 @@ export class UserDashboardHomeComponent implements OnInit {
   medCount: number = 1;
   /** Prescription Type. */
   isChecked: boolean = false;
+  /** Address Book. */
+  addressBook: any[];
+  /** Client ID. */
+  clientId: any;
 
   constructor(private formBuilder: FormBuilder,
               private imageService: ImageUploadingService,
@@ -47,9 +51,11 @@ export class UserDashboardHomeComponent implements OnInit {
               private datePipe: DatePipe,
               private _snackBar: MatSnackBar,
               private cd: ChangeDetectorRef) { 
-    this.route.data.subscribe((data: { userData: any }) => {
+    this.route.data.subscribe((data: { userData: any, addressData: any }) => {
       this.userData = data.userData.data;
-      console.log(this.userData)
+      this.addressBook = data.addressData.data;
+      this.clientId = localStorage.getItem('token');
+      console.log(this.addressBook)
     });
   }
 

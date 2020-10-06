@@ -4,6 +4,7 @@ import {Subject, Observable} from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({providedIn:'root'})
 
@@ -37,13 +38,15 @@ export class AddressBookService{
     }
 
     addUserAddress(id:any,type:string,city:string,addressInfo:string){
+        const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+        const httpHeadersParam = new HttpHeaders(httpHeaders);
         const data=[{
             type:type,
             city:city,
             address:addressInfo
         }]
         console.log(data)
-        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress/'+id,data)
+        this.http.post<{message:string}>('http://localhost:3000/client/addNewAddress/',data, {headers: httpHeadersParam})
             .subscribe((responseData)=>{
                 console.log(responseData.message)
                 this.openSnackBar(responseData.message,'done');

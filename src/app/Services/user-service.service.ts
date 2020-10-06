@@ -127,9 +127,12 @@ export class UserServiceService {
     }
     return this.http.post("http://localhost:3000/client/edit/"+id,obj)
   }
-  getAddress(id:any):Observable<any>{
-    return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address/'+id)
-  }
+  
+  // getAddress(id:any):Observable<any>{
+  //   const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+  //   const httpHeadersParam = new HttpHeaders(httpHeaders);
+  //   return this.http.get<{status:Number,message:String,data:[]}>('http://localhost:3000/client/get/address', {headers: httpHeadersParam})
+  // }
 
   payOrder(orderId: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
@@ -152,6 +155,18 @@ export class UserServiceService {
       feedback:feedback
     }
     return this.http.post<{message:string}>("http://localhost:3000/client/feedback/"+id,obj)
+  }
+
+  initializeConnection(message: any): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.post('/initChat', message, { headers: httpHeadersParam });
+  }
+
+  getAddressBook(): Observable<any> {
+    const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}
+    const httpHeadersParam = new HttpHeaders(httpHeaders);
+    return this.http.get(`${this.apiUrl}/client/address/getAll`, { headers: httpHeadersParam });
   }
 
 }

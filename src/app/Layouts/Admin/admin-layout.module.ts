@@ -43,6 +43,7 @@ import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-
 import { AgmCoreModule } from '@agm/core';
 import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component';
 import { FeedbackComponent } from './Dashboard-Components/feedback/feedback.component';
+import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolver';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { FeedbackComponent } from './Dashboard-Components/feedback/feedback.comp
     UserDataResolver,
     OrderTempDataResolver,
     OrdersResolver,
-    NotificationsResolver
+    NotificationsResolver,
+    AddressResolver
   ]
 })
 
