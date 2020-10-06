@@ -148,6 +148,14 @@ export class UserServiceService {
     // const driverId='5f27cb71ef97983f74b05313'
        return this.http.get(`${this.apiUrl}/driver/get/${id}`);
   }
+  sendCustomerFeedback(id,name,feedback){
+    console.log(name)
+    const obj ={
+      name:name,
+      feedback:feedback
+    }
+    return this.http.post<{message:string}>("http://localhost:3000/client/feedback/"+id,obj)
+  }
 
   initializeConnection(message: any): Observable<any> {
     const httpHeaders = {'Authorization': 'Bearer'+ localStorage.getItem('token')}

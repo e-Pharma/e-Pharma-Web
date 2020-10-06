@@ -13,6 +13,7 @@ import { OrdersResolver } from './Dashboard-Components/Resolvers/orders.resolver
 import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifications.resolver';
 import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolver';
 import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component'
+import {FeedbackComponent} from './Dashboard-Components/feedback/feedback.component'
 
 export const AdminLayoutRoutes: Routes = [
     {
@@ -75,5 +76,6 @@ export const AdminLayoutRoutes: Routes = [
         path: 'track',
         component: OrderTrackerComponent,
        
-    }
+    },
+  
 ];

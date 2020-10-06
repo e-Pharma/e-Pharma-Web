@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import{ UserServiceService}from '../../../../Services/user-service.service'
 import * as io from 'socket.io-client'
+import {MatDialog} from '@angular/material/dialog';
+import {FeedbackComponent} from '../feedback/feedback.component'
 
 @Component({
   selector: 'app-order-tracker',
@@ -36,10 +38,17 @@ export class OrderTrackerComponent implements OnInit {
     },
 } 
  
-  constructor(public userService:UserServiceService) { 
+  constructor(public userService:UserServiceService,public dialog: MatDialog) { 
     this.getDeliveryPerson();
     this.socket=io('http://localhost:3000'); // change in to the base url
 
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(FeedbackComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   ngOnInit(): void {

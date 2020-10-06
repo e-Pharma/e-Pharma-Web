@@ -42,6 +42,7 @@ import { NotificationsResolver } from './Dashboard-Components/Resolvers/notifica
 import { ViewMessageDialogComponent } from './Dashboard-Components/dialogs/view-message-dialog/view-message-dialog.component';
 import { AgmCoreModule } from '@agm/core';
 import { OrderTrackerComponent } from './Dashboard-Components/order-tracker/order-tracker.component';
+import { FeedbackComponent } from './Dashboard-Components/feedback/feedback.component';
 import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolver';
 
 @NgModule({
@@ -89,7 +90,8 @@ import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolv
     ResetEmailComponent,
     ResetPasswordComponent,
     ViewMessageDialogComponent,
-    OrderTrackerComponent
+    OrderTrackerComponent,
+    FeedbackComponent
   ],
   providers: [
     DatePipe,
