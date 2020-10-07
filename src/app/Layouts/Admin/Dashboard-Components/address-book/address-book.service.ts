@@ -50,16 +50,8 @@ export class AddressBookService{
             .subscribe((responseData)=>{
                 console.log(responseData.message)
                 this.openSnackBar(responseData.message,'done');
-
-                // if(responseData.message=="success"){
-                //     // alert(responseData.message);
-                //     window.location.reload();
-
-                // }else{
-                //     alert(responseData.message);
-                // }
-                // this.address.push(data);
                 this.addressUpdated.next([...this.address]);
+                
             })
     }
     getLatLng(address:string):Observable<any>{

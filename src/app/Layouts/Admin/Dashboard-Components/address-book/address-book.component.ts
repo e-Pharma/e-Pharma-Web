@@ -5,6 +5,7 @@ import{ UserServiceService}from '../../../../Services/user-service.service'
 import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface UserAddress {
  items:[{
@@ -48,6 +49,7 @@ export class AddressBookComponent implements OnInit  {
 
   constructor(
     public addressService:AddressBookService,
+    private _snackBar: MatSnackBar,
     public user:UserServiceService,
     private route:ActivatedRoute,
     ) 
@@ -59,7 +61,11 @@ export class AddressBookComponent implements OnInit  {
   ngOnInit(): void {
 
    }
-
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
  /* Check the user added address is  within the delivery area*/
    checkAddress(lat,lng){
      console.log("checkaddress func")
@@ -68,6 +74,7 @@ export class AddressBookComponent implements OnInit  {
           console.log("You are within our delivery area");
           return('OK')
        }else{
+        this.openSnackBar('Sorry, you are out of our delivery area', "OK");
          return('Sorry, you are out of our delivery area')
        }
   }
@@ -132,7 +139,6 @@ export class AddressBookComponent implements OnInit  {
       }
     else{
       console.log('add address failed',result)
-      alert(result)
       form.resetForm();
     }
   }
