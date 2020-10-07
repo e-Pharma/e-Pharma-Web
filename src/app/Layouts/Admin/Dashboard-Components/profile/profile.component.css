@@ -3,8 +3,8 @@
 } */
 .user-info{
     /* max-width: 400px; */
-    height: 500px;
-    padding-top: 22px;
+    height: 100px;
+    /* padding-top: 22px; */
 } 
 .info-content{
     margin: auto;
