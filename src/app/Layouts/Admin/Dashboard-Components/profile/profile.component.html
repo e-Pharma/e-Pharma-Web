@@ -3,25 +3,24 @@
         <div class='row'>
             
         <div class='profile edit-info col-md-7'>
-        <!-- <a href='/track'>track</a> -->
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Edit Profile "><app-edit-profile (updateEvent)="newUserDetails($event)" ></app-edit-profile></mat-tab>
-                        <mat-tab label="Change Password"><app-reset-password> </app-reset-password> </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
+            <mat-card>
+                <mat-tab-group>
+                    <mat-tab label="Edit Profile "><app-edit-profile (updateEvent)="newUserDetails($event)" ></app-edit-profile></mat-tab>
+                    <mat-tab label="Change Password"><app-reset-password> </app-reset-password> </mat-tab>
+                </mat-tab-group>
+            </mat-card>
         </div>
         <div class='profile user-info col-md-5'>
                 <mat-card>
-                    <img mat-card-image  src='../../../assets/img/faces/marc.jpg' >
-                <div class='info-content'>
-                    <mat-card-content>
-                        <p><mat-icon>face</mat-icon>{{userDetails.first_name}} {{userDetails.last_name}} </p>
-                        <p><mat-icon>contact_mail</mat-icon>{{userDetails.email}}</p>
-                        <p><mat-icon>file_copy</mat-icon>{{userDetails.nic}}</p>
-                        <p><mat-icon>call</mat-icon>{{userDetails.contact_number}}</p>
-                    </mat-card-content>
-                </div>
+                    <img mat-card-image  src='../../../assets/img/faces/user.jpg' >
+                    <div class='info-content'>
+                        <mat-card-content>
+                            <p><mat-icon>face</mat-icon>{{userDetails.first_name}} {{userDetails.last_name}} </p>
+                            <p><mat-icon>contact_mail</mat-icon>{{userDetails.email}}</p>
+                            <p><mat-icon>file_copy</mat-icon>{{userDetails.nic}}</p>
+                            <p><mat-icon>call</mat-icon>{{userDetails.contact_number}}</p>
+                        </mat-card-content>
+                    </div>
                 </mat-card>
         </div>
        </div>

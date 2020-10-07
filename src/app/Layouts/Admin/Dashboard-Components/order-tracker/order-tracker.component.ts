@@ -3,6 +3,7 @@ import{ UserServiceService}from '../../../../Services/user-service.service'
 import * as io from 'socket.io-client'
 import {MatDialog} from '@angular/material/dialog';
 import {FeedbackComponent} from '../feedback/feedback.component'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-tracker',
@@ -38,7 +39,10 @@ export class OrderTrackerComponent implements OnInit {
     },
 } 
  
-  constructor(public userService:UserServiceService,public dialog: MatDialog) { 
+  constructor(
+    public userService:UserServiceService,
+    public route :ActivatedRoute,
+    public dialog: MatDialog) { 
     this.getDeliveryPerson();
     this.socket=io('http://localhost:3000'); // change in to the base url
 
@@ -58,14 +62,17 @@ export class OrderTrackerComponent implements OnInit {
     })
   }
 
-/* customize with the order ID*/
+
   getDeliveryPerson(){
-    let orderId='5eff770f7d96fd1aa09f2971'; // get the order id from parent 
+    // let orderId='5eff770f7d96fd1aa09f2971'; // get the order id from parent 
+    
+    let orderId= this.route.snapshot.params.id
     this.userService.getOrder(orderId).subscribe(
       (data)=>{
         console.log('order',data)
         this.Id=data.data.driver;
-
+        // this.Id='5f01dd56178e16256c18c3bc'
+        // driver-dilon='5f7d6dc229298a0004296aec'
         this.userService.getDeliveryPersonData(this.Id)
         .subscribe((data)=>{
           console.log('driver:',data);
@@ -77,6 +84,6 @@ export class OrderTrackerComponent implements OnInit {
     )
 
     //set the delivery persons' location
-   
+ 
   }
 }
