@@ -1,0 +1,5 @@
+nav > div > ul > li > a:hover { 
+    text-decoration: none;
+    border-bottom: 3px solid red; 
+    font-weight: bold;
+}
