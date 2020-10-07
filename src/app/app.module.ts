@@ -13,7 +13,7 @@ import { AdminLayoutComponent } from './Layouts/Admin/admin-layout.component';
 import { MainComponent } from './Layouts/Main/main.component';
 import { LoginSignupModule } from './login-signup/login-signup.module';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CustomSharedComponentsModule } from './custom-shared-components/custom-shared-components.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
@@ -36,7 +36,15 @@ import { OrderTempDataResolver } from './Layouts/Admin/Dashboard-Components/Reso
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMaps
-    })
+    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   },
+    //   defaultLanguage: 'en'
+    // })
   ],
   declarations: [
     AppComponent,

@@ -12,6 +12,8 @@
 
             <form [formGroup]="relationshipForm" (ngSubmit)="submit()" style="padding-top: 10px;">
 
+                <p style="color: red;" *ngIf="errorMessage !== null"> {{ errorMessage }} </p>
+
                 <mat-card-content>
 
                     <mat-form-field>

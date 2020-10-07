@@ -14,6 +14,7 @@ export class FamilyComponent implements OnInit{
   relationshipForm: FormGroup;
   /** Maximum Date allowed. */
   maxDate = new Date();
+  errorMessage: string = null;
 
   constructor(private formBuilder: FormBuilder,
               private datePipe: DatePipe,
@@ -52,7 +53,8 @@ export class FamilyComponent implements OnInit{
         alert(response.message);
         window.location.reload();
       } else {
-        alert(response.message);
+        //alert(response.message);
+        this.errorMessage = response.message;
       }
     })
   }
