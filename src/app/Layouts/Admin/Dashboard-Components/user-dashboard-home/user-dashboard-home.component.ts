@@ -203,11 +203,18 @@ export class UserDashboardHomeComponent implements OnInit {
     console.log("Submitting")
     const dateFormat = "dd MMMM yyyy";
     const dob = this.prescriptionForm.value.dob;
+    const addressId = this.prescriptionForm.value.address;
+    const address = this.addressBook.filter((x: any)=> x._id === addressId)[0].address;
     this.prescriptionForm.patchValue({
-      dob: this.datePipe.transform(dob, dateFormat)
+      dob: this.datePipe.transform(dob, dateFormat),
+      address: address
     });
+    const lat = this.addressBook.filter((x: any)=> x._id === addressId)[0].type;
+    const long = this.addressBook.filter((x: any)=> x._id === addressId)[0].city;
     const formData = this.prescriptionForm.value;
     formData.date = this.datePipe.transform(new Date(), dateFormat);
+    formData.type = lat;
+    formData.city = long;
     var medArray: any[] = new Array();
     if(this.isChecked) {
       for(let i=0; i< this.medCount; i++) {
