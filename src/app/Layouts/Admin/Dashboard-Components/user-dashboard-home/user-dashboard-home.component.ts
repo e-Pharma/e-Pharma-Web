@@ -42,6 +42,8 @@ export class UserDashboardHomeComponent implements OnInit {
   addressBook: any[];
   /** Client ID. */
   clientId: any;
+  /** User Nic */
+  nic: any;
 
   constructor(private formBuilder: FormBuilder,
               private imageService: ImageUploadingService,
@@ -78,6 +80,7 @@ export class UserDashboardHomeComponent implements OnInit {
         this.prescriptionForm.get('dob').setValue(new Date(value.dob));
         this.prescriptionForm.get('nic').setValue(value.nic);
         this.prescriptionForm.get('email').setValue(this.userData.email);
+        this.nic = value.nic;
       } else {
         console.log(this.userData)
         this.prescriptionForm.get('contact').setValue(this.userData.contact_number);
@@ -85,6 +88,7 @@ export class UserDashboardHomeComponent implements OnInit {
         this.prescriptionForm.get('last_name').setValue(this.userData.last_name);
         this.prescriptionForm.get('nic').setValue(this.userData.nic);
         this.prescriptionForm.get('email').setValue(this.userData.email);
+        this.nic = this.userData.nic
       }
     });
   }
@@ -125,7 +129,7 @@ export class UserDashboardHomeComponent implements OnInit {
       'last_name': ['', Validators.required],
       'address': ['', Validators.required],
       'non_pres': [''],
-      'nic': ['', [Validators.required, Validators.maxLength(12), Validators.minLength(10)]],
+      'nic': [{value: '', disabled: true}],
       'dob': ['', Validators.required],
       'relations': ['', Validators.required],
       'date': [{value: new Date(), disabled: true}],
@@ -215,6 +219,7 @@ export class UserDashboardHomeComponent implements OnInit {
     formData.date = this.datePipe.transform(new Date(), dateFormat);
     formData.type = lat;
     formData.city = long;
+    formData.nic = this.nic;
     var medArray: any[] = new Array();
     if(this.isChecked) {
       for(let i=0; i< this.medCount; i++) {

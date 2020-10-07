@@ -35,7 +35,8 @@ export class FamilyComponent implements OnInit{
       'relationship': ['', Validators.required],
       'dob': ['', Validators.required],
       'contact_number': ['', [Validators.required, Validators.pattern('^\\d+$'), Validators.minLength(10), Validators.maxLength(10)]],
-      'gender': ['', Validators.required]
+      'gender': ['', Validators.required],
+      'email': ['', [Validators.required,Validators.email]]
     });
   }
 

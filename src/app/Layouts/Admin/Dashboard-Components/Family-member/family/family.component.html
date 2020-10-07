@@ -33,6 +33,17 @@
                     </mat-form-field>
 
                     <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Second Name" required formControlName="email">
+                        <mat-error *ngIf="relationshipForm.controls.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="relationshipForm.controls.email.hasError('email')">
+                            Email should be a <strong>valid email</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
                         <mat-label>NIC</mat-label>
                         <input matInput placeholder="NIC" required formControlName="nic">
                         <mat-error *ngIf="relationshipForm.controls.nic.hasError('required')">
