@@ -19,7 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { VerifyEmailComponent } from './Main/verify-email/verify-email.component';
 import { PaymentGatewayComponent } from './Layouts/Admin/Dashboard-Components/payment-gateway/payment-gateway.component';
 import { OrderTempDataResolver } from './Layouts/Admin/Dashboard-Components/Resolvers/order-data-temp.resolver';
-import { OnlineChatComponent } from './Main/online-chat/online-chat.component';
+// import { OnlineChatComponent } from './Main/online-chat/online-chat.component';
 
 @NgModule({
   imports: [
@@ -45,7 +45,7 @@ import { OnlineChatComponent } from './Main/online-chat/online-chat.component';
     MainComponent,
     VerifyEmailComponent,
     PaymentGatewayComponent,
-    OnlineChatComponent
+    // OnlineChatComponent
   ],
   exports: [VerifyEmailComponent],
   providers: [OrderTempDataResolver],
