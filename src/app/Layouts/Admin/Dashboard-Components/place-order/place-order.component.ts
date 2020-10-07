@@ -21,7 +21,7 @@ export class PlaceOrderComponent implements OnInit {
               private route: ActivatedRoute) {
     this.route.data.subscribe((data: { order: any }) => {
       this.orderData = data.order.data;
-      console.log(this.orderData.prescription_url)
+      console.log(this.orderData)
     });
   }
 
@@ -60,7 +60,7 @@ export class PlaceOrderComponent implements OnInit {
   pay() {
     this.userService.payOrder(this.orderId).subscribe((response: any) => {
       if(response.message === "Success") {
-        this.router.navigate(['../../dashboard-home'], { relativeTo: this.route }).then(() => {
+        this.router.navigate(['../../track'], { relativeTo: this.route }).then(() => {
           location.reload();
         });
       } else {

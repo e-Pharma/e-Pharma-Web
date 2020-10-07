@@ -52,7 +52,7 @@ export class PaymentGatewayComponent implements OnInit {
       if(response.message === "Success") {
         alert(response.message);
         (<HTMLFormElement>document.getElementById('form')).submit();
-        //this.router.navigate(['../../dashboard-home'], { relativeTo: this.route });
+        this.router.navigate(['../../track'], { relativeTo: this.route });
       } else {
         alert(response.message);
       }

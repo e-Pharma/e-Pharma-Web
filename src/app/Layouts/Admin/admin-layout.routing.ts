@@ -73,7 +73,7 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     {
-        path: 'track',
+        path: 'track/:id',
         component: OrderTrackerComponent,
        
     },
