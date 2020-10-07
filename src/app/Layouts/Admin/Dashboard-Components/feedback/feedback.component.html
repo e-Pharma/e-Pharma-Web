@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class = "container-fluid">
-    <mat-dialog-content class="mat-typography"> 
+        <!--mat-dialog-content class="mat-typography"> 
         <form #feedbackForm='ngForm' method="post">
             <div class="form-group">
                 <div class="">          
@@ -21,5 +21,31 @@
             color="primary" cdkFocusInitial 
             (click)="sendFeedback(name.value,feedback.value,feedbackForm)">Submit</button>
         </mat-dialog-actions>
+   </div-->
+   <div class="example-headers-align">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Feedback </mat-panel-title> 
+                    <mat-icon>add_circle_outline</mat-icon>
+                </mat-expansion-panel-header>
+                
+            <form #feedbackForm='ngForm' method="post">
+            <div class="form-group">
+                <div class="">          
+                    <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" ngModel required #name/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <textarea class="form-control" rows="5" id="message" placeholder="Your Feedback" ngModel required #feedback></textarea>
+                </div>
+            </div>
+            <button mat-button 
+            type="submit" 
+            color="primary" 
+            (click)="sendFeedback(name.value,feedback.value,feedbackForm)">Submit</button>
+        </form>  
+        </mat-expansion-panel>
+    </div>
    </div>
 </div>
