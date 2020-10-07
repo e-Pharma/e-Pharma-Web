@@ -22,7 +22,7 @@
 
                         <mat-form-field class="col-md-12" appearance="outline">
                             <mat-label>User Name</mat-label>
-                            <input matInput placeholder="Email" required formControlName="email">
+                            <input matInput placeholder="Email" required formControlName="email" autofocus>
                             <mat-error *ngIf="loginForm.controls.email.hasError('required')">
                                 Email is <strong>required</strong>
                             </mat-error>
