@@ -75,7 +75,7 @@ import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolv
     MatRadioModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatOptionModule
+    MatOptionModule,
   ],
   declarations: [
     UserDashboardHomeComponent,
@@ -100,7 +100,7 @@ import { AddressResolver } from './Dashboard-Components/Resolvers/address.resolv
     OrdersResolver,
     NotificationsResolver,
     AddressResolver
-  ]
+  ],
 })
 
 export class AdminLayoutModule {}
