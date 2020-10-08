@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class ="container-fluid">
-    <div >
+    <div>
        <agm-map [latitude]="lat" [longitude]="lng" [zoom]=14>
         <agm-marker
             [latitude]="lat" 
@@ -19,7 +19,7 @@
     </div>
     <div class='feedback-btn'>
         <!--button mat-button (click)="openDialog()" color ="primary">Feedback</button-->
-        <app-feedback></app-feedback>
+        <app-feedback *ngIf="status==='delivered'"></app-feedback>
     </div>
 
 </div>

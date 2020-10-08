@@ -217,8 +217,8 @@ export class UserDashboardHomeComponent implements OnInit {
     const long = this.addressBook.filter((x: any)=> x._id === addressId)[0].city;
     const formData = this.prescriptionForm.value;
     formData.date = this.datePipe.transform(new Date(), dateFormat);
-    formData.type = lat;
-    formData.city = long;
+    formData.lat = lat;
+    formData.long = long;
     formData.nic = this.nic;
     var medArray: any[] = new Array();
     if(this.isChecked) {

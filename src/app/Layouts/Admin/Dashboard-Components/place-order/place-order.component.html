@@ -169,7 +169,7 @@
                 <form *ngIf="paymentMethod.value === 'p_here' && orderData.status === 'reviewed'" #form action="http://localhost:4200/payment/{{orderData._id}}" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now" (click)="form.submit()"></form>
                 <button mat-raised-button color="primary" *ngIf="paymentMethod.value === 'c_del' && orderData.status === 'reviewed'" (click)="pay()"> Done </button>
                 <button mat-raised-button color="warn" *ngIf="orderData.status !== 'rejected' && orderData.status !== 'paid' && orderData.status !== 'completed'" (click)="cancelOrder()"> Cancel Order </button>
-                <a mat-raised-button color="accent" *ngIf="orderData.status === 'dispatched' || orderData.status === 'paid' || orderData.status === 'driverAssigned'" href="/track/{{orderData._id}}"> Track </a>
+                <a mat-raised-button color="accent" *ngIf="orderData.status === 'dispatched' || orderData.status === 'paid' || orderData.status === 'driverAssigned' || orderData.status === 'delivered'" href="/track/{{orderData._id}}"> Track </a>
             </mat-card-actions>
 
         </mat-card>

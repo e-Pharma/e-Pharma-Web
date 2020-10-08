@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderTrackerComponent implements OnInit {
 
   socket;
+  status: any;
 
 /* Pharamcy location*/
   lat = 6.902118;
@@ -71,6 +72,7 @@ export class OrderTrackerComponent implements OnInit {
       (data)=>{
         console.log('order',data)
         this.Id=data.data.driver;
+        this.status = data.data.status;
         // this.Id='5f01dd56178e16256c18c3bc'
         // driver-dilon='5f7d6dc229298a0004296aec'
         this.userService.getDeliveryPersonData(this.Id)
