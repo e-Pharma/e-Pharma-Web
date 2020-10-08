@@ -21,11 +21,15 @@ export class ViewMessageDialogComponent implements OnInit {
     const _id = "availability"+index;
     if (isAvailable) {
       (<HTMLElement>document.getElementById(_id)).style.color = "green";
-      return "Available"
+      return "AVAILABLE"
     } else {
       (<HTMLElement>document.getElementById(_id)).style.color = "red";
-      return "Un-Available"
+      return "UN-AVAILABLE"
     }
+  }
+
+  toUpperCase(text: string){
+    return text.toUpperCase();
   }
 
   navigateToPayment() {

@@ -26,9 +26,9 @@ export class PaymentGatewayComponent implements OnInit {
 
   getName(type:string) {
     if (type === 'first') {
-      return this.order.name.split(" ")[0];
+      return this.order.patient.split(" ")[0];
     } else {
-      return this.order.name.split(" ")[1];
+      return this.order.patient.split(" ")[1];
     }
   }
 
@@ -51,8 +51,8 @@ export class PaymentGatewayComponent implements OnInit {
     this.userService.payOrder(this.order._id).subscribe((response: any) => {
       if(response.message === "Success") {
         alert(response.message);
-        (<HTMLFormElement>document.getElementById('form')).submit();
-        this.router.navigate(['../../track'], { relativeTo: this.route });
+        //(<HTMLFormElement>document.getElementById('form')).submit();
+        this.router.navigate(['../track', this.order._id], { relativeTo: this.route });
       } else {
         alert(response.message);
       }
