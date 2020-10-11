@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-customer-contact',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _snackBar: MatSnackBar
+
+  ) { }
 
   ngOnInit(): void {
     var tab = document.getElementById('contact');
@@ -17,4 +22,15 @@ export class CustomerContactComponent implements OnInit {
     document.getElementById('about').classList.remove('active');
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+        duration: 2000,
+    });
+    }
+
+  sendEmail(){
+    this.openSnackBar('Email Sent','OK');
+
+
+  }
 }

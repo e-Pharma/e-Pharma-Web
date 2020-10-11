@@ -39,6 +39,10 @@ export class OrderTrackerComponent implements OnInit {
     },
 } 
  
+/*Delivery address*/
+  userLat:Number;
+  userLng:Number;
+
   constructor(
     public userService:UserServiceService,
     public route :ActivatedRoute,
@@ -71,6 +75,8 @@ export class OrderTrackerComponent implements OnInit {
       (data)=>{
         console.log('order',data)
         this.Id=data.data.driver;
+        this.userLat=data.data.lat;
+        this.userLng=data.data.lng;
         // this.Id='5f01dd56178e16256c18c3bc'
         // driver-dilon='5f7d6dc229298a0004296aec'
         this.userService.getDeliveryPersonData(this.Id)
