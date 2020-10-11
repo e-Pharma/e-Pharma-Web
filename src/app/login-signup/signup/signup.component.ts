@@ -106,14 +106,14 @@ export class SignupComponent implements OnInit {
         let subject = 'Verify Your Account';
         let message = this.getMessage(token);
         let data = {from: from, to: to, message: message, subject: subject };
-        // this.userService.verificationMail(data).subscribe(response => {
-        //   if (response.status === 200 ) {
-        //     this.openSnackBar(response.message, "OK");
-        //     this.router.navigate(['../login'], { relativeTo: this.route} );
-        //   } else {
-        //     this.openSnackBar(response.message, "OK");
-        //   }
-        // });
+        this.userService.verificationMail(data).subscribe(response => {
+          if (response.status === 200 ) {
+            this.openSnackBar(response.message, "OK");
+            this.router.navigate(['../login'], { relativeTo: this.route} );
+          } else {
+            this.openSnackBar(response.message, "OK");
+          }
+        });
         if (response.status === 200 ) {
           this.openSnackBar(response.message, "OK");
           this.router.navigate(['../login'], { relativeTo: this.route} );
