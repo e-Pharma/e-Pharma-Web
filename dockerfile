@@ -1,11 +1,23 @@
-ARG VERSION=latest
-FROM ubuntu:${VERSION}
+ARG VERSION=10.19.0
+FROM node:${VERSION}
 
-CMD [ "/usr/bin/sh", "mkdir", "ePharma" ]
-COPY . /ePharma
-RUN cd /ePharma
+RUN mkdir /ePharma
 
-RUN apt-get update && apt-get install nodejs \
-    npm install
+WORKDIR /ePahrma
+
+COPY . /ePharma 
+
+# COPY package.json /ePharma
+# COPY angular.json /ePharma
+# COPY tsconfig.json /ePharma
+# COPY tslint.json /ePharma
+
+RUN cd /ePharma && pwd
+
+RUN npm install -g @angular/cli@latest
+
+RUN npm install
+
 EXPOSE 4200
-RUN ng serve
+
+CMD [ "ng", "serve" ]
