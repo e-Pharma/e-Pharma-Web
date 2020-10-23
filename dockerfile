@@ -18,6 +18,6 @@ RUN npm install -g @angular/cli@latest
 
 RUN npm install
 
-EXPOSE 4200
+EXPOSE 80
 
 CMD [ "ng", "serve" ]
